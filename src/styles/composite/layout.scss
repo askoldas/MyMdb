@@ -1,20 +1,17 @@
 .layout {
-    display: flex;
-    height: 100vh; /* Full viewport height */
-    width: 100vw; /* Full viewport width */
-  
-    /* Sidebar (first child) */
-    & > :first-child {
-      flex: 0 0 250px; /* Fixed width of 250px for the sidebar */
-    }
-  
-    /* Main content area */
-    &-main {
-      flex: 1; /* Takes the remaining space */
-      background-color: #121212; /* Matches the dark theme */
-      color: #fff; /* Text color */
-      padding: 20px;
-      overflow-y: auto; /* Adds scrolling if content overflows */
-    }
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+
+  & > :first-child {
+    flex: 0 0 250px;
   }
-  
+
+  &-main {
+    flex: 1;
+    background-color: #121212;
+    color: #fff;
+    padding: 20px;
+    overflow-y: auto;
+  }
+}

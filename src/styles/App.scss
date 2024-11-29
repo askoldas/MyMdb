@@ -1,7 +1,7 @@
-/* Import SCSS variables and utilities */
 @import './_variables.scss';
+@import '@fontsource/exo-2/index.css';
 
-/* Reset and global styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -9,51 +9,44 @@
 }
 
 html, body, #root {
-  font-family: $font-family; /* Use the global font-family variable */
-  font-size: $font-size-base; /* Use base font size variable */
-  background-color: $background-black; /* Background color from variables */
-  color: $white-color; /* Text color from variables */
-  min-height: 100%; /* Ensure full height */
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  background-color: $background-black;
+  color: $white-color;
+  min-height: 100%;
 }
 
-/* Layout styles */
 .layout {
   display: flex;
-  min-height: 100vh; /* Full viewport height */
+  min-height: 100vh;
 
-  /* Sidebar (first child) */
   & > :first-child {
-    flex: 0 0 $sidebar-width; /* Sidebar fixed width using variable */
+    flex: 0 0 $sidebar-width;
   }
 
-  /* Main content area */
   &-main {
-    flex-grow: 1; /* Allow content to take remaining space */
-    padding: $padding-standard; /* Use standard padding */
-    background-color: $background-black; /* Matches the dark theme */
-    color: $white-color; /* Text color */
-    overflow-y: auto; /* Adds scrolling if content overflows */
+    flex-grow: 1;
+    padding: $padding-standard;
+    background-color: $background-black;
+    color: $white-color;
+    overflow-y: auto;
   }
 }
 
-/* Main content area */
 .main-content {
-  flex-grow: 1; /* Allow content to take available space */
-  padding: $padding-standard; /* Use standard padding from variables */
+  flex-grow: 1;
+  padding: $padding-standard;
 }
 
-/* Import component-specific styles */
 @import './components/button.scss';
 @import './components/card.scss';
 @import './components/pagination.scss';
 @import './components/user-badge.scss';
 @import './components/navbar.scss';
 
-/* Import composite component styles */
 @import './composite/layout.scss';
 @import './composite/movies-list.scss';
 @import './composite/sidebar.scss';
 
-/* Import page-specific styles */
 @import './pages/home.scss';
 @import './pages/movies-page.scss';

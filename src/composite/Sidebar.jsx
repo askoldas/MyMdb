@@ -15,18 +15,6 @@ export function Sidebar() {
         <UserBadge userName="" />
       </div>
 
-      {/* Buttons for Testing */}
-      <div className="sidebar-buttons">
-        <button className="button button--primary">Primary</button>
-        <button className="button button--primary" disabled>
-          Primary Disabled
-        </button>
-        <button className="button button--secondary">Secondary</button>
-        <button className="button button--secondary" disabled>
-          Secondary Disabled
-        </button>
-      </div>
-
       <div className="sidebar-footer">© All Rights Reserved</div>
     </div>
   )

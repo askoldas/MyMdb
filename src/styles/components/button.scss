@@ -10,30 +10,30 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 
   &--primary {
-    background-color: $primary-color; // Default - Primary
+    background-color: $primary-color;
     color: $white-color;
   }
 
   &--primary:hover:not(:disabled) {
-    background-color: $primary2-color; // Hover - Primary
+    background-color: $primary2-color;
   }
 
   &--secondary {
-    background-color: transparent; // Default - Secondary
-    color: $primary-color; // Use primary color for text
-    border: 1px solid $primary-color; // Border matches primary color
+    background-color: transparent;
+    color: $primary-color;
+    border: 1px solid $primary-color;
   }
 
   &--secondary:hover:not(:disabled) {
-    background-color: $background-dark; // Hover - Secondary
-    color: $primary2-color; // Hover text color
-    border: 1px solid $primary2-color; // Hover border
+    background-color: $background-dark;
+    color: $primary2-color;
+    border: 1px solid $primary2-color;
   }
 
   &:disabled {
     background-color: $light-color;
     color: $background-graphite;
     cursor: not-allowed;
-    border: none; // Disabled buttons shouldn't have borders
+    border: none;
   }
 }

@@ -1,10 +1,11 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'
 
 export function NavItem({ to, label, Icon }) {
     return (
-        <NavLink to={to} className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
-            <img src={Icon} alt={`${label} icon`} className="nav-item-icon" />
-            <span>{label}</span>
-        </NavLink>
+      <NavLink to={to} className="nav-item">
+        <Icon className="nav-item-icon" /> {/* Render the SVG as a React component */}
+        <span>{label}</span>
+      </NavLink>
     );
-}
+  }
+  
