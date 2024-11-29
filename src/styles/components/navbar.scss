@@ -1,0 +1,21 @@
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: $white-color;
+
+    &.active {
+        color: $primary-color;
+    }
+
+    &:hover {
+        color: $primary2-color;
+    }
+
+    .nav-item-icon {
+        width: 24px;
+        height: 24px;
+        fill: currentColor; // Ensure SVG uses the text color
+    }
+}

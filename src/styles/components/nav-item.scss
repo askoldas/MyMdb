@@ -1,0 +1,40 @@
+@import '../_variables';
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  gap: $padding-standard;
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    color: $text-muted;
+    text-decoration: none;
+    font-size: $font-size-base;
+    padding: $padding-standard;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: $background-dark;
+      color: $primary-color;
+    }
+
+    &.active {
+      color: $primary-color;
+    }
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      margin-right: 8px; // Space between icon and label
+    }
+
+    &__label {
+      font-weight: bold;
+    }
+  }
+}

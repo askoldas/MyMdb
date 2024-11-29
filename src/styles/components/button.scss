@@ -1,0 +1,39 @@
+@import '../_variables';
+
+.button {
+  padding: 0.75rem 1.5rem;
+  font-size: $font-size-base;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &--primary {
+    background-color: $primary-color; // Default - Primary
+    color: $white-color;
+  }
+
+  &--primary:hover:not(:disabled) {
+    background-color: $primary2-color; // Hover - Primary
+  }
+
+  &--secondary {
+    background-color: transparent; // Default - Secondary
+    color: $primary-color; // Use primary color for text
+    border: 1px solid $primary-color; // Border matches primary color
+  }
+
+  &--secondary:hover:not(:disabled) {
+    background-color: $background-dark; // Hover - Secondary
+    color: $primary2-color; // Hover text color
+    border: 1px solid $primary2-color; // Hover border
+  }
+
+  &:disabled {
+    background-color: $light-color;
+    color: $background-graphite;
+    cursor: not-allowed;
+    border: none; // Disabled buttons shouldn't have borders
+  }
+}

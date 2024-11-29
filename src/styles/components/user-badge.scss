@@ -1,0 +1,37 @@
+@import '../_variables';
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between badge and text */
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: $white-color;
+
+  &__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Width of the badge */
+    height: 40px; /* Height of the badge */
+    background-color: $primary-color; /* Primary background */
+    border-radius: 12px; /* Rounded rectangle */
+    color: $white-color;
+    font-weight: bold;
+    font-size: 1rem;
+
+    .user-badge__initial {
+      font-size: 1rem;
+    }
+
+    .user-badge__icon {
+      width: 24px; /* Icon size */
+      height: 24px;
+    }
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    color: $white-color;
+  }
+}

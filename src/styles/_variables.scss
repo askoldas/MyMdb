@@ -1,0 +1,42 @@
+// Primary Colors
+$primary-color: #735BF2; // Main accent color
+$primary2-color: #917CFF; // Secondary primary accent
+$secondary-color: #6D6D6D; // Secondary
+
+// Background Colors
+$background-black: #121212; // Main app background
+$background-dark: #1C1C1E; // Dark background
+$background-graphite: #2C2C2E; // Graphite background 1f1f1f
+
+// Text Colors
+$white-color: #FFFFFF; // Light text for dark themes
+$text-muted: #888888; // Muted text color
+
+// Contextual Colors
+$error-color: #F44336; // Error
+$green-color: #4CAF50; // Success (Green)
+$yellow-color: #FFCA28; // Warning (Yellow)
+$orange-color: #FF5722; // Alert (Orange)
+$light-color: #C7C7C7; // Light gray (e.g., disabled states)
+
+// Border and Shadow Colors
+$border-color: rgba(255, 255, 255, 0.2); // Light border
+$shadow-color: rgba(0, 0, 0, 0.5); // Shadow for elements
+
+// Font Variables
+$font-family: 'Arial', sans-serif; // Default font for the app
+$font-size-base: 16px; // Base font size
+$font-size-small: 14px; // Small font size
+$font-size-large: 18px; // Large font size
+
+// Spacing Variables
+$padding-small: 8px; // Small padding
+$padding-standard: 20px; // Standard padding
+$padding-large: 32px; // Large padding
+$margin-small: 8px; // Small margin
+$margin-standard: 16px; // Standard margin
+$margin-large: 32px; // Large margin
+
+// Dimensions
+$sidebar-width: 250px; // Sidebar fixed width
+$border-radius: 4px; // Rounded corners for elements
