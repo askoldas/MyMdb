@@ -1,17 +1,19 @@
+@import '../_variables';
+
 .sidebar {
-  width: 250px;
+  width: $sidebar-width;
   height: 100vh;
-  background-color: #1f1f1f; /* Slightly lighter dark for contrast */
-  color: #fff;
+  background-color: $background-dark;
+  color: $white-color;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: $padding-standard;
 
   &-logo {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: $margin-standard;
 
     img {
       max-width: 100%;
@@ -22,30 +24,30 @@
   &-links {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: $margin-standard;
 
     a {
-      color: #aaaaaa; /* Default light gray text */
+      color: $light-color;
       text-decoration: none;
-      font-size: 16px;
+      font-size: $font-size-base;
       padding: 8px 12px;
       border-radius: 4px;
       transition: color 0.3s;
 
       &:hover {
-        color: #a855f7; /* Purple hover color */
+        color: $primary2-color;
       }
 
       &.active {
-        color: #a855f7; /* Purple color for active state */
-        font-weight: bold; /* Optional: make active links bold */
+        color: $primary-color;
+        font-weight: bold;
       }
     }
   }
 
   &-footer {
-    font-size: 12px;
+    font-size: $font-size-small;
     text-align: center;
-    color: #aaaaaa; /* Light gray for unimportant footer text */
+    color: $light-color;
   }
 }

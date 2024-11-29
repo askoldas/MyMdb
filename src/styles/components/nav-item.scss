@@ -1,0 +1,28 @@
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: $white-color;
+    font-size: $font-size-base;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+  
+    &.active {
+      color: $primary-color;
+      font-weight: bold;
+    }
+  
+    &:hover {
+      color: $primary2-color;
+    }
+  
+    .nav-item-icon {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+      transition: fill 0.3s ease;
+    }
+  }
+  

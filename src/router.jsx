@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Layout } from './composite/layout/Layout'
-import { HomePage } from './pages/HomePage'
+import { HomePage } from './pages/Home'
+import { MoviesPage } from './pages/MoviesPage'
 import { LogIn } from './pages/LogIn'
-import { Movies } from './pages/Movies'
+import { Layout } from './composite/Layout'
 import { ErrorPage } from './pages/ErrorPage'
 
 export const router = createBrowserRouter([
@@ -15,7 +15,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/movies',
-        element: <Movies />
+        element: <MoviesPage />
       },
       {
         path: '/login',
@@ -28,5 +28,3 @@ export const router = createBrowserRouter([
     ]
   }
 ])
-
-

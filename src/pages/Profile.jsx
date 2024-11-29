@@ -1,5 +1,5 @@
-import React from 'react'
+import '@/styles/App.scss' 
 
-export function ProfilePage() {
+export function Profile() {
   return <div>Profile Page</div>
 }

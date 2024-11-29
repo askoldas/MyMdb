@@ -1,0 +1,52 @@
+@import './_variables.scss';
+@import '@fontsource/exo-2/index.css';
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  background-color: $background-black;
+  color: $white-color;
+  min-height: 100%;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+
+  & > :first-child {
+    flex: 0 0 $sidebar-width;
+  }
+
+  &-main {
+    flex-grow: 1;
+    padding: $padding-standard;
+    background-color: $background-black;
+    color: $white-color;
+    overflow-y: auto;
+  }
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: $padding-standard;
+}
+
+@import './components/button.scss';
+@import './components/card.scss';
+@import './components/pagination.scss';
+@import './components/user-badge.scss';
+@import './components/navbar.scss';
+
+@import './composite/layout.scss';
+@import './composite/movies-list.scss';
+@import './composite/sidebar.scss';
+
+@import './pages/home.scss';
+@import './pages/movies-page.scss';

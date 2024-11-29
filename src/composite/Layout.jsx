@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { Sidebar } from '../sidebar/Sidebar'
-import './Layout.scss'
+import { Sidebar } from './Sidebar'
+import '@/styles/App.scss'
 
 export function Layout() {
   return (
