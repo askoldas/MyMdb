@@ -1,13 +1,29 @@
 @import '../_variables';
 
 .button {
-  padding: 0.75rem 1.5rem;
-  font-size: $font-size-base;
   font-weight: bold;
   border: none;
-  border-radius: 4px;
+  border-radius: $border-radius;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &--small {
+    padding: $padding-small;
+    font-size: $font-size-small;
+    height: 32px;
+  }
+
+  &--medium {
+    padding: 0 1rem; // Matches IconButton size
+    font-size: $font-size-base;
+    height: 40px; // Same height as IconButton medium
+  }
+
+  &--large {
+    padding: 0 1.5rem;
+    font-size: $font-size-large;
+    height: 48px;
+  }
 
   &--primary {
     background-color: $primary-color;

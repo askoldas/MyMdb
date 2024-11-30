@@ -1,13 +1,13 @@
-import '@/styles/App.scss'
+import '@/styles/App.scss';
 
-export function Button({ type = 'primary', onClick, disabled = false, children }) {
+export function Button({ type = 'primary', size = 'medium', onClick, disabled = false, children }) {
   return (
     <button
-      className={`button button--${type}`}
+      className={`button button--${type} button--${size}`}
       onClick={onClick}
       disabled={disabled}
     >
       {children}
     </button>
-  )
+  );
 }
