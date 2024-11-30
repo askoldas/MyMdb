@@ -1,0 +1,38 @@
+@import '../_variables';
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; // Default size
+  height: 40px;
+  border: none;
+  border-radius: $border-radius; // Using SCSS variable
+  background-color: $primary-color;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &--small {
+    width: 32px;
+    height: 32px;
+  }
+
+  &--large {
+    width: 48px;
+    height: 48px;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: $primary2-color;
+  }
+
+  &:disabled {
+    background-color: $light-color;
+    cursor: not-allowed;
+  }
+
+  &__icon {
+    width: 24px; // Icon size
+    height: 24px;
+  }
+}
