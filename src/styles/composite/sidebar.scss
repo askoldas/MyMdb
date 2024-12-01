@@ -1,53 +1,41 @@
 @import '../_variables';
 
 .sidebar {
-  width: $sidebar-width;
-  height: 100vh;
+  width: 250px; // Fixed sidebar width
   background-color: $background-dark;
+  position: sticky;
+  top: 0;
+  height: 100vh; // Full height of the viewport
+  display: flex;
+  flex-direction: column; // Stack elements vertically
+  justify-content: space-between; // Distribute elements (logo, nav, footer)
+  padding: $padding-standard;
   color: $white-color;
+}
+
+.sidebar-logo {
+  text-align: center;
+  margin-bottom: $margin-large;
+
+  img {
+    max-width: 150px;
+    height: auto;
+  }
+}
+
+.sidebar-links {
+  flex-grow: 1; // Ensures this section grows and centers the content
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: $padding-standard;
+  align-items: center;
+  justify-content: center; // Centers navigation links and user badge vertically
+  gap: $margin-large; // Adds spacing between Navbar and UserBadge
+}
 
-  &-logo {
-    display: flex;
-    justify-content: center;
-    margin-bottom: $margin-standard;
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  }
-
-  &-links {
-    display: flex;
-    flex-direction: column;
-    gap: $margin-standard;
-
-    a {
-      color: $light-color;
-      text-decoration: none;
-      font-size: $font-size-base;
-      padding: 8px 12px;
-      border-radius: 4px;
-      transition: color 0.3s;
-
-      &:hover {
-        color: $primary2-color;
-      }
-
-      &.active {
-        color: $primary-color;
-        font-weight: bold;
-      }
-    }
-  }
-
-  &-footer {
-    font-size: $font-size-small;
-    text-align: center;
-    color: $light-color;
-  }
+.sidebar-footer {
+  text-align: center;
+  font-size: $font-size-small;
+  color: $text-muted;
+  padding-top: $margin-small;
+  border-top: 1px solid $border-color; // Optional: Separate footer with a border
 }

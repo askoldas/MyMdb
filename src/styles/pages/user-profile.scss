@@ -1,0 +1,52 @@
+@import '../_variables';
+
+.user-profile {
+  padding: $padding-standard;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: $background-dark;
+  color: $white-color;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px $shadow-color;
+
+  h1 {
+    text-align: center;
+    font-size: $font-size-h1;
+    margin-bottom: $margin-large;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $margin-small;
+
+    p {
+      font-size: $font-size-body;
+      margin: 0;
+    }
+
+    button {
+      padding: $padding-small;
+      font-size: $font-size-body;
+      background-color: $primary-color;
+      color: $white-color;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $primary2-color;
+      }
+    }
+
+    input {
+      padding: $padding-small;
+      font-size: $font-size-body;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      background-color: $background-graphite;
+      color: $white-color;
+    }
+  }
+}

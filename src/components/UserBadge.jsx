@@ -1,11 +1,43 @@
-import '@/styles/App.scss'
-import UserIcon from '../assets/icons/User.svg'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // For navigation
+import { Modal } from './Modal';
+import { AuthForm } from '@/composite/AuthForm';
+import { auth } from '@/firebase';
+import UserIcon from '../assets/icons/User.svg';
+import '@/styles/components/user-badge.scss';
 
-export function UserBadge({ userName = '' }) {
-  const getInitial = () => userName.charAt(0).toUpperCase()
+export function UserBadge() {
+  const [isAuthModalOpen, setAuthModalOpen] = useState(false);
+  const [userName, setUserName] = useState('');
+  const navigate = useNavigate(); // For navigation
+
+  const handleOpenAuthModal = () => setAuthModalOpen(true);
+  const handleCloseAuthModal = () => setAuthModalOpen(false);
+
+  const handleBadgeClick = () => {
+    if (userName) {
+      navigate('/profile'); // Redirect to profile page
+    } else {
+      handleOpenAuthModal(); // Open login/signup modal if not logged in
+    }
+  };
+
+  const getInitial = () => userName.charAt(0).toUpperCase();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUserName(user.displayName || user.email);
+      } else {
+        setUserName('');
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
-    <div className="user-badge">
+    <div className="user-badge" onClick={handleBadgeClick}>
       <div className="user-badge__badge">
         {userName ? (
           <span className="user-badge__initial">{getInitial()}</span>
@@ -16,6 +48,11 @@ export function UserBadge({ userName = '' }) {
       <span className="user-badge__text">
         {userName || 'Sign In'}
       </span>
+
+      {/* Modal for Login/Signup */}
+      <Modal isOpen={isAuthModalOpen} onClose={handleCloseAuthModal}>
+        <AuthForm onClose={handleCloseAuthModal} />
+      </Modal>
     </div>
-  )
+  );
 }
