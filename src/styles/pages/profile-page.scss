@@ -1,0 +1,81 @@
+@import '../_variables';
+
+.profile-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: $background-dark;
+    border-radius: $border-radius;
+    color: $white-color;
+  
+    h1 {
+      font-size: $font-size-h2;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  
+    &__container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    &__field {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      label {
+        font-weight: bold;
+        flex-basis: 30%;
+      }
+  
+      span {
+        flex-basis: 70%;
+      }
+  
+      input {
+        flex-basis: 70%;
+        padding: 0.5rem;
+        border: 1px solid $border-color;
+        border-radius: $border-radius;
+        background-color: $background-black;
+        color: $white-color;
+      }
+    }
+  
+    &__actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+  
+      .btn {
+        flex: 1;
+        padding: 0.75rem;
+        border: none;
+        border-radius: $border-radius;
+        font-size: $font-size-body;
+        cursor: pointer;
+  
+        &.btn-primary {
+          background-color: $primary-color;
+          color: $white-color;
+        }
+  
+        &.btn-secondary {
+          background-color: $background-graphite;
+          color: $white-color;
+        }
+  
+        &.btn-danger {
+          background-color: $error-color;
+          color: $white-color;
+        }
+  
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+  
