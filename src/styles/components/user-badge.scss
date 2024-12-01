@@ -1,37 +1,78 @@
-@import '../_variables';
+@import '@/styles/_variables';
 
 .user-badge {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: $margin-small;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: $font-size-body;
   color: $white-color;
+  position: relative;
 
   &__badge {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: $margin-small;
     width: 40px;
     height: 40px;
     background-color: $primary-color;
-    border-radius: 12px;
+    border-radius: $border-radius;
     color: $white-color;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: $font-size-body;
+    position: relative;
 
     .user-badge__initial {
-      font-size: 1rem;
+      font-size: $font-size-body;
     }
 
     .user-badge__icon {
       width: 24px;
       height: 24px;
     }
+
+    .user-badge__arrow {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+      fill: currentColor;
+
+      &.open {
+        transform: rotate(90deg); // Rotate arrow when dropdown is open
+      }
+    }
   }
 
   &__text {
-    font-size: 0.9rem;
+    font-size: $font-size-small;
     color: $white-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary2-color;
+      text-decoration: underline;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + $margin-small);
+    right: 0;
+    background-color: $background-dark;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 8px $shadow-color;
+    z-index: 10;
+
+    &-item {
+      padding: $padding-small;
+      color: $white-color;
+      font-size: $font-size-body;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $background-graphite;
+      }
+    }
   }
 }

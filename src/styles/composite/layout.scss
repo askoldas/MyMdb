@@ -1,17 +1,14 @@
+@import '../_variables';
+
 .layout {
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 100vh; // Full height layout for the entire viewport
+}
 
-  & > :first-child {
-    flex: 0 0 250px;
-  }
-
-  &-main {
-    flex: 1;
-    background-color: #121212;
-    color: #fff;
-    padding: 20px;
-    overflow-y: auto;
-  }
+.layout-main {
+  flex-grow: 1; // Take up the remaining space beside the sidebar
+  overflow-y: auto; // Enable vertical scrolling for the main content
+  background-color: $background-black;
+  padding: $padding-large;
+  color: $white-color;
 }
