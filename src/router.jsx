@@ -1,11 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { HomePage } from './pages/Home';
-import { MoviesPage } from './pages/MoviesPage';
-import { FavoritesPage } from './pages/FavoritesPage'; // Import FavoritesPage
-import { WatchlistPage } from './pages/WatchlistPage'; // Import WatchlistPage
-import { RatedPage } from './pages/RatedPage'; // Import RatedPage
-import { Layout } from './composite/Layout';
-import { ErrorPage } from './pages/ErrorPage';
+import { createBrowserRouter } from 'react-router-dom'
+import { HomePage } from './pages/HomePage'
+import { MoviesPage } from './pages/MoviesPage'
+import { FavoritesPage } from '@/pages/FavoritesPage'
+import { WatchlistPage } from './pages/WatchlistPage'
+import { RatedPage } from './pages/RatedPage'
+import { Layout } from './composite/Layout'
+import { ErrorPage } from './pages/ErrorPage'
 
 export const router = createBrowserRouter([
   {
@@ -21,15 +21,15 @@ export const router = createBrowserRouter([
       },
       {
         path: '/favorites',
-        element: <FavoritesPage />, // Favorites route
+        element: <FavoritesPage />,
       },
       {
         path: '/watchlist',
-        element: <WatchlistPage />, // Watchlist route
+        element: <WatchlistPage />,
       },
       {
         path: '/rated',
-        element: <RatedPage />, // Rated Movies route
+        element: <RatedPage />,
       },
       {
         path: '*',
@@ -37,4 +37,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-]);
+])

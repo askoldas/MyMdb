@@ -1,16 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchPopularMovies as fetchPopularMoviesAPI } from '../services/movies'
+import { fetchPopularMovies as fetchPopularMoviesAPI } from '@/services/movies'
 
-// Async action to fetch movies
 export const fetchPopularMovies = createAsyncThunk(
   'movies/fetchPopularMovies',
   async (page = 1, { rejectWithValue }) => {
     try {
       const validatedPage = Number.isInteger(page) && page >= 1 && page <= 500 ? page : 1
       const movies = await fetchPopularMoviesAPI({ page: validatedPage })
-      return { ...movies, currentPage: validatedPage } // Add currentPage for easy access
+      return { ...movies, currentPage: validatedPage }
     } catch (error) {
-      console.error('Error fetching popular movies:', error)
       return rejectWithValue(error.message)
     }
   }
