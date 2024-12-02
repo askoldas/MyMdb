@@ -1,8 +1,7 @@
-import React from 'react'
-import { UserBadge } from '@/components/UserBadge'
-import { FilterButton } from '@/composite/FilterButton'
-import { Input } from '@/components/Input'
-import '@/styles/composite/user-controls.scss'
+import { UserBadge } from '@/ui/components/UserBadge'
+import { FilterButton } from '@/ui/components/ButtonIconFilter'
+import { Input } from '@/ui/elements/Input'
+import '@/styles/sections/user-controls.scss'
 
 export function UserControls() {
   return (

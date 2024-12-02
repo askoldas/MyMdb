@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '@/firebase'; // Ensure auth and db are imported
+import React, { useState } from 'react'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { doc, setDoc } from 'firebase/firestore'
+import { auth, db } from '@/firebase'
 
 export function AuthForm({ onClose }) {
   const [isSignup, setIsSignup] = useState(true); // Toggle between login and signup

@@ -1,4 +1,4 @@
-import '@/styles/components/icon-button.scss';
+import '@/styles/elements/button-icon.scss'
 
 export function IconButton({ icon, ariaLabel = '', onClick, size = 'medium', disabled = false }) {
   return (
@@ -10,5 +10,5 @@ export function IconButton({ icon, ariaLabel = '', onClick, size = 'medium', dis
     >
       <img src={icon} alt="" className="icon-button__icon" />
     </button>
-  );
+  )
 }

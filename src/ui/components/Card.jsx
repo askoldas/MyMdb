@@ -1,4 +1,4 @@
-import '@/styles/App.scss';
+import '@/styles/components/card.scss'
 
 export function Card({ loading, title, poster, genres }) {
   if (loading) {
@@ -7,7 +7,7 @@ export function Card({ loading, title, poster, genres }) {
         <div className="card-skeleton-image" />
         <div className="card-skeleton-title" />
       </div>
-    );
+    )
   }
 
   return (
@@ -18,5 +18,5 @@ export function Card({ loading, title, poster, genres }) {
         {genres && genres.length > 0 ? genres.join(' • ') : 'No genres available'}
       </p>
     </div>
-  );
+  )
 }

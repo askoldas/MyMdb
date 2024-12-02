@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // For navigation
-import { Modal } from './Modal';
-import { AuthForm } from '@/composite/AuthForm';
-import { auth } from '@/firebase';
-import UserIcon from '../assets/icons/User.svg';
-import '@/styles/components/user-badge.scss';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Modal } from '@/ui/modals/Modal'
+import { AuthForm } from '@/ui/forms/AuthForm'
+import { auth } from '@/firebase'
+import UserIcon from '@/assets/icons/User.svg'
+import '@/styles/components/user-badge.scss'
 
 export function UserBadge() {
   const [isAuthModalOpen, setAuthModalOpen] = useState(false);

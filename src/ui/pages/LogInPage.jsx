@@ -1,6 +1,5 @@
-import React from 'react';
-import '@/styles/App.scss';
-import { AuthForm } from '../composite/AuthForm';
+import '@/styles/App.scss'
+import { AuthForm } from '@/ui/forms/AuthForm'
 
 export function LogIn() {
   return (

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Button } from '../components/Button';
-import { MenuButton } from '../composite/MenuButton';
-import { FilterButton } from '../composite/FilterButton';
-import { Input } from '../components/Input';
-import { IconButton } from '../components/IconButton';
-import MenuIcon from '../assets/icons/Menu.svg';
-import FilterIcon from '../assets/icons/Filter.svg';
-import '@/styles/App.scss';
+import React, { useState } from 'react'
+import { Button } from '@/ui/elements/Button'
+import { MenuButton } from '@/ui/components/ButtonIconMenu'
+import { FilterButton } from '@/ui/components/ButtonIconFilter'
+import { Input } from '@/ui/elements/Input'
+import { IconButton } from '@/ui/elements/ButtonIcon'
+import MenuIcon from '@/assets/icons/Menu.svg'
+import FilterIcon from '@/assets/icons/Filter.svg'
+import '@/styles/App.scss'
 
 export function HomePage() {
   const [inputValue, setInputValue] = useState('');

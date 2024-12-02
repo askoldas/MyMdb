@@ -1,5 +1,4 @@
-import React from 'react';
-import '@/styles/components/input.scss';
+import '@/styles/elements/input.scss'
 
 export function Input({ label, placeholder, value, onChange, disabled = false, error = '' }) {
   return (
@@ -15,5 +14,5 @@ export function Input({ label, placeholder, value, onChange, disabled = false, e
       />
       {error && <span className="input__error-text">{error}</span>}
     </div>
-  );
+  )
 }

@@ -1,5 +1,4 @@
-import React from 'react';
-import '@/styles/components/modal.scss';
+import '@/styles/modals/modal.scss'
 
 export function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;

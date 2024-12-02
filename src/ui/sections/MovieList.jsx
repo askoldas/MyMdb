@@ -1,6 +1,7 @@
 import React from 'react'
 import '@/styles/App.scss'
-import { Card } from '../components/Card'
+import { Card } from '@/ui/components/Card'
+
 
 export function MovieList({ items = [], loading }) {
   if (loading) {
