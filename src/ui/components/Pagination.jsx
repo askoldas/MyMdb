@@ -1,4 +1,6 @@
-import '@/styles/App.scss'
+import React from 'react'
+import '@/styles/components/pagination.scss'
+
 
 export function Pagination({ currentPage, totalPages, onPageChange }) {
   const handlePageChange = (page) => {

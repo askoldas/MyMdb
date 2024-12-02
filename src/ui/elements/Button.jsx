@@ -1,4 +1,4 @@
-import '@/styles/App.scss';
+import '@/styles/elements/button.scss'
 
 export function Button({ type = 'primary', size = 'medium', onClick, disabled = false, children }) {
   return (
@@ -9,5 +9,5 @@ export function Button({ type = 'primary', size = 'medium', onClick, disabled = 
     >
       {children}
     </button>
-  );
+  )
 }

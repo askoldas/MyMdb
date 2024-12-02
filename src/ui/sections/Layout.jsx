@@ -1,8 +1,8 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { Sidebar } from '@/composite/Sidebar'
-import { UserControls } from '@/composite/UserControls'
-import '@/styles/composite/Layout.scss'
+import { Sidebar } from '@/ui/sections/Sidebar'
+import { UserControls } from '@/ui/sections/UserControls'
+import '@/styles/sections/layout.scss'
 
 export function Layout() {
   return (

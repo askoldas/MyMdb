@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginWithEmail, signUpWithEmail } from '@/redux/auth-slice'; // Add these actions in authSlice
-import '@/styles/components/auth-modal.scss';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { loginWithEmail, signUpWithEmail } from '@/redux/auth-slice'
+import '@/styles/modals/auth-modal.scss'
 
 export function AuthModal({ isOpen, onClose }) {
   const [isSignup, setIsSignup] = useState(false);

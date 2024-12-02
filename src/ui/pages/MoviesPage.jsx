@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchPopularMovies } from '@/redux/movies-slice'
 import { GENRE_MAP } from '@/config/genres'
-import { Card } from '@/components/Card'
-import { Pagination } from '@/components/Pagination'
-import '@/styles/App.scss' 
+import { Card } from '@/ui/components/Card'
+import { Pagination } from '@/ui/components/Pagination'
+import '@/styles/pages/movies-page.scss'
 
 
 export function MoviesPage() {

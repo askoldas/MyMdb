@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { HomePage } from './pages/HomePage'
-import { MoviesPage } from './pages/MoviesPage'
-import { FavoritesPage } from '@/pages/FavoritesPage'
-import { WatchlistPage } from './pages/WatchlistPage'
-import { RatedPage } from './pages/RatedPage'
-import { Layout } from './composite/Layout'
-import { ErrorPage } from './pages/ErrorPage'
+import { HomePage } from '@/ui/pages/HomePage'
+import { MoviesPage } from '@/ui/pages/MoviesPage'
+import { FavoritesPage } from '@/ui/pages/FavoritesPage'
+import { WatchlistPage } from '@/ui/pages/WatchlistPage'
+import { RatedPage } from '@/ui/pages/RatedPage'
+import { Layout } from '@/ui/sections/Layout'
+import { ErrorPage } from '@/ui/pages/ErrorPage'
 
 export const router = createBrowserRouter([
   {

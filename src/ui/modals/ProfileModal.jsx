@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateUserData, logout } from '@/redux/auth-slice'; // Add these actions to authSlice
-import '@/styles/composite/profile-modal.scss';
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateUserData, logout } from '@/redux/auth-slice'
+import '@/styles/modals/profile-modal.scss'
 
 export function ProfileModal({ onClose }) {
   const dispatch = useDispatch();
