@@ -2,13 +2,23 @@
 
 .layout {
   display: flex;
-  height: 100vh; // Full height layout for the entire viewport
-}
+  height: 100vh;
 
-.layout-main {
-  flex-grow: 1; // Take up the remaining space beside the sidebar
-  overflow-y: auto; // Enable vertical scrolling for the main content
-  background-color: $background-black;
-  padding: $padding-large;
-  color: $white-color;
+  .layout-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .layout-main {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: $padding-large;
+    background-color: $background-black;
+    color: $white-color;
+
+    .user-controls {
+      margin-bottom: $padding-large; // Space between UserControls and content
+    }
+  }
 }

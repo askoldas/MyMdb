@@ -5,7 +5,6 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
 import './styles/App.scss'
 
-
 export function App() {
   return (
     <Provider store={store}>
