@@ -1,7 +1,27 @@
-.movie-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-    padding: 16px;
+@import '../_variables';
+
+.movies-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); // 5 columns by default
+  gap: $padding-standard;
+  padding: $padding-large;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr); // 4 columns for medium screens
   }
-  
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr); // 2 columns for tablets
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr; // 1 column for mobile
+  }
+}
+
+.movies-list-empty {
+  text-align: center;
+  font-size: $font-size-base;
+  color: $text-muted;
+  margin: $margin-large;
+}

@@ -1,10 +1,10 @@
-import React from 'react';
+import { Page } from '@/ui/pages/Page'
 
 export function FavoritesPage() {
   return (
-    <div>
+    <Page>
       <h1>Favorites</h1>
       {/* Movie list will be displayed here */}
-    </div>
-  );
+    </Page>
+  )
 }

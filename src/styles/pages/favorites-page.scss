@@ -1,0 +1,16 @@
+@import '../_variables.scss';
+
+.favorites-page {
+  h1 {
+    font-size: $font-size-h1;
+    margin-bottom: $gap-large;
+    text-align: center;
+    color: $primary-color;
+  }
+
+  .favorites-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: $gap-medium;
+  }
+}

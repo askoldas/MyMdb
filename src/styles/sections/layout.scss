@@ -4,21 +4,29 @@
   display: flex;
   height: 100vh;
 
-  .layout-content {
+  .sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background-color: $background-dark;
+    color: $white-color;
+  }
+
+  .main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    background-color: $background-black;
+    overflow-y: auto;
   }
 
-  .layout-main {
-    flex-grow: 1;
-    overflow-y: auto;
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: $padding-large;
-    background-color: $background-black;
     color: $white-color;
 
     .user-controls {
-      margin-bottom: $padding-large; // Space between UserControls and content
+      margin-bottom: $padding-large;
     }
   }
 }
