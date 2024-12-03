@@ -1,45 +1,28 @@
-@import '../_variables';
+@import '../_variables.scss';
 
 .home-hero {
-  height: 100vh;
-  background-image: url('/src/assets/bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100%; // Full width of the screen
+  min-height: 100vh; // Ensure it takes the full viewport height
+  padding: $padding-large; // Add some padding
+  background: url('@/assets/bg.jpg') center/cover no-repeat; // Hero background
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  color: $white-color;
-}
-
-.home-overlay {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
   text-align: center;
-  border-radius: 8px;
-}
+  color: $white-color;
 
-.home-title {
-  font-size: $font-size-h1;
-  font-weight: bold;
-}
+  .home-title {
+    font-size: $font-size-h1;
+    margin-bottom: $gap-medium;
+  }
 
-.home-subtitle {
-  font-size: $font-size-h3;
-  margin-top: $margin-small;
-}
+  .home-subtitle {
+    font-size: $font-size-subline;
+    margin-bottom: $gap-large;
+  }
 
-.home-actions {
-  margin-top: $margin-large;
-  display: flex;
-  gap: $margin-standard; // Adds spacing between buttons
-  justify-content: center;
-}
-
-.home-buttons {
-  margin-top: $margin-large;
-  display: flex;
-  gap: $margin-standard; // Adds spacing between MenuButton and FilterButton
-  justify-content: center;
+  button {
+    font-size: $font-size-large;
+  }
 }

@@ -1,0 +1,16 @@
+@import '../_variables.scss';
+
+.error-page {
+  text-align: center;
+  padding: $padding-large;
+  color: $error-color;
+
+  h1 {
+    font-size: $font-size-h1;
+    margin-bottom: $gap-large;
+  }
+
+  p {
+    font-size: $font-size-body;
+  }
+}

@@ -1,0 +1,9 @@
+@import '../_variables.scss';
+
+.page {
+  max-width: 1200px; // Centralize max width for all pages
+  margin: 0 auto; // Center align the content
+  padding: $padding-large; // Add consistent padding
+  box-sizing: border-box;
+  color: $white-color; // Default text color
+}

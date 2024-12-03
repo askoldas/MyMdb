@@ -1,5 +1,9 @@
-import '@/styles/App.scss' 
+import { Page } from '@/ui/pages/Page'
 
 export function ErrorPage() {
-  return <div>Error: Page not found</div>
+  return (
+    <Page>
+      <div>Error: Page not found</div>
+    </Page>
+  )
 }

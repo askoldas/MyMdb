@@ -1,0 +1,69 @@
+@import '../_variables';
+
+.movie-page {
+  padding: $padding-standard;
+
+  .movie-header {
+    display: flex;
+    gap: $gap-medium; // Replaced $gap-standard with $gap-medium
+    margin-bottom: $margin-large;
+
+    .poster {
+      flex: 0 0 300px;
+      img {
+        width: 100%;
+        border-radius: $border-radius;
+      }
+    }
+
+    .info {
+      flex-grow: 1;
+
+      .title {
+        font-size: $font-size-h1;
+        margin-bottom: $margin-small;
+        color: $primary-color;
+      }
+
+      .genres {
+        font-size: $font-size-subline;
+        color: $text-muted;
+        margin-bottom: $margin-standard;
+      }
+
+      .details {
+        display: flex;
+        gap: $gap-small;
+        margin-bottom: $margin-standard;
+
+        .rating, .runtime, .release {
+          font-size: $font-size-body;
+        }
+      }
+
+      .overview {
+        font-size: $font-size-body;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  .movie-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $gap-medium; // Replaced $gap-standard with $gap-medium
+
+    .meta-section {
+      h3 {
+        font-size: $font-size-large;
+        margin-bottom: $margin-small;
+        color: $secondary-color;
+      }
+
+      p {
+        font-size: $font-size-body;
+        color: $white-color;
+      }
+    }
+  }
+}

@@ -13,10 +13,12 @@ export function Card({ loading, title, poster, genres }) {
   return (
     <div className="card">
       <img src={poster} alt={title} className="card-image" />
-      <h3 className="card-title">{title}</h3>
-      <p className="card-genres">
-        {genres && genres.length > 0 ? genres.join(' • ') : 'No genres available'}
-      </p>
+      <div className="card-content">
+        <h3 className="card-title">{title}</h3>
+        <p className="card-genres">
+          {genres && genres.length > 0 ? genres.join(' • ') : 'No genres available'}
+        </p>
+      </div>
     </div>
   )
 }
