@@ -1,0 +1,99 @@
+@import '../_variables';
+
+.filter-bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100%;
+  background-color: $background-dark;
+  color: $white-color;
+  box-shadow: -2px 0 8px $shadow-color;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $padding-standard;
+    border-bottom: 1px solid $border-color;
+
+    h2 {
+      font-size: $font-size-h2;
+    }
+
+    .filter-bar__close {
+      background: none;
+      border: none;
+      font-size: $font-size-large;
+      color: $white-color;
+      cursor: pointer;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: $padding-standard;
+  }
+
+  &__section {
+    margin-bottom: $margin-large;
+
+    h3 {
+      margin-bottom: $margin-small;
+      font-size: $font-size-h3;
+    }
+  }
+
+  &__sort-options,
+  &__genres,
+  &__range {
+    display: flex;
+    gap: $gap-small;
+    flex-wrap: wrap;
+
+    input,
+    button {
+      padding: $padding-small;
+      border: 1px solid $border-color;
+      background: $background-black;
+      color: $white-color;
+      border-radius: $border-radius;
+    }
+
+    button:hover,
+    input:hover {
+      border-color: $primary-color;
+    }
+  }
+
+  &__footer {
+    padding: $padding-standard;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid $border-color;
+
+    .filter-bar__clear,
+    .filter-bar__apply {
+      flex: 1;
+      padding: $padding-small;
+      margin: 0 $gap-small;
+      border: none;
+      background-color: $primary-color;
+      color: $white-color;
+      border-radius: $border-radius;
+      cursor: pointer;
+    }
+
+    .filter-bar__clear {
+      background-color: $secondary-color;
+    }
+
+    .filter-bar__apply:hover {
+      background-color: $primary2-color;
+    }
+  }
+}

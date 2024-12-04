@@ -23,10 +23,6 @@ export function Sidebar() {
 
       <div className="sidebar-links">
         <Navbar />
-        <UserBadge userName="Test User" />
-        <Button type="danger" size="large" onClick={handleLogout}>
-          Logout
-        </Button>
       </div>
 
       <div className="sidebar-footer">© All Rights Reserved</div>

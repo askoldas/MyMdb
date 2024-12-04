@@ -18,7 +18,7 @@ export const fetchMovieDetailsService = async (movieId) => {
   try {
     if (!movieId) throw new Error('Movie ID is required')
     const response = await get(tmdbEndpoints.movies.details(movieId), {
-      params: { language: 'en-US' },
+      params: { append_to_response: 'credits', language: 'en-US' },
     })
     return response.data
   } catch (error) {
@@ -27,7 +27,7 @@ export const fetchMovieDetailsService = async (movieId) => {
   }
 }
 
-export const searchMoviesService = async ({ query, page }) => {
+export const fetchSearchMoviesService = async ({ query, page }) => {
   try {
     if (!query) throw new Error('Search query is required')
     const validatedPage = Number.isInteger(page) && page >= 1 && page <= 500 ? page : 1
@@ -40,4 +40,3 @@ export const searchMoviesService = async ({ query, page }) => {
     throw new Error('Failed to search for movies. Please try again later.')
   }
 }
-

@@ -17,6 +17,7 @@ export function MoviesList({ movies }) {
       {movies.map((movie) => (
         <Card
           key={movie.id}
+          id={movie.id}
           title={movie.title}
           poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           genres={mapGenres(movie.genre_ids)}

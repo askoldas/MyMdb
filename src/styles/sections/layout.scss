@@ -2,31 +2,14 @@
 
 .layout {
   display: flex;
+  flex-direction: column; /* Stack elements vertically */
   height: 100vh;
-
-  .sidebar {
-    width: 240px;
-    flex-shrink: 0;
-    background-color: $background-dark;
-    color: $white-color;
-  }
+  width: 100%; /* Full viewport width */
 
   .main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    margin-left: $sidebar-width; /* Offset for the fixed sidebar */
+    flex-grow: 1; /* Allow the main section to fill the remaining space */
     background-color: $background-black;
-    overflow-y: auto;
-  }
-
-  .content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: $padding-large;
-    color: $white-color;
-
-    .user-controls {
-      margin-bottom: $padding-large;
-    }
+    overflow-y: auto; /* Enable scrolling for the content */
   }
 }

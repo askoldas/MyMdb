@@ -30,15 +30,30 @@ export function MovieDetailPage() {
     release_date,
     runtime,
     vote_average,
-    vote_count,
     overview,
     production_companies = [],
-    budget,
-    revenue,
-    cast = [],
-    director,
-    writers = [],
+    credits = {}, // Extract credits from details
   } = details
+
+  const formattedReleaseYear = release_date ? new Date(release_date).getFullYear() : 'N/A'
+  const formattedReleaseDate = release_date
+    ? new Date(release_date).toLocaleDateString(undefined, {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+      })
+    : 'N/A'
+
+  // Extract Director
+  const director = credits.crew?.find((person) => person.job === 'Director')?.name || 'N/A'
+
+  // Extract Writers
+  const writers = credits.crew
+    ?.filter((person) => person.job === 'Writer' || person.job === 'Screenplay')
+    .map((person) => person.name) || []
+
+  // Extract Cast
+  const cast = credits.cast?.slice(0, 5).map((actor) => actor.name) || [] // Top 5 cast members
 
   return (
     <div className="movie-page">
@@ -50,17 +65,21 @@ export function MovieDetailPage() {
           <h1 className="title">{title}</h1>
           <p className="genres">{genres.map((genre) => genre.name).join(' • ')}</p>
           <div className="details">
-            <span className="rating">⭐ {vote_average} ({vote_count} votes)</span>
-            <span className="runtime">{runtime} min</span>
-            <span className="release">Released: {release_date}</span>
+            <span className="rating">⭐ {vote_average || 'N/A'}</span>
+            <span className="runtime">{runtime ? `${runtime} min` : 'N/A'}</span>
+            <span className="release">Released: {formattedReleaseDate}</span>
           </div>
           <p className="overview">{overview}</p>
         </div>
       </div>
       <div className="movie-meta">
         <div className="meta-section">
+          <h3>Year</h3>
+          <p>{formattedReleaseYear}</p>
+        </div>
+        <div className="meta-section">
           <h3>Director</h3>
-          <p>{director || 'N/A'}</p>
+          <p>{director}</p>
         </div>
         <div className="meta-section">
           <h3>Writers</h3>
@@ -71,16 +90,8 @@ export function MovieDetailPage() {
           <p>{cast.length > 0 ? cast.join(', ') : 'N/A'}</p>
         </div>
         <div className="meta-section">
-          <h3>Production Companies</h3>
+          <h3>Production</h3>
           <p>{production_companies.map((pc) => pc.name).join(', ') || 'N/A'}</p>
-        </div>
-        <div className="meta-section">
-          <h3>Budget</h3>
-          <p>${budget ? budget.toLocaleString() : 'N/A'}</p>
-        </div>
-        <div className="meta-section">
-          <h3>Revenue</h3>
-          <p>${revenue ? revenue.toLocaleString() : 'N/A'}</p>
         </div>
       </div>
     </div>
