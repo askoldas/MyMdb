@@ -1,26 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchPopularMoviesService, fetchMovieDetailsService, fetchSearchMoviesService } from '@/services/movies'
+import { fetchMoviesService, fetchMovieDetailsService, fetchSearchMoviesService } from '@/services/movies'
 
-// Fetch popular movies thunk
-export const fetchPopularMovies = createAsyncThunk(
-  'movies/fetchPopularMovies',
-  async (page = 1, { rejectWithValue }) => {
+export const fetchMovies = createAsyncThunk(
+  'movies/fetchMovies',
+  async ({ page = 1, sortBy = 'popularity.desc', filters = {} }, { rejectWithValue }) => {
     try {
-      const validatedPage = Number.isInteger(page) && page >= 1 && page <= 500 ? page : 1
-      const movies = await fetchPopularMoviesService({ page: validatedPage })
-      return { ...movies, currentPage: validatedPage }
+      const movies = await fetchMoviesService({ page, sortBy, filters })
+      return { ...movies, currentPage: page }
     } catch (error) {
       return rejectWithValue(error.message)
     }
   }
 )
 
-// Fetch movie details thunk
 export const fetchMovieDetails = createAsyncThunk(
   'movies/fetchMovieDetails',
   async (movieId, { rejectWithValue }) => {
     try {
-      if (!movieId) throw new Error('Movie ID is required')
       const movieDetails = await fetchMovieDetailsService(movieId)
       return movieDetails
     } catch (error) {
@@ -29,12 +25,10 @@ export const fetchMovieDetails = createAsyncThunk(
   }
 )
 
-// Fetch search movies thunk
 export const fetchSearchMovies = createAsyncThunk(
   'movies/fetchSearchMovies',
   async ({ query, page }, { rejectWithValue }) => {
     try {
-      if (!query) throw new Error('Search query is required')
       const movies = await fetchSearchMoviesService({ query, page })
       return { ...movies, query, currentPage: page }
     } catch (error) {
@@ -75,23 +69,21 @@ const moviesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Fetch popular movies
-      .addCase(fetchPopularMovies.pending, (state) => {
+      .addCase(fetchMovies.pending, (state) => {
         state.loading = true
         state.error = null
       })
-      .addCase(fetchPopularMovies.fulfilled, (state, action) => {
+      .addCase(fetchMovies.fulfilled, (state, action) => {
         state.loading = false
         state.list = action.payload.results
         state.page = action.payload.currentPage
         state.totalPages = action.payload.total_pages
       })
-      .addCase(fetchPopularMovies.rejected, (state, action) => {
+      .addCase(fetchMovies.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload
       })
 
-      // Fetch movie details
       .addCase(fetchMovieDetails.pending, (state) => {
         state.loading = true
         state.error = null
@@ -105,7 +97,6 @@ const moviesSlice = createSlice({
         state.error = action.payload
       })
 
-      // Fetch search movies
       .addCase(fetchSearchMovies.pending, (state) => {
         state.loading = true
         state.error = null

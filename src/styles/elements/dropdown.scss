@@ -1,0 +1,31 @@
+@import '../_variables';
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-small;
+
+  &__label {
+    font-size: $font-size-small;
+    color: $white-color;
+  }
+
+  &__select {
+    padding: $padding-small;
+    font-size: $font-size-base;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+    background-color: $background-dark;
+    color: $white-color;
+    appearance: none;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+
+    &:hover {
+      border-color: $primary2-color;
+    }
+  }
+}

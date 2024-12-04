@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchPopularMovies } from '@/redux/movies-slice'
+import { fetchMovies } from '@/redux/movies-slice'
 import { GENRE_MAP } from '@/config/genres'
 import { MoviesList } from '@/ui/sections/MoviesList'
 import { Pagination } from '@/ui/components/Pagination'
@@ -10,13 +10,14 @@ import '@/styles/pages/movies-page.scss'
 export function MoviesPage() {
   const dispatch = useDispatch()
   const { list: movies, loading, error, page, totalPages } = useSelector((state) => state.movies)
+  const { sortBy, genres, yearRange, ratingRange } = useSelector((state) => state.filter.appliedFilters)
 
   useEffect(() => {
-    dispatch(fetchPopularMovies(page))
-  }, [dispatch, page])
+    dispatch(fetchMovies({ page, sortBy, filters: { genres, yearRange, ratingRange } }))
+  }, [dispatch, page, sortBy, genres, yearRange, ratingRange])
 
   const handlePageChange = (newPage) => {
-    dispatch(fetchPopularMovies(newPage))
+    dispatch(fetchMovies({ page: newPage, sortBy, filters: { genres, yearRange, ratingRange } }))
   }
 
   if (loading) return <Page><p>Loading movies...</p></Page>

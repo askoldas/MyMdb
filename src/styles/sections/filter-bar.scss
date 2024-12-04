@@ -37,6 +37,12 @@
     flex: 1;
     overflow-y: auto;
     padding: $padding-standard;
+
+    .genre-selection,
+    .filter-rating-range,
+    .filter-year-range {
+      margin-bottom: $gap-medium;  // Add spacing between each filter
+    }
   }
 
   &__section {

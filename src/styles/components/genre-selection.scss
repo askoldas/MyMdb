@@ -1,0 +1,56 @@
+@import '../_variables';
+
+.genre-selection {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-small;
+
+  &__label {
+    font-size: $font-size-base;
+    font-weight: bold;
+    margin-bottom: $gap-small;
+  }
+
+  &__dropdown {
+    padding: $padding-small;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    background-color: $background-dark;
+    color: $white-color;
+    font-size: $font-size-body;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gap-small;
+    margin-top: $gap-small;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $gap-small;
+    background-color: $background-graphite;
+    border-radius: $border-radius;
+    padding: $padding-small $padding-standard;
+    color: $white-color;
+
+    &__remove {
+      background: none;
+      border: none;
+      color: $error-color;
+      font-size: $font-size-large;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
