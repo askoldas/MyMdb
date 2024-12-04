@@ -53,7 +53,7 @@ export function MovieDetailPage() {
     .map((person) => person.name) || []
 
   // Extract Cast
-  const cast = credits.cast?.slice(0, 5).map((actor) => actor.name) || [] // Top 5 cast members
+  const cast = credits.cast?.slice(0, 5).map((actor) => actor.name) || [] 
 
   return (
     <div className="movie-page">

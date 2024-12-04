@@ -11,7 +11,7 @@ export function Sidebar() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    console.log('Logout clicked!'); // Debugging button click
+    console.log('Logout clicked!');
     dispatch(logout());
   };
 

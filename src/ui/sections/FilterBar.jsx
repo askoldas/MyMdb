@@ -29,7 +29,9 @@ export function FilterBar() {
         </button>
       </div>
       <div className="filter-bar__body">
-        {/* Filter options go here */}
+
+
+
       </div>
       <div className="filter-bar__footer">
         <button className="filter-bar__clear" onClick={() => dispatch(clearFilters())}>
