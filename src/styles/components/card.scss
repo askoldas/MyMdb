@@ -44,7 +44,12 @@
   }
 
   &--loading {
-    .card-skeleton-image,
+    .card-skeleton-image {
+      width: 100%; // Matches the width of the actual image
+      height: 300px; // Matches the height of the actual image
+      background: linear-gradient(-90deg, $background-dark 0%, $background-graphite 50%, $background-dark 100%);
+      animation: shimmer 1.5s infinite;
+    }
     .card-skeleton-title {
       background: linear-gradient(-90deg, $background-dark 0%, $background-graphite 50%, $background-dark 100%);
       background-size: 400% 400%;

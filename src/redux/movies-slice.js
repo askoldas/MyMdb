@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchPopularMoviesService, fetchMovieDetailsService } from '@/services/movies'
+import { fetchPopularMoviesService, fetchMovieDetailsService, fetchSearchMoviesService } from '@/services/movies'
 
 // Fetch popular movies thunk
 export const fetchPopularMovies = createAsyncThunk(
@@ -29,9 +29,25 @@ export const fetchMovieDetails = createAsyncThunk(
   }
 )
 
+// Fetch search movies thunk
+export const fetchSearchMovies = createAsyncThunk(
+  'movies/fetchSearchMovies',
+  async ({ query, page }, { rejectWithValue }) => {
+    try {
+      if (!query) throw new Error('Search query is required')
+      const movies = await fetchSearchMoviesService({ query, page })
+      return { ...movies, query, currentPage: page }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
 const initialState = {
   list: [],
   details: null,
+  searchResults: [],
+  searchQuery: '',
   page: 1,
   totalPages: 0,
   loading: false,
@@ -50,6 +66,11 @@ const moviesSlice = createSlice({
     },
     clearMovieDetails: (state) => {
       state.details = null
+    },
+    clearSearchResults: (state) => {
+      state.searchResults = []
+      state.searchQuery = ''
+      state.error = null
     },
   },
   extraReducers: (builder) => {
@@ -83,8 +104,25 @@ const moviesSlice = createSlice({
         state.loading = false
         state.error = action.payload
       })
+
+      // Fetch search movies
+      .addCase(fetchSearchMovies.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(fetchSearchMovies.fulfilled, (state, action) => {
+        state.loading = false
+        state.searchResults = action.payload.results
+        state.searchQuery = action.payload.query
+        state.page = action.payload.currentPage
+        state.totalPages = action.payload.total_pages
+      })
+      .addCase(fetchSearchMovies.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload
+      })
   },
 })
 
-export const { clearMovies, clearMovieDetails } = moviesSlice.actions
+export const { clearMovies, clearMovieDetails, clearSearchResults } = moviesSlice.actions
 export const moviesReducer = moviesSlice.reducer

@@ -1,5 +1,13 @@
 @import '../_variables';
 
+.navbar {
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    align-items: flex-start; /* Align items to the left */
+    gap: $gap-large; /* Spacing between nav items */
+    padding-left: $padding-large; /* Padding on the left for alignment */
+}
+
 .nav-item {
     display: flex;
     align-items: center;

@@ -7,6 +7,8 @@ import { RatedPage } from '@/ui/pages/RatedPage'
 import { MovieDetailPage } from '@/ui/pages/MovieDetailPage'
 import { Layout } from '@/ui/sections/Layout'
 import { ErrorPage } from '@/ui/pages/ErrorPage'
+import { ProfilePage } from '@/ui/pages/ProfilePage' // Import ProfilePage
+import { SearchResultsPage } from '@/ui/pages/SearchResultsPage' // Import SearchResultsPage
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ export const router = createBrowserRouter([
       {
         path: '/rated',
         element: <RatedPage />,
+      },
+      {
+        path: '/profile', // Add Profile route
+        element: <ProfilePage />,
+      },
+      {
+        path: '/search', // Add SearchResults route
+        element: <SearchResultsPage />,
       },
       {
         path: '*',

@@ -13,21 +13,7 @@ html, body, #root {
   font-size: $font-size-base;
   background-color: $background-black;
   color: $white-color;
-  min-height: 100%; // Ensure the layout stretches fully
-}
-
-/* Layout Structure */
-.layout {
-  display: flex;
-  min-height: 100vh; // Full viewport height
-
-  .layout-main {
-    flex-grow: 1; // Takes remaining space after the sidebar
-    overflow-y: auto; // Allows scrolling for main content
-    padding: $padding-standard;
-    background-color: $background-black;
-    color: $white-color;
-  }
+  min-height: 100%; 
 }
 
 /* Component Imports */
