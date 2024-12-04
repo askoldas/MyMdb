@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   isOpen: false,
   appliedFilters: {
-    sortBy: 'rating',
+    sortBy: 'popularity.desc', // Default sorting option
     genres: [],
     yearRange: { from: null, to: null },
     ratingRange: { from: null, to: null },
@@ -24,14 +24,23 @@ const filterSlice = createSlice({
       state.isOpen = false
     },
     applyFilters: (state, action) => {
-      state.appliedFilters = action.payload
+      state.appliedFilters = { ...state.appliedFilters, ...action.payload }
     },
     clearFilters: (state) => {
       state.appliedFilters = initialState.appliedFilters
     },
+    updateSortBy: (state, action) => {
+      state.appliedFilters.sortBy = action.payload
+    },
   },
 })
 
-export const { toggleFilterBar, openFilterBar, closeFilterBar, applyFilters, clearFilters } =
-  filterSlice.actions
+export const {
+  toggleFilterBar,
+  openFilterBar,
+  closeFilterBar,
+  applyFilters,
+  clearFilters,
+  updateSortBy,
+} = filterSlice.actions
 export const filterReducer = filterSlice.reducer

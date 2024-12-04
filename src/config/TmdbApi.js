@@ -15,4 +15,7 @@ export const tmdbEndpoints = {
     details: (id) => `/person/${id}`,
     popular: '/person/popular',
   },
+  discover: {
+    movies: '/discover/movie', // Add discover endpoint for movies
+  },
 };
