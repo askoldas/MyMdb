@@ -5,14 +5,53 @@
 
   .movie-header {
     display: flex;
-    gap: $gap-medium; // Replaced $gap-standard with $gap-medium
+    gap: $gap-medium;
     margin-bottom: $margin-large;
 
     .poster {
       flex: 0 0 300px;
+      position: relative;
+
       img {
         width: 100%;
         border-radius: $border-radius;
+      }
+
+      .poster-actions {
+        display: flex;
+        justify-content: center;
+        gap: $gap-medium;
+        position: absolute;
+        bottom: -50px; // Position the icons below the poster
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto;
+
+        .toggle-button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: opacity 0.2s ease, fill 0.2s ease;
+
+          .toggle-button-icon {
+            width: 60px;
+            height: 60px;
+            fill: currentColor; // Ensure color sync with current state
+            opacity: 0.7; // Default semitransparent state
+          }
+
+          &:hover .toggle-button-icon {
+            opacity: 1; // Brighten on hover
+          }
+
+          &.active .toggle-button-icon {
+            fill: $primary-color; // Active state color
+            opacity: 1; // Full opacity for active state
+          }
+        }
       }
     }
 
@@ -36,7 +75,9 @@
         gap: $gap-small;
         margin-bottom: $margin-standard;
 
-        .rating, .runtime, .release {
+        .rating,
+        .runtime,
+        .release {
           font-size: $font-size-body;
         }
       }
@@ -51,7 +92,7 @@
   .movie-meta {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: $gap-medium; // Replaced $gap-standard with $gap-medium
+    gap: $gap-medium;
 
     .meta-section {
       h3 {
