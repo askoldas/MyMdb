@@ -1,25 +1,42 @@
+import React from 'react'
+import { ToggleButtonFavorites } from '@/ui/components/ToggleButtonFavorites'
+import { ToggleButtonWatchlist } from '@/ui/components/ToggleButtonWatchlist'
 import { Link } from 'react-router-dom'
 import '@/styles/components/card.scss'
 
-export function Card({ id, loading, title, poster, genres }) {
-  if (loading) {
-    return (
-      <div className="card card--loading">
-        <div className="card-skeleton-image" />
-        <div className="card-skeleton-title" />
-      </div>
-    )
-  }
-
+export function Card({
+  id,
+  title,
+  poster,
+  genres,
+  isFavorite,
+  isInWatchlist,
+  onToggleFavorite,
+  onToggleWatchlist,
+}) {
   return (
-    <Link to={`/movies/${id}`} className="card">
-      <img src={poster} alt={title} className="card-image" />
-      <div className="card-content">
-        <h3 className="card-title">{title}</h3>
-        <p className="card-genres">
-          {genres && genres.length > 0 ? genres.join(' • ') : 'No genres available'}
-        </p>
+    <div className="card">
+      {/* Wrapping the content in Link for movie details navigation */}
+      <Link to={`/movies/${id}`} className="card-link">
+        <img src={poster} alt={title} className="card-image" />
+        <div className="card-content">
+          <h3 className="card-title">{title}</h3>
+          <p className="card-genres">
+            {genres && genres.length > 0 ? genres.join(' • ') : 'No genres available'}
+          </p>
+        </div>
+      </Link>
+      {/* Separate card actions to avoid interfering with the Link */}
+      <div className="card-actions">
+        <ToggleButtonFavorites
+          isFavorite={isFavorite}
+          onToggleFavorite={onToggleFavorite}
+        />
+        <ToggleButtonWatchlist
+          isInWatchlist={isInWatchlist}
+          onToggleWatchlist={onToggleWatchlist}
+        />
       </div>
-    </Link>
+    </div>
   )
 }

@@ -1,13 +1,23 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchMovieDetails, clearMovieDetails } from '@/redux/movies-slice'
+import {
+  fetchMovieDetails,
+  clearMovieDetails,
+  addToFavorites,
+  addToWatchlist,
+  removeFromFavorites,
+  removeFromWatchlist,
+} from '@/redux/movies-slice'
+import { ToggleButtonFavorites } from '@/ui/components/ToggleButtonFavorites'
+import { ToggleButtonWatchlist } from '@/ui/components/ToggleButtonWatchlist'
 import '@/styles/pages/movie-detail-page.scss'
 
 export function MovieDetailPage() {
   const { id } = useParams()
   const dispatch = useDispatch()
-  const { details, loading, error } = useSelector((state) => state.movies)
+  const { details, loading, error, favorites, watchlist } = useSelector((state) => state.movies)
+  const userId = useSelector((state) => state.auth.user?.uid)
 
   useEffect(() => {
     if (id) {
@@ -32,7 +42,7 @@ export function MovieDetailPage() {
     vote_average,
     overview,
     production_companies = [],
-    credits = {}, // Extract credits from details
+    credits = {},
   } = details
 
   const formattedReleaseYear = release_date ? new Date(release_date).getFullYear() : 'N/A'
@@ -44,22 +54,52 @@ export function MovieDetailPage() {
       })
     : 'N/A'
 
-  // Extract Director
-  const director = credits.crew?.find((person) => person.job === 'Director')?.name || 'N/A'
+  const isFavorite = favorites.some((movie) => movie.id === details.id)
+  const isInWatchlist = watchlist.some((movie) => movie.id === details.id)
 
-  // Extract Writers
+  const handleToggleFavorite = () => {
+    console.log(`Before Dispatch - Is Favorite: ${isFavorite}`)
+    if (isFavorite) {
+      dispatch(removeFromFavorites({ uid: userId, movieId: details.id }))
+    } else {
+      dispatch(addToFavorites({ uid: userId, movie: details }))
+    }
+    console.log(`After Dispatch - Is Favorite: ${isFavorite}`)
+  }
+
+  const handleToggleWatchlist = () => {
+    console.log(`Before Dispatch - Is In Watchlist: ${isInWatchlist}`)
+    if (isInWatchlist) {
+      dispatch(removeFromWatchlist({ uid: userId, movieId: details.id }))
+    } else {
+      dispatch(addToWatchlist({ uid: userId, movie: details }))
+    }
+    console.log(`After Dispatch - Is In Watchlist: ${isInWatchlist}`)
+  }
+
+  const director = credits.crew?.find((person) => person.job === 'Director')?.name || 'N/A'
   const writers = credits.crew
     ?.filter((person) => person.job === 'Writer' || person.job === 'Screenplay')
     .map((person) => person.name) || []
+  const cast = credits.cast?.slice(0, 5).map((actor) => actor.name) || []
 
-  // Extract Cast
-  const cast = credits.cast?.slice(0, 5).map((actor) => actor.name) || [] 
+  console.log('Current State:', { favorites, watchlist })
 
   return (
     <div className="movie-page">
       <div className="movie-header">
         <div className="poster">
           <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
+          <div className="poster-actions">
+            <ToggleButtonFavorites
+              isFavorite={isFavorite}
+              onToggleFavorite={handleToggleFavorite}
+            />
+            <ToggleButtonWatchlist
+              isInWatchlist={isInWatchlist}
+              onToggleWatchlist={handleToggleWatchlist}
+            />
+          </div>
         </div>
         <div className="info">
           <h1 className="title">{title}</h1>

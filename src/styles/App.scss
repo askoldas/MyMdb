@@ -16,6 +16,15 @@ html, body, #root {
   min-height: 100%; 
 }
 
+/* Reset link styles */
+a {
+  text-decoration: none; // Remove underlines
+  color: inherit; // Inherit color from parent
+  &:hover, &:focus {
+    text-decoration: none; // Ensure hover doesn't add underlines
+  }
+}
+
 /* Component Imports */
 @import './elements/button.scss';
 @import './components/card.scss';

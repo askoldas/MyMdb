@@ -43,6 +43,15 @@
     color: $text-muted;
   }
 
+  .card-actions {
+    display: flex; // Make the container flex
+    justify-content: space-between; // Add space between buttons
+    gap: $gap-small; // Add a gap between buttons
+    margin-top: $margin-small; // Add spacing above
+    width: 100%; // Make sure actions align with the card width
+    padding: 0 $padding-small; // Add padding for inner spacing
+  }
+
   &--loading {
     .card-skeleton-image {
       width: 100%; // Matches the width of the actual image

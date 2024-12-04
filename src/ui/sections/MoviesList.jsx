@@ -1,15 +1,16 @@
-import { Card } from '@/ui/components/Card'
-import { GENRE_MAP } from '@/config/genres'
-import '@/styles/sections/movies-list.scss'
+import React from 'react';
+import { Card } from '@/ui/components/Card';
+import { GENRE_MAP } from '@/config/genres';
+import '@/styles/sections/movies-list.scss';
 
-export function MoviesList({ movies }) {
+export function MoviesList({ movies = [], favorites = [], watchlist = [], onToggleFavorite, onToggleWatchlist }) {
+  console.log('Movies passed to MoviesList:', movies);
+
+  const isInWatchlist = (movieId) => watchlist.some((movie) => Number(movie.id) === Number(movieId));
+  const isFavorite = (movieId) => favorites.some((movie) => Number(movie.id) === Number(movieId));
+
   if (!movies || movies.length === 0) {
-    return <p className="movies-list-empty">No movies available</p>
-  }
-
-  const mapGenres = (genreIds) => {
-    if (!genreIds || genreIds.length === 0) return ['No genres available']
-    return genreIds.map((id) => GENRE_MAP[id] || 'Unknown')
+    return <p className="movies-list-empty">No movies available</p>;
   }
 
   return (
@@ -20,9 +21,13 @@ export function MoviesList({ movies }) {
           id={movie.id}
           title={movie.title}
           poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          genres={mapGenres(movie.genre_ids)}
+          genres={movie.genre_ids?.map((id) => GENRE_MAP[id] || 'Unknown') || []}
+          isFavorite={isFavorite(movie.id)}
+          isInWatchlist={isInWatchlist(movie.id)}
+          onToggleFavorite={() => onToggleFavorite(movie)}
+          onToggleWatchlist={() => onToggleWatchlist(movie)}
         />
       ))}
     </div>
-  )
+  );
 }
