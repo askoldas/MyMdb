@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { Dropdown } from '@/ui/elements/Dropdown'
 import { GenreSelection } from '@/ui/components/GenreSelection'
 import { FilterRatingRange } from '@/ui/components/FilterRatingRange'
@@ -9,6 +10,7 @@ import '@/styles/sections/filter-bar.scss'
 
 export function FilterBar() {
   const dispatch = useDispatch()
+  const navigate = useNavigate() // Use navigate to change routes
   const { appliedFilters, isOpen } = useSelector((state) => state.filter)
 
   // Set up local state for filters including genres, rating, and year ranges
@@ -41,6 +43,9 @@ export function FilterBar() {
     // Dispatch the filters to Redux and close the filter bar
     dispatch(applyFilters(filters))
     dispatch(closeFilterBar())
+
+    // Navigate to the Movies page after applying filters
+    navigate('/movies') // Directs to the movies page
   }
 
   const handleClear = () => {
