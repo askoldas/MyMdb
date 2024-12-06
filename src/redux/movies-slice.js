@@ -4,13 +4,7 @@ import {
   fetchMovieDetailsService,
   fetchSearchMoviesService,
 } from '@/services/movies'
-import {
-  addToFirestoreCollection,
-  removeFromFirestoreCollection,
-  fetchFirestoreCollection,
-} from '@/utils/firestore-client'
 
-// Existing functionality
 export const fetchMovies = createAsyncThunk(
   'movies/fetchMovies',
   async ({ page = 1, sortBy = 'popularity.desc', filters = {} }, { rejectWithValue }) => {
@@ -47,73 +41,6 @@ export const fetchSearchMovies = createAsyncThunk(
   }
 )
 
-// Favorites and Watchlist functionality
-export const fetchFavorites = createAsyncThunk(
-  'movies/fetchFavorites',
-  async (uid, { rejectWithValue }) => {
-    try {
-      return await fetchFirestoreCollection(uid, 'favorites')
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  }
-)
-
-export const fetchWatchlist = createAsyncThunk(
-  'movies/fetchWatchlist',
-  async (uid, { rejectWithValue }) => {
-    try {
-      return await fetchFirestoreCollection(uid, 'watchlist')
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  }
-)
-
-export const addToFavorites = createAsyncThunk(
-  'movies/addToFavorites',
-  async ({ uid, movie }, { rejectWithValue }) => {
-    try {
-      return await addToFirestoreCollection(uid, 'favorites', movie)
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  }
-)
-
-export const addToWatchlist = createAsyncThunk(
-  'movies/addToWatchlist',
-  async ({ uid, movie }, { rejectWithValue }) => {
-    try {
-      return await addToFirestoreCollection(uid, 'watchlist', movie)
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  }
-)
-
-export const removeFromFavorites = createAsyncThunk(
-  'movies/removeFromFavorites',
-  async ({ uid, movieId }, { rejectWithValue }) => {
-    try {
-      return await removeFromFirestoreCollection(uid, 'favorites', movieId)
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  }
-)
-
-export const removeFromWatchlist = createAsyncThunk(
-  'movies/removeFromWatchlist',
-  async ({ uid, movieId }, { rejectWithValue }) => {
-    try {
-      return await removeFromFirestoreCollection(uid, 'watchlist', movieId)
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  }
-)
-
 const initialState = {
   list: [],
   details: null,
@@ -123,8 +50,6 @@ const initialState = {
   totalPages: 0,
   loading: false,
   error: null,
-  favorites: [], // Stores user's favorite movies
-  watchlist: [], // Stores user's watchlist movies
 }
 
 const moviesSlice = createSlice({
@@ -145,15 +70,8 @@ const moviesSlice = createSlice({
       state.searchQuery = ''
       state.error = null
     },
-    clearFavorites: (state) => {
-      state.favorites = []
-    }, // Clear favorites state
-    clearWatchlist: (state) => {
-      state.watchlist = []
-    }, // Clear watchlist state
   },
   extraReducers: (builder) => {
-    // Original thunks
     builder
       .addCase(fetchMovies.pending, (state) => {
         state.loading = true
@@ -196,28 +114,6 @@ const moviesSlice = createSlice({
         state.loading = false
         state.error = action.payload
       })
-
-      // Favorites handling
-      .addCase(fetchFavorites.fulfilled, (state, action) => {
-        state.favorites = action.payload
-      })
-      .addCase(addToFavorites.fulfilled, (state, action) => {
-        state.favorites.push(action.payload)
-      })
-      .addCase(removeFromFavorites.fulfilled, (state, action) => {
-        state.favorites = state.favorites.filter((movie) => movie.id !== action.payload)
-      })
-
-      // Watchlist handling
-      .addCase(fetchWatchlist.fulfilled, (state, action) => {
-        state.watchlist = action.payload
-      })
-      .addCase(addToWatchlist.fulfilled, (state, action) => {
-        state.watchlist.push(action.payload)
-      })
-      .addCase(removeFromWatchlist.fulfilled, (state, action) => {
-        state.watchlist = state.watchlist.filter((movie) => movie.id !== action.payload)
-      })
   },
 })
 
@@ -225,7 +121,5 @@ export const {
   clearMovies,
   clearMovieDetails,
   clearSearchResults,
-  clearFavorites,
-  clearWatchlist,
 } = moviesSlice.actions
 export const moviesReducer = moviesSlice.reducer

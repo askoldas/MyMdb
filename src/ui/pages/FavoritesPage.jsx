@@ -1,46 +1,49 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchFavorites,
   addToFavorites,
   removeFromFavorites,
   addToWatchlist,
   removeFromWatchlist,
-} from '@/redux/movies-slice';
-import { MoviesList } from '@/ui/sections/MoviesList';
-import { Page } from '@/ui/pages/Page';
-
+} from '@/redux/user-collections-slice'
+import { MoviesList } from '@/ui/sections/MoviesList'
+import { Page } from '@/ui/pages/Page'
 
 export function FavoritesPage() {
-  const dispatch = useDispatch();
-  const { favorites, watchlist, loading, error } = useSelector((state) => state.movies);
-  const userId = useSelector((state) => state.auth.user?.uid);
+  const dispatch = useDispatch()
+  
+  // State from userCollections slice
+  const { favorites, watchlist, loading, error } = useSelector((state) => state.userCollections)
+  
+  // User ID from auth slice
+  const userId = useSelector((state) => state.auth.user?.uid)
 
   useEffect(() => {
     if (userId) {
-      dispatch(fetchFavorites(userId));
+      dispatch(fetchFavorites(userId))
     }
-  }, [dispatch, userId]);
+  }, [dispatch, userId])
 
   const handleToggleFavorite = (movie) => {
     if (favorites.some((fav) => fav.id === movie.id)) {
-      dispatch(removeFromFavorites({ uid: userId, movieId: movie.id }));
+      dispatch(removeFromFavorites({ uid: userId, movieId: movie.id }))
     } else {
-      dispatch(addToFavorites({ uid: userId, movie }));
+      dispatch(addToFavorites({ uid: userId, movie }))
     }
-  };
+  }
 
   const handleToggleWatchlist = (movie) => {
     if (watchlist.some((item) => item.id === movie.id)) {
-      dispatch(removeFromWatchlist({ uid: userId, movieId: movie.id }));
+      dispatch(removeFromWatchlist({ uid: userId, movieId: movie.id }))
     } else {
-      dispatch(addToWatchlist({ uid: userId, movie }));
+      dispatch(addToWatchlist({ uid: userId, movie }))
     }
-  };
+  }
 
-  if (loading) return <Page><p>Loading favorites...</p></Page>;
-  if (error) return <Page><p>Error loading favorites: {error}</p></Page>;
-  if (!favorites || favorites.length === 0) return <Page><p>No favorites found</p></Page>;
+  if (loading) return <Page><p>Loading favorites...</p></Page>
+  if (error) return <Page><p>Error loading favorites: {error}</p></Page>
+  if (!favorites || favorites.length === 0) return <Page><p>No favorites found</p></Page>
 
   return (
     <Page>
@@ -52,5 +55,5 @@ export function FavoritesPage() {
         onToggleWatchlist={handleToggleWatchlist}
       />
     </Page>
-  );
+  )
 }

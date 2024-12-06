@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchMovieDetails,
   clearMovieDetails,
+} from '@/redux/movies-slice'
+import {
   addToFavorites,
   addToWatchlist,
   removeFromFavorites,
   removeFromWatchlist,
-} from '@/redux/movies-slice'
+} from '@/redux/user-collections-slice'
 import { ToggleButtonFavorites } from '@/ui/components/ToggleButtonFavorites'
 import { ToggleButtonWatchlist } from '@/ui/components/ToggleButtonWatchlist'
 import '@/styles/pages/movie-detail-page.scss'
@@ -16,7 +18,14 @@ import '@/styles/pages/movie-detail-page.scss'
 export function MovieDetailPage() {
   const { id } = useParams()
   const dispatch = useDispatch()
-  const { details, loading, error, favorites, watchlist } = useSelector((state) => state.movies)
+
+  // State from movies slice
+  const { details, loading, error } = useSelector((state) => state.movies)
+
+  // State from userCollections slice
+  const { favorites, watchlist } = useSelector((state) => state.userCollections)
+
+  // User ID from auth slice
   const userId = useSelector((state) => state.auth.user?.uid)
 
   useEffect(() => {
@@ -58,23 +67,19 @@ export function MovieDetailPage() {
   const isInWatchlist = watchlist.some((movie) => movie.id === details.id)
 
   const handleToggleFavorite = () => {
-    console.log(`Before Dispatch - Is Favorite: ${isFavorite}`)
     if (isFavorite) {
       dispatch(removeFromFavorites({ uid: userId, movieId: details.id }))
     } else {
       dispatch(addToFavorites({ uid: userId, movie: details }))
     }
-    console.log(`After Dispatch - Is Favorite: ${isFavorite}`)
   }
 
   const handleToggleWatchlist = () => {
-    console.log(`Before Dispatch - Is In Watchlist: ${isInWatchlist}`)
     if (isInWatchlist) {
       dispatch(removeFromWatchlist({ uid: userId, movieId: details.id }))
     } else {
       dispatch(addToWatchlist({ uid: userId, movie: details }))
     }
-    console.log(`After Dispatch - Is In Watchlist: ${isInWatchlist}`)
   }
 
   const director = credits.crew?.find((person) => person.job === 'Director')?.name || 'N/A'
@@ -82,8 +87,6 @@ export function MovieDetailPage() {
     ?.filter((person) => person.job === 'Writer' || person.job === 'Screenplay')
     .map((person) => person.name) || []
   const cast = credits.cast?.slice(0, 5).map((actor) => actor.name) || []
-
-  console.log('Current State:', { favorites, watchlist })
 
   return (
     <div className="movie-page">
