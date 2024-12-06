@@ -7,8 +7,8 @@ import { RatedPage } from '@/ui/pages/RatedPage'
 import { MovieDetailPage } from '@/ui/pages/MovieDetailPage'
 import { Layout } from '@/ui/sections/Layout'
 import { ErrorPage } from '@/ui/pages/ErrorPage'
-import { ProfilePage } from '@/ui/pages/ProfilePage' // Import ProfilePage
-import { SearchResultsPage } from '@/ui/pages/SearchResultsPage' // Import SearchResultsPage
+import { ProfilePage } from '@/ui/pages/ProfilePage'
+import { SearchResultsPage } from '@/ui/pages/SearchResultsPage'
 
 export const router = createBrowserRouter([
   {
@@ -39,11 +39,11 @@ export const router = createBrowserRouter([
         element: <RatedPage />,
       },
       {
-        path: '/profile', // Add Profile route
+        path: '/profile',
         element: <ProfilePage />,
       },
       {
-        path: '/search', // Add SearchResults route
+        path: '/search',
         element: <SearchResultsPage />,
       },
       {

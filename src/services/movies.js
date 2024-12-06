@@ -1,10 +1,5 @@
 import { get } from '@/utils/client'
 import { tmdbEndpoints } from '@/config/TmdbApi'
-import {
-  addToFirestoreCollection,
-  removeFromFirestoreCollection,
-  fetchFirestoreCollection,
-} from '@/utils/firestore-client'
 
 // Fetch movies (list)
 export const fetchMoviesService = async ({ page, sortBy = 'popularity.desc', filters = {} }) => {
@@ -60,35 +55,5 @@ export const fetchSearchMoviesService = async ({ query, page }) => {
   } catch (error) {
     console.error('Error searching movies:', error.message)
     throw new Error('Failed to search for movies. Please try again later.')
-  }
-}
-
-// Add a movie to a user's favorites or watchlist
-export const addMovieToUserCollection = async (uid, collectionName, movie) => {
-  try {
-    return await addToFirestoreCollection(uid, collectionName, movie)
-  } catch (error) {
-    console.error(`Error adding movie to ${collectionName}:`, error.message)
-    throw new Error('Failed to add movie to collection. Please try again later.')
-  }
-}
-
-// Remove a movie from a user's favorites or watchlist
-export const removeMovieFromUserCollection = async (uid, collectionName, movieId) => {
-  try {
-    return await removeFromFirestoreCollection(uid, collectionName, movieId)
-  } catch (error) {
-    console.error(`Error removing movie from ${collectionName}:`, error.message)
-    throw new Error('Failed to remove movie from collection. Please try again later.')
-  }
-}
-
-// Fetch all movies from a user's favorites or watchlist
-export const fetchUserCollectionMovies = async (uid, collectionName) => {
-  try {
-    return await fetchFirestoreCollection(uid, collectionName)
-  } catch (error) {
-    console.error(`Error fetching movies from ${collectionName}:`, error.message)
-    throw new Error('Failed to fetch movies from collection. Please try again later.')
   }
 }

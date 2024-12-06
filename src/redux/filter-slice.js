@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   isOpen: false,
   appliedFilters: {
-    sortBy: 'popularity.desc', // Default sorting option
+    sortBy: 'popularity.desc',
     genres: [],
     yearRange: { from: null, to: null },
     ratingRange: { from: null, to: null },
