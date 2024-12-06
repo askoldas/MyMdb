@@ -1,19 +1,15 @@
-import React from 'react';
-import '@/styles/elements/toggle-button.scss';
+import React from 'react'
+import '@/styles/elements/toggle-button.scss'
 
-export function ToggleButton({ isActive, onToggle, activeIcon, inactiveIcon, label }) {
-  const handleClick = () => {
-    console.log(`Button clicked. Current state: ${isActive}`);
-    onToggle();
-  };
-
+export function ToggleButton({ isActive, onToggle, label, Icon }) {
   return (
     <button
       className={`toggle-button ${isActive ? 'active' : ''}`}
-      onClick={handleClick}
+      onClick={onToggle}
+      aria-pressed={isActive}
       aria-label={label}
     >
-      {isActive ? activeIcon : inactiveIcon}
+      <Icon className="toggle-icon" />
     </button>
-  );
+  )
 }
