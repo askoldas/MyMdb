@@ -14,22 +14,20 @@ import {
 import { ToggleButtonFavorites } from '@/ui/components/ToggleButtonFavorites'
 import { ToggleButtonWatchlist } from '@/ui/components/ToggleButtonWatchlist'
 import '@/styles/pages/movie-detail-page.scss'
+import StarIcon from '@/assets/icons/Star.svg?react'
 
 export function MovieDetailPage() {
   const { id } = useParams()
   const dispatch = useDispatch()
 
   const { details, loading, error } = useSelector((state) => state.movies)
-
   const { favorites, watchlist } = useSelector((state) => state.userCollections)
-
   const userId = useSelector((state) => state.auth.user?.uid)
 
   useEffect(() => {
     if (id) {
       dispatch(fetchMovieDetails(id))
     }
-
     return () => {
       dispatch(clearMovieDetails())
     }
@@ -105,33 +103,31 @@ export function MovieDetailPage() {
           <h1 className="title">{title}</h1>
           <p className="genres">{genres.map((genre) => genre.name).join(' • ')}</p>
           <div className="details">
-            <span className="rating">⭐ {vote_average || 'N/A'}</span>
+            <span className="rating">
+              <StarIcon className="star-icon" /> {vote_average || 'N/A'}
+            </span>
             <span className="runtime">{runtime ? `${runtime} min` : 'N/A'}</span>
             <span className="release">Released: {formattedReleaseDate}</span>
           </div>
           <p className="overview">{overview}</p>
-        </div>
-      </div>
-      <div className="movie-meta">
-        <div className="meta-section">
-          <h3>Year</h3>
-          <p>{formattedReleaseYear}</p>
-        </div>
-        <div className="meta-section">
-          <h3>Director</h3>
-          <p>{director}</p>
-        </div>
-        <div className="meta-section">
-          <h3>Writers</h3>
-          <p>{writers.length > 0 ? writers.join(', ') : 'N/A'}</p>
-        </div>
-        <div className="meta-section">
-          <h3>Cast</h3>
-          <p>{cast.length > 0 ? cast.join(', ') : 'N/A'}</p>
-        </div>
-        <div className="meta-section">
-          <h3>Production</h3>
-          <p>{production_companies.map((pc) => pc.name).join(', ') || 'N/A'}</p>
+          <div className="meta-info">
+            <div>
+              <h3>Director</h3>
+              <p>{director}</p>
+            </div>
+            <div>
+              <h3>Writers</h3>
+              <p>{writers.length > 0 ? writers.join(', ') : 'N/A'}</p>
+            </div>
+            <div>
+              <h3>Cast</h3>
+              <p>{cast.length > 0 ? cast.join(', ') : 'N/A'}</p>
+            </div>
+            <div>
+              <h3>Production</h3>
+              <p>{production_companies.map((pc) => pc.name).join(', ') || 'N/A'}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
