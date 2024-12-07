@@ -1,52 +1,39 @@
-@import '../_variables';
-
 .user-profile {
-  padding: $padding-standard;
+  padding: var(--spacing-large);
+  background-color: var(--color-background);
+  border-radius: var(--border-radius-default);
+  box-shadow: var(--box-shadow-light);
   max-width: 600px;
-  margin: 0 auto;
-  background-color: $background-dark;
-  color: $white-color;
-  border-radius: $border-radius;
-  box-shadow: 0 4px 8px $shadow-color;
+  margin: var(--spacing-large) auto;
 
   h1 {
+    font-size: var(--font-size-large);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-medium);
     text-align: center;
-    font-size: $font-size-h1;
-    margin-bottom: $margin-large;
   }
 
   &__info {
-    display: flex;
-    flex-direction: column;
-    gap: $margin-small;
+    background-color: var(--color-surface);
+    padding: var(--spacing-medium);
+    border-radius: var(--border-radius-default);
+    box-shadow: var(--box-shadow-light);
+    text-align: center;
 
     p {
-      font-size: $font-size-body;
-      margin: 0;
+      font-size: var(--font-size-medium);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--spacing-small);
     }
 
-    button {
-      padding: $padding-small;
-      font-size: $font-size-body;
-      background-color: $primary-color;
-      color: $white-color;
-      border: none;
-      border-radius: $border-radius;
-      cursor: pointer;
-      transition: background-color 0.3s;
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-small);
 
-      &:hover {
-        background-color: $primary2-color;
+      button {
+        min-width: 120px;
       }
-    }
-
-    input {
-      padding: $padding-small;
-      font-size: $font-size-body;
-      border: 1px solid $border-color;
-      border-radius: $border-radius;
-      background-color: $background-graphite;
-      color: $white-color;
     }
   }
 }

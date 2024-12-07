@@ -9,13 +9,8 @@ export const tmdbEndpoints = {
   },
   search: {
     movies: '/search/movie',
-    people: '/search/person',
-  },
-  people: {
-    details: (id) => `/person/${id}`,
-    popular: '/person/popular',
   },
   discover: {
-    movies: '/discover/movie', // Add discover endpoint for movies
+    movies: '/discover/movie',
   },
 };

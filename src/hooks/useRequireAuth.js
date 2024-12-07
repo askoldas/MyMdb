@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { auth } from '@/firebase'; // Firebase auth instance
+import { auth } from '@/firebase'; 
 import { useState } from 'react';
 
 export function useRequireAuth() {

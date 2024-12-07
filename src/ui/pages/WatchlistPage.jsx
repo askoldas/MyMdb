@@ -5,18 +5,14 @@ import {
   addToFavorites,
   removeFromFavorites,
   addToWatchlist,
-  removeFromWatchlist,
+  removeFromWatchlist
 } from '@/redux/user-collections-slice'
 import { MoviesList } from '@/ui/sections/MoviesList'
 import { Page } from '@/ui/pages/Page'
 
 export function WatchlistPage() {
   const dispatch = useDispatch()
-  
-  // State from userCollections slice
   const { watchlist, favorites, loading, error } = useSelector((state) => state.userCollections)
-  
-  // User ID from auth slice
   const userId = useSelector((state) => state.auth.user?.uid)
 
   useEffect(() => {

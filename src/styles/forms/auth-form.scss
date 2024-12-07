@@ -1,34 +1,43 @@
 @import '../_variables';
 
 .auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-medium; // Use the defined gap variable
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  padding: $padding-large;
-  background-color: $background-dark;
-  border-radius: $border-radius;
-  box-shadow: 0 4px 8px $shadow-color;
+  padding: $padding-large; // Large padding for inner spacing
+  background-color: $background-dark; // Use background color from your palette
+  border-radius: $border-radius; // Consistent border radius
+  box-shadow: 0 4px 8px $shadow-color; // Add shadow for elevation
   color: $white-color;
+  font-family: $font-family-primary;
 
   &__tabs {
     display: flex;
     justify-content: space-between;
-    margin-bottom: $margin-large;
+    margin-bottom: $gap-medium;
 
     &__tab {
       flex: 1;
-      padding: $padding-small;
       text-align: center;
+      padding: $padding-small;
       font-size: $font-size-body;
       font-weight: bold;
       cursor: pointer;
       background: none;
       border: none;
       color: $text-muted;
+      border-bottom: 2px solid transparent;
 
       &--active {
         color: $primary-color;
         border-bottom: 2px solid $primary-color;
+      }
+
+      &:hover {
+        color: $primary2-color;
       }
     }
   }
@@ -36,13 +45,45 @@
   &__content {
     display: flex;
     flex-direction: column;
-    gap: $margin-small;
+    gap: $gap-small; // Smaller gap for form fields
+  }
+
+  &__field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-small; // Space between label and input
+
+    input {
+      width: 100%;
+      padding: $padding-small;
+      font-size: $font-size-base;
+      color: $white-color;
+      background-color: $background-graphite;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      box-sizing: border-box;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 4px $primary2-color;
+      }
+    }
+  }
+
+  &__error {
+    color: $error-color;
+    font-size: $font-size-small;
+    margin-top: $gap-small;
+    text-align: center;
   }
 
   &__submit {
-    margin-top: $margin-standard;
-    padding: $padding-small;
+    width: 100%;
+    padding: $padding-standard;
     font-size: $font-size-body;
+    font-weight: bold;
     background-color: $primary-color;
     color: $white-color;
     border: none;
@@ -60,9 +101,16 @@
     }
   }
 
-  &__error {
-    color: $error-color;
-    font-size: $font-size-small;
-    margin-top: $margin-small;
+  &__toggle {
+    margin-top: $gap-small;
+    text-align: center;
+    font-size: $font-size-base;
+    color: $primary-color;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+      color: $primary2-color;
+    }
   }
 }
