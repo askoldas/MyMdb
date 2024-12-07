@@ -2,91 +2,88 @@ import React, { useState } from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { auth, db } from '@/firebase'
+import { Button } from '@/ui/elements/Button'
+import { Input } from '@/ui/elements/Input'
+import '@/styles/forms/auth-form.scss'
 
 export function AuthForm({ onClose }) {
-  const [isSignup, setIsSignup] = useState(true); // Toggle between login and signup
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState(''); // For signup only
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [isSignup, setIsSignup] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async () => {
-    setLoading(true);
-    setError('');
+    setLoading(true)
+    setError('')
     try {
       if (isSignup) {
-        // Sign Up Flow
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-        // Update display name in Firebase Auth
-        await updateProfile(userCredential.user, { displayName: name });
-
-        // Store additional user data in Firestore
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+        await updateProfile(userCredential.user, { displayName: name })
         await setDoc(doc(db, 'users', userCredential.user.uid), {
           name: name,
           email: email,
-          createdAt: new Date(),
-        });
-
-        console.log('User successfully signed up and added to Firestore!');
+          createdAt: new Date()
+        })
       } else {
-        // Log In Flow
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        console.log('User logged in:', userCredential.user);
+        const userCredential = await signInWithEmailAndPassword(auth, email, password)
       }
-
-      onClose(); // Close modal after successful login/signup
+      onClose()
     } catch (err) {
-      setError(err.message);
-      console.error('Error:', err.message);
+      setError(err.message)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="auth-form">
       <div className="auth-form__tabs">
-        <button onClick={() => setIsSignup(true)} className={isSignup ? 'active' : ''}>
-          Sign Up
-        </button>
-        <button onClick={() => setIsSignup(false)} className={!isSignup ? 'active' : ''}>
+        <Button
+          type={!isSignup ? 'primary' : 'secondary'}
+          onClick={() => setIsSignup(false)}
+          className={`auth-form__tab ${!isSignup ? 'active' : ''}`}
+        >
           Log In
-        </button>
+        </Button>
+        <Button
+          type={isSignup ? 'primary' : 'secondary'}
+          onClick={() => setIsSignup(true)}
+          className={`auth-form__tab ${isSignup ? 'active' : ''}`}
+        >
+          Sign Up
+        </Button>
       </div>
-
-      {/* Name input for Signup */}
       {isSignup && (
-        <input
+        <Input
           type="text"
           placeholder="Enter your name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(val) => setName(val)}
         />
       )}
-
-      {/* Email and Password inputs */}
-      <input
+      <Input
         type="email"
         placeholder="Enter your email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(val) => setEmail(val)}
       />
-      <input
+      <Input
         type="password"
         placeholder="Enter your password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(val) => setPassword(val)}
       />
-
-      {/* Error Message */}
       {error && <p className="error">{error}</p>}
-
-      {/* Submit Button */}
-      <button onClick={handleSubmit} disabled={loading}>
+      <Button
+        type="primary"
+        onClick={handleSubmit}
+        disabled={loading}
+        className="auth-form__submit"
+      >
         {loading ? 'Loading...' : isSignup ? 'Sign Up' : 'Log In'}
-      </button>
+      </Button>
     </div>
-  );
+  )
 }
