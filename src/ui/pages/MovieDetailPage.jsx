@@ -19,13 +19,10 @@ export function MovieDetailPage() {
   const { id } = useParams()
   const dispatch = useDispatch()
 
-  // State from movies slice
   const { details, loading, error } = useSelector((state) => state.movies)
 
-  // State from userCollections slice
   const { favorites, watchlist } = useSelector((state) => state.userCollections)
 
-  // User ID from auth slice
   const userId = useSelector((state) => state.auth.user?.uid)
 
   useEffect(() => {

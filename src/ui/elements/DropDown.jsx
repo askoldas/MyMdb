@@ -1,4 +1,3 @@
-import React from 'react'
 import '@/styles/elements/dropdown.scss'
 
 export function Dropdown({ label, options, value, onChange }) {

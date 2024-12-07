@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   fetchFavorites,
@@ -12,11 +12,7 @@ import { Page } from '@/ui/pages/Page'
 
 export function FavoritesPage() {
   const dispatch = useDispatch()
-  
-  // State from userCollections slice
   const { favorites, watchlist, loading, error } = useSelector((state) => state.userCollections)
-  
-  // User ID from auth slice
   const userId = useSelector((state) => state.auth.user?.uid)
 
   useEffect(() => {
