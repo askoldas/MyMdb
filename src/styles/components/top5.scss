@@ -1,0 +1,51 @@
+@import '../_variables.scss';
+
+.top5 {
+  padding: $padding-large;
+  background-color: $background-dark;
+  color: $white-color;
+
+  .top5-title {
+    font-size: $font-size-h2;
+    text-align: center;
+    margin-bottom: $gap-large;
+  }
+
+  .top5-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gap-medium;
+    justify-content: center;
+
+    .top5-card {
+      text-align: center;
+      background-color: $background-graphite;
+      border-radius: $border-radius;
+      overflow: hidden;
+      width: 150px;
+      box-shadow: 0 4px 6px $shadow-color;
+
+      &:hover {
+        transform: scale(1.05);
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .top5-card-poster {
+        width: 100%;
+        height: auto;
+        border-bottom: 2px solid $primary-color;
+      }
+
+      .top5-card-title {
+        font-size: $font-size-small;
+        margin: $gap-small 0;
+      }
+
+      .top5-card-rating {
+        font-size: $font-size-small;
+        color: $yellow-color;
+        margin-bottom: $gap-medium;
+      }
+    }
+  }
+}
