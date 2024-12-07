@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  fetchMovies,
-} from '@/redux/movies-slice'
+import { fetchMovies } from '@/redux/movies-slice'
 import {
   fetchFavorites,
   fetchWatchlist,
@@ -19,7 +17,6 @@ import '@/styles/pages/movies-page.scss'
 export function MoviesPage() {
   const dispatch = useDispatch()
   
-  // TMDB-related state from movies slice
   const {
     list: movies,
     loading,
@@ -28,17 +25,14 @@ export function MoviesPage() {
     totalPages,
   } = useSelector((state) => state.movies)
 
-  // User collection state from userCollections slice
   const { favorites, watchlist } = useSelector((state) => state.userCollections)
 
   const { sortBy, genres, yearRange, ratingRange } = useSelector((state) => state.filter.appliedFilters)
-  const userId = useSelector((state) => state.auth.user?.uid) // Get user ID from auth slice
+  const userId = useSelector((state) => state.auth.user?.uid) 
 
   useEffect(() => {
-    // Fetch movies from TMDB
     dispatch(fetchMovies({ page, sortBy, filters: { genres, yearRange, ratingRange } }))
 
-    // Fetch user collections from Firebase
     if (userId) {
       dispatch(fetchFavorites(userId))
       dispatch(fetchWatchlist(userId))

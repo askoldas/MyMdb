@@ -1,4 +1,3 @@
-import React from 'react'
 import '@/styles/elements/toggle-button.scss'
 
 export function ToggleButton({ isActive, onToggle, label, Icon }) {

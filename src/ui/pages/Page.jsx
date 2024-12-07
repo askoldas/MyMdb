@@ -1,4 +1,3 @@
-import React from 'react'
 import '@/styles/pages/page.scss'
 
 export function Page({ children }) {
