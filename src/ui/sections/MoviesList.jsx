@@ -1,16 +1,13 @@
-import React from 'react';
-import { Card } from '@/ui/components/Card';
-import { GENRE_MAP } from '@/config/genres';
-import '@/styles/sections/movies-list.scss';
+import { Card } from '@/ui/components/Card'
+import { GENRE_MAP } from '@/config/genres'
+import '@/styles/sections/movies-list.scss'
 
 export function MoviesList({ movies = [], favorites = [], watchlist = [], onToggleFavorite, onToggleWatchlist }) {
-  console.log('Movies passed to MoviesList:', movies);
-
-  const isInWatchlist = (movieId) => watchlist.some((movie) => Number(movie.id) === Number(movieId));
-  const isFavorite = (movieId) => favorites.some((movie) => Number(movie.id) === Number(movieId));
+  const isInWatchlist = (movieId) => watchlist.some((movie) => Number(movie.id) === Number(movieId))
+  const isFavorite = (movieId) => favorites.some((movie) => Number(movie.id) === Number(movieId))
 
   if (!movies || movies.length === 0) {
-    return <p className="movies-list-empty">No movies available</p>;
+    return <p className="movies-list-empty">No movies available</p>
   }
 
   return (
@@ -29,5 +26,5 @@ export function MoviesList({ movies = [], favorites = [], watchlist = [], onTogg
         />
       ))}
     </div>
-  );
+  )
 }

@@ -1,8 +1,7 @@
 import { get } from '@/utils/client'
 import { tmdbEndpoints } from '@/config/TmdbApi'
 
-// Fetch movies (list)
-export const fetchMoviesService = async ({ page, sortBy = 'popularity.desc', filters = {} }) => {
+export const fetchMoviesService = async ({ endpoint = tmdbEndpoints.discover.movies, page, sortBy = 'popularity.desc', filters = {} }) => {
   try {
     const validatedPage = Number.isInteger(page) && page >= 1 && page <= 500 ? page : 1
 
@@ -21,7 +20,7 @@ export const fetchMoviesService = async ({ page, sortBy = 'popularity.desc', fil
         : undefined,
     }
 
-    const response = await get(tmdbEndpoints.discover.movies, { params })
+    const response = await get(endpoint, { params }) // Dynamic endpoint support
     return response.data
   } catch (error) {
     console.error('Error fetching movies:', error.message)
@@ -29,7 +28,6 @@ export const fetchMoviesService = async ({ page, sortBy = 'popularity.desc', fil
   }
 }
 
-// Fetch movie details
 export const fetchMovieDetailsService = async (movieId) => {
   try {
     if (!movieId) throw new Error('Movie ID is required')
@@ -43,7 +41,6 @@ export const fetchMovieDetailsService = async (movieId) => {
   }
 }
 
-// Search movies
 export const fetchSearchMoviesService = async ({ query, page }) => {
   try {
     if (!query) throw new Error('Search query is required')

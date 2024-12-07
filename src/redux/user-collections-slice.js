@@ -5,7 +5,6 @@ import {
   removeMovieFromUserCollection,
 } from '@/services/user-collections'
 
-// Fetch favorites
 export const fetchFavorites = createAsyncThunk(
   'userCollections/fetchFavorites',
   async (uid, { rejectWithValue }) => {
@@ -17,7 +16,6 @@ export const fetchFavorites = createAsyncThunk(
   }
 )
 
-// Fetch watchlist
 export const fetchWatchlist = createAsyncThunk(
   'userCollections/fetchWatchlist',
   async (uid, { rejectWithValue }) => {
@@ -29,7 +27,6 @@ export const fetchWatchlist = createAsyncThunk(
   }
 )
 
-// Add a movie to favorites
 export const addToFavorites = createAsyncThunk(
   'userCollections/addToFavorites',
   async ({ uid, movie }, { rejectWithValue }) => {
@@ -41,7 +38,6 @@ export const addToFavorites = createAsyncThunk(
   }
 )
 
-// Add a movie to watchlist
 export const addToWatchlist = createAsyncThunk(
   'userCollections/addToWatchlist',
   async ({ uid, movie }, { rejectWithValue }) => {
@@ -53,7 +49,6 @@ export const addToWatchlist = createAsyncThunk(
   }
 )
 
-// Remove a movie from favorites
 export const removeFromFavorites = createAsyncThunk(
   'userCollections/removeFromFavorites',
   async ({ uid, movieId }, { rejectWithValue }) => {
@@ -65,7 +60,6 @@ export const removeFromFavorites = createAsyncThunk(
   }
 )
 
-// Remove a movie from watchlist
 export const removeFromWatchlist = createAsyncThunk(
   'userCollections/removeFromWatchlist',
   async ({ uid, movieId }, { rejectWithValue }) => {

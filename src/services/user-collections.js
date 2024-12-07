@@ -1,7 +1,6 @@
 import { db } from '@/firebase'
 import { collection, doc, setDoc, deleteDoc, getDocs } from 'firebase/firestore'
 
-// Add a movie to a user-specific collection (favorites or watchlist)
 export const addMovieToUserCollection = async (uid, collectionName, movie) => {
   try {
     const docRef = doc(db, `users/${uid}/${collectionName}`, movie.id.toString())
@@ -13,7 +12,6 @@ export const addMovieToUserCollection = async (uid, collectionName, movie) => {
   }
 }
 
-// Remove a movie from a user-specific collection (favorites or watchlist)
 export const removeMovieFromUserCollection = async (uid, collectionName, movieId) => {
   try {
     const docRef = doc(db, `users/${uid}/${collectionName}`, movieId.toString())
@@ -25,7 +23,6 @@ export const removeMovieFromUserCollection = async (uid, collectionName, movieId
   }
 }
 
-// Fetch all movies from a user-specific collection (favorites or watchlist)
 export const fetchUserCollectionMovies = async (uid, collectionName) => {
   try {
     const collectionRef = collection(db, `users/${uid}/${collectionName}`)

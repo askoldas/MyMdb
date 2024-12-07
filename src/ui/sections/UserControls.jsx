@@ -1,4 +1,3 @@
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { UserBadge } from '@/ui/components/UserBadge'
 import { Search } from '@/ui/components/Search'

@@ -1,69 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import { auth } from '@/firebase'; // Firebase Authentication instance
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import { db } from '@/firebase'; // Firestore instance
-import '@/styles/pages/user-profile.scss';
+import React, { useState, useEffect } from 'react'
+import { auth } from '@/firebase'
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { db } from '@/firebase'
+import { Input } from '@/ui/elements/Input'
+import { Button } from '@/ui/elements/Button'
+import '@/styles/pages/user-profile.scss'
 
 export function UserProfile() {
-  const [userData, setUserData] = useState(null);
-  const [editMode, setEditMode] = useState(false);
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [userData, setUserData] = useState(null)
+  const [editMode, setEditMode] = useState(false)
+  const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // Fetch user info on mount
     const fetchUserData = async () => {
-      const user = auth.currentUser;
+      const user = auth.currentUser
       if (user) {
-        setName(user.displayName?.split(' ')[0] || '');
-        setSurname(user.displayName?.split(' ')[1] || '');
+        setName(user.displayName?.split(' ')[0] || '')
+        setSurname(user.displayName?.split(' ')[1] || '')
 
-        // Fetch additional data from Firestore
-        const userDoc = doc(db, 'users', user.uid);
-        const userSnapshot = await getDoc(userDoc);
+        const userDoc = doc(db, 'users', user.uid)
+        const userSnapshot = await getDoc(userDoc)
         if (userSnapshot.exists()) {
-          setUserData(userSnapshot.data());
+          setUserData(userSnapshot.data())
         }
       }
-    };
+    }
 
-    fetchUserData();
-  }, []);
+    fetchUserData()
+  }, [])
 
   const handleSave = async () => {
-    setLoading(true);
+    setLoading(true)
     try {
-      const user = auth.currentUser;
+      const user = auth.currentUser
 
-      // Update displayName in Firebase Authentication
-      await updateProfile(user, {
-        displayName: `${name} ${surname}`,
-      });
+      await user.updateProfile({
+        displayName: `${name} ${surname}`
+      })
 
-      // Update additional fields in Firestore
-      const userDoc = doc(db, 'users', user.uid);
+      const userDoc = doc(db, 'users', user.uid)
       await updateDoc(userDoc, {
         firstName: name,
-        lastName: surname,
-      });
+        lastName: surname
+      })
 
-      setEditMode(false);
-    } catch (error) {
-      console.error('Error updating profile:', error.message);
+      setEditMode(false)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const handleLogout = async () => {
     try {
-      await auth.signOut();
-      console.log('User logged out successfully');
+      await auth.signOut()
     } catch (error) {
-      console.error('Logout failed:', error.message);
+      console.error('Logout failed:', error)
     }
-  };
+  }
 
   return (
     <div className="user-profile">
@@ -73,34 +68,38 @@ export function UserProfile() {
           <p>Email: {auth.currentUser.email}</p>
           {editMode ? (
             <>
-              <input
-                type="text"
-                placeholder="First Name"
+              <Input
+                label="First Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-              <input
-                type="text"
-                placeholder="Last Name"
+              <Input
+                label="Last Name"
                 value={surname}
                 onChange={(e) => setSurname(e.target.value)}
               />
-              <button onClick={handleSave} disabled={loading}>
-                {loading ? 'Saving...' : 'Save'}
-              </button>
-              <button onClick={() => setEditMode(false)}>Cancel</button>
+              <div className="button-group">
+                <Button className="save" onClick={handleSave} disabled={loading}>
+                  {loading ? 'Saving...' : 'Save'}
+                </Button>
+                <Button className="cancel" onClick={() => setEditMode(false)}>
+                  Cancel
+                </Button>
+              </div>
             </>
           ) : (
             <>
               <p>Name: {`${name} ${surname}`}</p>
-              <button onClick={() => setEditMode(true)}>Edit Profile</button>
+              <Button onClick={() => setEditMode(true)}>Edit Profile</Button>
             </>
           )}
-          <button onClick={handleLogout}>Logout</button>
+          <Button className="logout" onClick={handleLogout}>
+            Logout
+          </Button>
         </div>
       ) : (
         <p>Loading user data...</p>
       )}
     </div>
-  );
+  )
 }
