@@ -1,22 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Page } from '@/ui/pages/Page'
 import { Button } from '@/ui/elements/Button'
-import { MenuButton } from '@/ui/components/ButtonIconMenu'
-import { FilterButton } from '@/ui/components/ButtonIconFilter'
-import { Input } from '@/ui/elements/Input'
-import { IconButton } from '@/ui/elements/ButtonIcon'
-import { UserControls } from '@/ui/sections/UserControls'
-import MenuIcon from '@/assets/icons/Menu.svg'
-import FilterIcon from '@/assets/icons/Filter.svg'
+import { Top5 } from '@/ui/components/Top5'
 import '@/styles/pages/home-page.scss'
 
 export function HomePage() {
-  const [inputValue, setInputValue] = useState('')
-  const [error, setError] = useState('')
   const navigate = useNavigate()
-
-
 
   return (
     <>
@@ -27,6 +16,18 @@ export function HomePage() {
           Explore
         </Button>
       </div>
+
+      {/* Top 5 movies by genre */}
+      <Top5 genre="Science Fiction" />
+      <Top5 genre="Action" />
+      <Top5 genre="Drama" />
+      <Top5 genre="Comedy" />
+      <Top5 genre="Thriller" />
+      <Top5 genre="Crime" />
+      <Top5 genre="Family" />
+      <Top5 genre="History" />
+      <Top5 genre="Fantasy" />
+      <Top5 genre="Mystery" />
     </>
   )
 }
