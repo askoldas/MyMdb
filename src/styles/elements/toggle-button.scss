@@ -1,4 +1,4 @@
-@import '../_variables'; // Import variables
+@import '../_variables';
 
 .toggle-button {
   background: none;
@@ -8,23 +8,23 @@
   .toggle-button-icon {
     width: 24px;
     height: 24px;
-    fill: currentColor; // Inherits the color dynamically
+    fill: currentColor;
     transition: fill 0.2s ease, opacity 0.2s ease;
   }
 
   &:not(.active) {
-    color: $white-color; // Default inactive color
+    color: $white-color;
     opacity: 0.7;
   }
 
   &.active {
-    color: $primary-color; // Active state color
+    color: $primary-color;
     .toggle-button-icon {
-      opacity: 1; // Fully visible in active state
+      opacity: 1;
     }
   }
 
   &:hover {
-    opacity: 1; // Highlight on hover
+    opacity: 1;
   }
 }

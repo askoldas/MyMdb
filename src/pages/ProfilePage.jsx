@@ -1,49 +1,42 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom' // Import useNavigate
-import { auth } from '@/firebase' // Firebase Auth instance
-import { doc, getDoc, updateDoc } from 'firebase/firestore' // Firestore methods
-import { db } from '@/firebase' // Firestore instance
+import { useNavigate } from 'react-router-dom'
+import { auth } from '@/firebase'
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { db } from '@/firebase'
 import '@/styles/pages/profile-page.scss'
 
 export function ProfilePage() {
   const [userData, setUserData] = useState({ name: '', email: '' })
   const [editing, setEditing] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '' })
-  const navigate = useNavigate() // Initialize navigation hook
+  const navigate = useNavigate()
 
-  // Fetch user data from Firebase Auth and Firestore
-  const fetchUserData = async () => {
-    if (!auth.currentUser) {
-      console.error('No user is logged in.')
-      return
-    }
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (!auth.currentUser) return
 
-    const { displayName, email, uid } = auth.currentUser
+      const { displayName, email, uid } = auth.currentUser
+      const initialData = { name: displayName || '', email: email || '' }
 
-    // Start with data from Firebase Auth
-    const initialData = {
-      name: displayName || '',
-      email: email || ''
-    }
+      try {
+        const userDocRef = doc(db, 'users', uid)
+        const userDocSnap = await getDoc(userDocRef)
 
-    try {
-      // Try to fetch additional data from Firestore
-      const userDocRef = doc(db, 'users', uid)
-      const userDocSnap = await getDoc(userDocRef)
-
-      if (userDocSnap.exists()) {
-        const firestoreData = userDocSnap.data()
-        setUserData({ ...initialData, ...firestoreData })
-        setFormData({ ...initialData, ...firestoreData })
-      } else {
-        // If Firestore document doesn't exist, use only Auth data
-        setUserData(initialData)
-        setFormData(initialData)
+        if (userDocSnap.exists()) {
+          const firestoreData = userDocSnap.data()
+          setUserData({ ...initialData, ...firestoreData })
+          setFormData({ ...initialData, ...firestoreData })
+        } else {
+          setUserData(initialData)
+          setFormData(initialData)
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error)
       }
-    } catch (error) {
-      console.error('Error fetching user data:', error.message)
     }
-  }
+
+    fetchUserData()
+  }, [])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -54,26 +47,22 @@ export function ProfilePage() {
     if (!auth.currentUser) return
 
     const { uid } = auth.currentUser
-
     try {
-      // Update Firebase Auth `displayName`
       if (auth.currentUser.displayName !== formData.name) {
         await auth.currentUser.updateProfile({ displayName: formData.name })
       }
 
-      // Update Firestore
       const userDocRef = doc(db, 'users', uid)
       await updateDoc(userDocRef, {
         name: formData.name,
-        email: formData.email
+        email: formData.email,
       })
 
-      // Update local state
       setUserData(formData)
       setEditing(false)
       alert('Profile updated successfully!')
     } catch (error) {
-      console.error('Error updating profile:', error.message)
+      console.error('Error updating profile:', error)
       alert('Failed to update profile.')
     }
   }
@@ -81,16 +70,12 @@ export function ProfilePage() {
   const handleLogout = async () => {
     try {
       await auth.signOut()
-      navigate('/') // Redirect to the home page
+      navigate('/')
     } catch (error) {
-      console.error('Logout failed:', error.message)
+      console.error('Logout failed:', error)
       alert('Failed to log out. Please try again.')
     }
   }
-
-  useEffect(() => {
-    fetchUserData()
-  }, [])
 
   return (
     <div className="profile-page">
@@ -117,7 +102,7 @@ export function ProfilePage() {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              disabled // Email is typically not editable directly
+              disabled
             />
           ) : (
             <span>{userData.email || 'N/A'}</span>
@@ -129,12 +114,18 @@ export function ProfilePage() {
               <button onClick={handleSave} className="btn btn-primary">
                 Save
               </button>
-              <button onClick={() => setEditing(false)} className="btn btn-secondary">
+              <button
+                onClick={() => setEditing(false)}
+                className="btn btn-secondary"
+              >
                 Cancel
               </button>
             </>
           ) : (
-            <button onClick={() => setEditing(true)} className="btn btn-primary">
+            <button
+              onClick={() => setEditing(true)}
+              className="btn btn-primary"
+            >
               Edit Profile
             </button>
           )}

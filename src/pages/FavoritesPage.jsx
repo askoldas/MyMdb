@@ -8,7 +8,7 @@ import {
   removeFromWatchlist,
 } from '@/redux/user-collections-slice'
 import { MoviesList } from '@/ui/sections/MoviesList'
-import { Page } from '@/ui/pages/Page'
+import { Page } from '@/pages/Page'
 
 export function FavoritesPage() {
   const dispatch = useDispatch()

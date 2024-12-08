@@ -44,36 +44,29 @@
   }
 
   .card-actions {
-    display: flex; // Make the container flex
-    justify-content: space-between; // Add space between buttons
-    gap: $gap-small; // Add a gap between buttons
-    margin-top: $margin-small; // Add spacing above
-    width: 100%; // Make sure actions align with the card width
-    padding: 0 $padding-small; // Add padding for inner spacing
+    display: flex;
+    justify-content: space-between;
+    gap: $gap-small;
+    margin-top: $margin-small;
+    width: 100%;
+    padding: 0 $padding-small;
   }
 
   &--loading {
     .card-skeleton-image {
-      width: 100%; // Matches the width of the actual image
-      height: 300px; // Matches the height of the actual image
-      background: linear-gradient(-90deg, $background-dark 0%, $background-graphite 50%, $background-dark 100%);
-      animation: shimmer 1.5s infinite;
-    }
-    .card-skeleton-title {
-      background: linear-gradient(-90deg, $background-dark 0%, $background-graphite 50%, $background-dark 100%);
-      background-size: 400% 400%;
-      animation: shimmer 1.5s infinite;
-    }
-
-    .card-skeleton-image {
       width: 100%;
       height: 300px;
+      background: linear-gradient(-90deg, $background-dark 0%, $background-graphite 50%, $background-dark 100%);
+      animation: shimmer 1.5s infinite;
     }
 
     .card-skeleton-title {
       width: 80%;
       height: 20px;
       margin: $margin-standard 0;
+      background: linear-gradient(-90deg, $background-dark 0%, $background-graphite 50%, $background-dark 100%);
+      background-size: 400% 400%;
+      animation: shimmer 1.5s infinite;
     }
   }
 }

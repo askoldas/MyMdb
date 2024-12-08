@@ -16,12 +16,11 @@ html, body, #root {
   min-height: 100%; 
 }
 
-/* Reset link styles */
 a {
-  text-decoration: none; // Remove underlines
-  color: inherit; // Inherit color from parent
+  text-decoration: none;
+  color: inherit; 
   &:hover, &:focus {
-    text-decoration: none; // Ensure hover doesn't add underlines
+    text-decoration: none; 
   }
 }
 

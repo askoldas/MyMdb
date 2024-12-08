@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Input } from '@/ui/elements/Input'
 import { IconButton } from '@/ui/elements/ButtonIcon'
@@ -14,10 +14,10 @@ export function Search({ placeholder = 'Search...' }) {
   }
 
   const handleSearchSubmit = (event) => {
-    event.preventDefault() // Prevent default form submission behavior
+    event.preventDefault()
     if (query.trim()) {
       navigate(`/search?query=${encodeURIComponent(query)}&page=1`)
-      setQuery('') // Clear the input field after submission
+      setQuery('')
     }
   }
 
@@ -31,7 +31,7 @@ export function Search({ placeholder = 'Search...' }) {
       <IconButton
         icon={SearchIcon}
         ariaLabel="Search"
-        onClick={handleSearchSubmit} // Handle click on the button
+        onClick={handleSearchSubmit}
       />
     </form>
   )

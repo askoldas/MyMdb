@@ -1,17 +1,17 @@
 @import '../_variables';
 
 .sidebar {
-  width: $sidebar-width; /* Use the defined variable for width */
-  background-color: $background-dark; /* Background color */
-  position: fixed; /* Fix the sidebar to the left */
+  width: $sidebar-width;
+  background-color: $background-dark;
+  position: fixed;
   top: 0;
   left: 0;
-  height: 100%; /* Full height of the viewport */
-  color: $white-color; /* Text color */
+  height: 100%;
+  color: $white-color;
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: space-between; /* Distribute elements (logo, nav, footer) */
-  padding: $padding-standard; /* Add consistent padding for the entire sidebar */
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $padding-standard;
 }
 
 .sidebar-logo {

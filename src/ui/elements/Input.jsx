@@ -15,12 +15,12 @@ export function Input({
       {label && <label className="input__label">{label}</label>}
       <input
         className="input__field"
-        type={type} // Allow the type to be passed dynamically
+        type={type}
         placeholder={placeholder}
         value={value}
-        onChange={(e) => onChange?.(e.target.value)} // Safely handle onChange
+        onChange={(e) => onChange?.(e.target.value)}
         disabled={disabled}
-        {...props} // Forward any additional props
+        {...props}
       />
       {error && <span className="input__error-text">{error}</span>}
     </div>
