@@ -5,7 +5,7 @@ import MoviesIcon from '@/assets/icons/Movie.svg?react'
 import FavoritesIcon from '@/assets/icons/Favorites.svg?react'
 import WatchlistIcon from '@/assets/icons/Watchlist.svg?react'
 import StarIcon from '@/assets/icons/Star.svg?react'
-import '@/styles/components/navbar.scss'
+import '@/styles/components/navigation.scss'
 
 export function Navigation() {
   return (

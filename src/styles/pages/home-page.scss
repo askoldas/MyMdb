@@ -4,7 +4,7 @@
   width: 100%;
   height: calc(100vh - 76px);
   padding: $padding-large;
-  background: url('@/assets/bg.jpg') center/cover no-repeat;
+  background: url('@/assets/background.jpg') center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +13,7 @@
   color: $white-color;
 
   .home-title {
-    font-size: $font-size-h1;
+    font-size: 4rem;
     margin-bottom: $gap-large;
   }
 
@@ -23,18 +23,6 @@
     margin-bottom: $gap-large;
   }
 
-  button {
-    font-size: $font-size-large;
-    padding: $padding-small $padding-standard;
-    border-radius: $border-radius;
-    background-color: $primary-color;
-    color: $white-color;
-    transition: background-color 0.3s;
-
-    &:hover {
-      background-color: $primary2-color;
-    }
-  }
 }
 
 .movies-sections {

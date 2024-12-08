@@ -1,9 +1,10 @@
-import React from 'react';
+import { Page } from '@/pages/Page'
 
 export function RatedPage() {
   return (
-    <div>
-      <h1>Rated</h1>
-    </div>
-  );
+    <Page>
+        <h1>Rated</h1>
+    </Page>
+
+  )
 }
