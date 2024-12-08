@@ -13,6 +13,7 @@ import {
 } from '@/redux/user-collections-slice'
 import { fetchMoviesService } from '@/services/movies'
 import { Page } from '@/pages/Page'
+import { tmdbEndpoints } from '@/config/TmdbApi' 
 import '@/styles/pages/home-page.scss'
 
 export function HomePage() {
@@ -33,17 +34,14 @@ export function HomePage() {
       try {
         setLoading(true)
 
-        // Fetch movies by category
-        const popular = await fetchMoviesService({ endpoint: '/movie/popular', page: 1 })
-        const topRated = await fetchMoviesService({ endpoint: '/movie/top_rated', page: 1 })
-        const upcoming = await fetchMoviesService({ endpoint: '/movie/upcoming', page: 1 })
+        const popular = await fetchMoviesService({ endpoint: tmdbEndpoints.movies.popular, page: 1 })
+        const topRated = await fetchMoviesService({ endpoint: tmdbEndpoints.movies.topRated, page: 1 })
+        const upcoming = await fetchMoviesService({ endpoint: tmdbEndpoints.movies.upcoming, page: 1 })
 
-        // Set state with the top 10 movies for each category
         setPopularMovies(popular.results.slice(0, 10))
         setTopRatedMovies(topRated.results.slice(0, 10))
         setUpcomingMovies(upcoming.results.slice(0, 10))
 
-        // Fetch user favorites and watchlist if the user is logged in
         if (userId) {
           dispatch(fetchFavorites(userId))
           dispatch(fetchWatchlist(userId))

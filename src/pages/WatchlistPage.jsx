@@ -9,7 +9,7 @@ import {
 } from '@/redux/user-collections-slice'
 import { MoviesList } from '@/ui/sections/MoviesList'
 import { Page } from '@/pages/Page'
-import Preloader from '@/ui/components/Preloader'
+import { Preloader } from '@/ui/components/Preloader'
 
 export function WatchlistPage() {
   const dispatch = useDispatch()

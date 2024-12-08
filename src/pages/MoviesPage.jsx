@@ -12,6 +12,7 @@ import {
 import { MoviesList } from '@/ui/sections/MoviesList'
 import { Pagination } from '@/ui/components/Pagination'
 import { Page } from '@/pages/Page'
+import { Preloader } from '@/ui/components/Preloader'
 import '@/styles/pages/movies-page.scss'
 
 export function MoviesPage() {
@@ -59,7 +60,7 @@ export function MoviesPage() {
     }
   }
 
-  if (loading) return <Page><p>Loading movies...</p></Page>
+  if (loading) return <Page><Preloader /></Page>
   if (error) return <Page><p>Error loading movies: {error}</p></Page>
 
   return (
