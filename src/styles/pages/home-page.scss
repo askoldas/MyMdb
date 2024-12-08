@@ -22,15 +22,13 @@
     color: $text-muted;
     margin-bottom: $gap-large;
   }
-
 }
 
 .movies-sections {
   padding: $padding-standard;
 
   .movies-section {
-    margin-bottom: $gap-large;
-
+    margin-bottom: $margin-large * 2;
     h2 {
       font-size: $font-size-h2;
       color: $white-color;
