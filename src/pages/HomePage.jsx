@@ -12,7 +12,7 @@ import {
   removeFromWatchlist
 } from '@/redux/user-collections-slice'
 import { fetchMoviesService } from '@/services/movies'
-import { Page } from '@/ui/pages/Page'
+import { Page } from '@/pages/Page'
 import '@/styles/pages/home-page.scss'
 
 export function HomePage() {

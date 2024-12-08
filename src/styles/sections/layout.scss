@@ -2,14 +2,14 @@
 
 .layout {
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
+  flex-direction: column;
   height: 100vh;
-  width: 100%; /* Full viewport width */
+  width: 100%;
 
   .main {
-    margin-left: $sidebar-width; /* Offset for the fixed sidebar */
-    flex-grow: 1; /* Allow the main section to fill the remaining space */
+    margin-left: $sidebar-width;
+    flex-grow: 1;
     background-color: $background-black;
-    overflow-y: auto; /* Enable scrolling for the content */
+    overflow-y: auto;
   }
 }

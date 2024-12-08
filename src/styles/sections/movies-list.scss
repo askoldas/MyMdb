@@ -2,20 +2,20 @@
 
 .movies-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); // 5 columns by default
+  grid-template-columns: repeat(5, 1fr);
   gap: $padding-standard;
 
 
   @media (max-width: 1200px) {
-    grid-template-columns: repeat(4, 1fr); // 4 columns for medium screens
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @media (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr); // 2 columns for tablets
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (max-width: 600px) {
-    grid-template-columns: 1fr; // 1 column for mobile
+    grid-template-columns: 1fr;
   }
 }
 

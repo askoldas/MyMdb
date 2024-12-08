@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import { fetchSearchMovies, clearSearchResults } from '@/redux/movies-slice'
 import { MoviesList } from '@/ui/sections/MoviesList'
 import { Pagination } from '@/ui/components/Pagination'
-import { Page } from '@/ui/pages/Page'
+import { Page } from '@/pages/Page'
 import '@/styles/pages/search-results-page.scss'
 
 export function SearchResultsPage() {

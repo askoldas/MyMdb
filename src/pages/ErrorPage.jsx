@@ -1,4 +1,4 @@
-import { Page } from '@/ui/pages/Page'
+import { Page } from '@/pages/Page'
 
 export function ErrorPage() {
   return (

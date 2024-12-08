@@ -20,7 +20,7 @@ export const fetchMoviesService = async ({ endpoint = tmdbEndpoints.discover.mov
         : undefined,
     }
 
-    const response = await get(endpoint, { params }) // Dynamic endpoint support
+    const response = await get(endpoint, { params })
     return response.data
   } catch (error) {
     console.error('Error fetching movies:', error.message)

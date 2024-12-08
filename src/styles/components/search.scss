@@ -6,10 +6,10 @@
   gap: $gap-small;
 
   .input {
-    flex-grow: 1; // Ensure the input takes up available space
+    flex-grow: 1;
   }
 
   .icon-button {
-    flex-shrink: 0; // Prevent the button from resizing
+    flex-shrink: 0;
   }
 }

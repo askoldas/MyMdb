@@ -1,4 +1,3 @@
-import React from 'react'
 import { ToggleButtonFavorites } from '@/ui/components/ToggleButtonFavorites'
 import { ToggleButtonWatchlist } from '@/ui/components/ToggleButtonWatchlist'
 import { Link } from 'react-router-dom'
@@ -16,7 +15,6 @@ export function Card({
 }) {
   return (
     <div className="card">
-      {/* Wrapping the content in Link for movie details navigation */}
       <Link to={`/movies/${id}`} className="card-link">
         <img src={poster} alt={title} className="card-image" />
         <div className="card-content">
@@ -26,7 +24,6 @@ export function Card({
           </p>
         </div>
       </Link>
-      {/* Separate card actions to avoid interfering with the Link */}
       <div className="card-actions">
         <ToggleButtonFavorites
           isFavorite={isFavorite}

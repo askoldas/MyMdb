@@ -1,21 +1,21 @@
 @import '../_variables';
 
 .nav-item {
-  text-decoration: none; /* Remove underline */
-  color: $white-color; /* Default text color */
-  transition: color 0.3s ease, fill 0.3s ease; /* Smooth transitions for hover and active states */
+  text-decoration: none;
+  color: $white-color;
+  transition: color 0.3s ease, fill 0.3s ease;
 
   &.active {
-    color: $primary-color; /* Active state color */
-    font-weight: bold; /* Bold text for active state */
+    color: $primary-color;
+    font-weight: bold;
   }
 
   &:hover {
-    color: $primary2-color; /* Hover state color */
+    color: $primary2-color;
   }
 
   .nav-item-icon {
-    fill: currentColor; /* Inherit text color for icon */
-    transition: fill 0.3s ease; /* Smooth icon color transition */
+    fill: currentColor;
+    transition: fill 0.3s ease;
   }
 }

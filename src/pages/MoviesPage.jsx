@@ -11,7 +11,7 @@ import {
 } from '@/redux/user-collections-slice'
 import { MoviesList } from '@/ui/sections/MoviesList'
 import { Pagination } from '@/ui/components/Pagination'
-import { Page } from '@/ui/pages/Page'
+import { Page } from '@/pages/Page'
 import '@/styles/pages/movies-page.scss'
 
 export function MoviesPage() {

@@ -7,7 +7,7 @@ import WatchlistIcon from '@/assets/icons/Watchlist.svg?react'
 import StarIcon from '@/assets/icons/Star.svg?react'
 import '@/styles/components/navbar.scss'
 
-export function Navbar() {
+export function Navigation() {
   return (
     <div className="navbar">
       <NavItem to="/" label="Home" Icon={HomeIcon} />

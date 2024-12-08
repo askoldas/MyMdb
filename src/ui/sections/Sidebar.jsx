@@ -1,4 +1,4 @@
-import { Navbar } from '@/ui/components/Navbar'
+import { Navigation } from '@/ui/components/Navigation'
 import logo from '@/assets/pixema.svg'
 import '@/styles/sections/sidebar.scss'
 
@@ -10,7 +10,7 @@ export function Sidebar() {
       </div>
 
       <div className="sidebar-links">
-        <Navbar />
+        <Navigation />
       </div>
 
       <div className="sidebar-footer">© All Rights Reserved</div>

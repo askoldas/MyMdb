@@ -4,10 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px; // Default size
+  width: 40px;
   height: 40px;
   border: none;
-  border-radius: $border-radius; // Using SCSS variable
+  border-radius: $border-radius;
   background-color: $primary-color;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -32,7 +32,7 @@
   }
 
   &__icon {
-    width: 24px; // Icon size
+    width: 24px;
     height: 24px;
   }
 }

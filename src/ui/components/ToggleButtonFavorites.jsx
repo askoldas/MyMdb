@@ -1,4 +1,3 @@
-import React from 'react'
 import { ToggleButton } from '@/ui/elements/ToggleButton'
 import FavoritesIcon from '@/assets/icons/Favorites.svg?react'
 
