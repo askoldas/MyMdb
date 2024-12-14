@@ -28,8 +28,10 @@
     padding: $padding-large;
     border-radius: $border-radius;
     box-shadow: 0 4px 8px $shadow-color;
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
+    z-index: 1010;
+    overflow: hidden;
   }
 
   &__close {
@@ -41,5 +43,6 @@
     color: $white-color;
     font-size: 1.5rem;
     cursor: pointer;
+    z-index: 1020;
   }
 }
