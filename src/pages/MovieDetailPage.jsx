@@ -11,8 +11,10 @@ import {
   removeFromFavorites,
   removeFromWatchlist,
 } from '@/redux/user-collections-slice'
+import { addToCart } from '@/redux/cart-slice'
 import { ToggleButtonFavorites } from '@/ui/components/ToggleButtonFavorites'
 import { ToggleButtonWatchlist } from '@/ui/components/ToggleButtonWatchlist'
+import { Button } from '@/ui/elements/Button'
 import '@/styles/pages/movie-detail-page.scss'
 import StarIcon from '@/assets/icons/Star.svg?react'
 
@@ -49,7 +51,6 @@ export function MovieDetailPage() {
     credits = {},
   } = details
 
-  const formattedReleaseYear = release_date ? new Date(release_date).getFullYear() : 'N/A'
   const formattedReleaseDate = release_date
     ? new Date(release_date).toLocaleDateString(undefined, {
         day: '2-digit',
@@ -75,6 +76,29 @@ export function MovieDetailPage() {
     } else {
       dispatch(addToWatchlist({ uid: userId, movie: details }))
     }
+  }
+
+  const handleAddToCart = () => {
+    if (!userId) {
+      console.error('User is not logged in')
+      return
+    }
+
+    const item = {
+      id: details.id?.toString(),
+      title,
+      price: 10.99, // Replace with actual price if available
+      quantity: 1,
+    }
+
+    dispatch(addToCart({ userId, item }))
+      .unwrap()
+      .then(() => {
+        console.log('Item added to cart successfully:', item)
+      })
+      .catch((error) => {
+        console.error('Failed to add item to cart:', error)
+      })
   }
 
   const director = credits.crew?.find((person) => person.job === 'Director')?.name || 'N/A'
@@ -128,6 +152,9 @@ export function MovieDetailPage() {
               <p>{production_companies.map((pc) => pc.name).join(', ') || 'N/A'}</p>
             </div>
           </div>
+          <Button onClick={handleAddToCart} type="primary" size="large">
+            Add to Cart
+          </Button>
         </div>
       </div>
     </div>
