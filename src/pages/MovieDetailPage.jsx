@@ -51,7 +51,6 @@ export function MovieDetailPage() {
     credits = {},
   } = details
 
-  const formattedReleaseYear = release_date ? new Date(release_date).getFullYear() : 'N/A'
   const formattedReleaseDate = release_date
     ? new Date(release_date).toLocaleDateString(undefined, {
         day: '2-digit',
@@ -88,7 +87,7 @@ export function MovieDetailPage() {
     const item = {
       id: details.id?.toString(),
       title,
-      price: 10.99,
+      price: 10.99, // Replace with actual price if available
       quantity: 1,
     }
 

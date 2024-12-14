@@ -4,6 +4,7 @@ import {
   fetchCartItems,
   updateCartItemQuantity,
   removeItemFromCart,
+  clearCart,
 } from '@/services/cart'
 
 export const fetchCart = createAsyncThunk(
@@ -47,6 +48,18 @@ export const removeFromCart = createAsyncThunk(
     try {
       await removeItemFromCart(userId, itemId)
       return itemId
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
+export const clearUserCart = createAsyncThunk(
+  'cart/clearUserCart',
+  async (userId, { rejectWithValue }) => {
+    try {
+      await clearCart(userId)
+      return []
     } catch (error) {
       return rejectWithValue(error.message)
     }
@@ -133,6 +146,20 @@ const cartSlice = createSlice({
         state.loading = false
       })
       .addCase(removeFromCart.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload
+      })
+      .addCase(clearUserCart.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(clearUserCart.fulfilled, (state) => {
+        state.items = []
+        state.totalQuantity = 0
+        state.totalPrice = 0
+        state.loading = false
+      })
+      .addCase(clearUserCart.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload
       })
