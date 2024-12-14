@@ -5,6 +5,7 @@ import { FavoritesPage } from '@/pages/FavoritesPage'
 import { WatchlistPage } from '@/pages/WatchlistPage'
 import { RatedPage } from '@/pages/RatedPage'
 import { MovieDetailPage } from '@/pages/MovieDetailPage'
+import { CartPage } from '@/pages/CartPage'
 import { Layout } from '@/ui/Layout'
 import { ErrorPage } from '@/pages/ErrorPage'
 import { ProfilePage } from '@/pages/ProfilePage'
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: '/search',
         element: <SearchResultsPage />,
+      },
+      {
+        path: '/cart',
+        element: <CartPage />,
       },
       {
         path: '*',
