@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { login, signup, logout as logoutService, fetchUserData } from '@/services/auth'
+import { getDoc, doc } from 'firebase/firestore'
+import { db } from '@/firebase'
 
 export const loginWithEmail = createAsyncThunk(
   'auth/loginWithEmail',
@@ -39,7 +41,16 @@ export const initializeUser = createAsyncThunk(
   'auth/initializeUser',
   async (_, { rejectWithValue }) => {
     try {
-      return await fetchUserData()
+      const user = await fetchUserData()
+      if (user) {
+        const userDoc = await getDoc(doc(db, 'users', user.uid))
+        const additionalData = userDoc.exists() ? userDoc.data() : {}
+
+        const { createdAt, ...sanitizedData } = additionalData
+
+        return { ...user, ...sanitizedData }
+      }
+      return null
     } catch (error) {
       return rejectWithValue(error.message)
     }

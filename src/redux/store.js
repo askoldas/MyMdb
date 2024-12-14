@@ -3,6 +3,7 @@ import { moviesReducer } from './movies-slice'
 import { authReducer } from './auth-slice'
 import { filterReducer } from './filter-slice'
 import { userCollectionsReducer } from './user-collections-slice'
+import { cartReducer } from './cart-slice'
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     movies: moviesReducer,
     filter: filterReducer,
     userCollections: userCollectionsReducer,
+    cart: cartReducer,
   }
 })
