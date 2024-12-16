@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { auth } from '@/firebase'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from '@/firebase'
+import { Button } from '@/ui/elements/Button'
 import '@/styles/pages/profile-page.scss'
 
 export function ProfilePage() {
@@ -55,7 +56,7 @@ export function ProfilePage() {
       const userDocRef = doc(db, 'users', uid)
       await updateDoc(userDocRef, {
         name: formData.name,
-        email: formData.email,
+        email: formData.email
       })
 
       setUserData(formData)
@@ -111,28 +112,24 @@ export function ProfilePage() {
         <div className="profile-page__actions">
           {editing ? (
             <>
-              <button onClick={handleSave} className="btn btn-primary">
+              <Button onClick={handleSave} type="primary" size="medium">
                 Save
-              </button>
-              <button
-                onClick={() => setEditing(false)}
-                className="btn btn-secondary"
-              >
+              </Button>
+              <Button onClick={() => setEditing(false)} type="secondary" size="medium">
                 Cancel
-              </button>
+              </Button>
             </>
           ) : (
-            <button
-              onClick={() => setEditing(true)}
-              className="btn btn-primary"
-            >
+            <Button onClick={() => setEditing(true)} type="primary" size="medium">
               Edit Profile
-            </button>
+            </Button>
           )}
         </div>
-        <button onClick={handleLogout} className="btn btn-danger">
+        <Button onClick={handleLogout} type="secondary" size="medium">
           Log Out
-        </button>
+        </Button>
+      </div>
+      <div className="profile-page__logout">
       </div>
     </div>
   )
