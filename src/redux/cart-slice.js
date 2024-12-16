@@ -1,11 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import {
-  addItemToCart,
-  fetchCartItems,
-  updateCartItemQuantity,
-  removeItemFromCart,
-  clearCart,
-} from '@/services/cart'
+import { addItemToCart, fetchCartItems, updateCartItemQuantity, removeItemFromCart, clearCart, checkoutOrder } from '@/services/cart'
 
 export const fetchCart = createAsyncThunk(
   'cart/fetchCart',
@@ -66,6 +60,18 @@ export const clearUserCart = createAsyncThunk(
   }
 )
 
+export const checkout = createAsyncThunk(
+  'cart/checkout',
+  async (userId, { rejectWithValue }) => {
+    try {
+      const orderId = await checkoutOrder(userId)
+      return { orderId }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
@@ -74,11 +80,15 @@ const cartSlice = createSlice({
     totalPrice: 0,
     loading: false,
     error: null,
+    checkoutLoading: false,
+    checkoutError: null,
+    lastOrderId: null
   },
   reducers: {
     clearError: (state) => {
       state.error = null
-    },
+      state.checkoutError = null
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -89,10 +99,7 @@ const cartSlice = createSlice({
       .addCase(fetchCart.fulfilled, (state, action) => {
         state.items = action.payload
         state.totalQuantity = action.payload.reduce((sum, item) => sum + item.quantity, 0)
-        state.totalPrice = action.payload.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
-        )
+        state.totalPrice = action.payload.reduce((sum, item) => sum + item.price * item.quantity, 0)
         state.loading = false
       })
       .addCase(fetchCart.rejected, (state, action) => {
@@ -163,7 +170,22 @@ const cartSlice = createSlice({
         state.loading = false
         state.error = action.payload
       })
-  },
+      .addCase(checkout.pending, (state) => {
+        state.checkoutLoading = true
+        state.checkoutError = null
+      })
+      .addCase(checkout.fulfilled, (state, action) => {
+        state.items = []
+        state.totalQuantity = 0
+        state.totalPrice = 0
+        state.checkoutLoading = false
+        state.lastOrderId = action.payload.orderId
+      })
+      .addCase(checkout.rejected, (state, action) => {
+        state.checkoutLoading = false
+        state.checkoutError = action.payload
+      })
+  }
 })
 
 export const { clearError } = cartSlice.actions
