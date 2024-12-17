@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { auth } from '@/firebase'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
-import { db } from '@/firebase'
+import { logout } from '@/redux/auth-slice'
+import { db, auth } from '@/firebase'
 import { Button } from '@/ui/elements/Button'
 import '@/styles/pages/profile-page.scss'
 
@@ -10,6 +11,7 @@ export function ProfilePage() {
   const [userData, setUserData] = useState({ name: '', email: '' })
   const [editing, setEditing] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '' })
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export function ProfilePage() {
       const userDocRef = doc(db, 'users', uid)
       await updateDoc(userDocRef, {
         name: formData.name,
-        email: formData.email
+        email: formData.email,
       })
 
       setUserData(formData)
@@ -70,8 +72,8 @@ export function ProfilePage() {
 
   const handleLogout = async () => {
     try {
-      await auth.signOut()
-      navigate('/')
+      await dispatch(logout()).unwrap() // Use Redux action to handle logout
+      navigate('/') // Navigate to the homepage
     } catch (error) {
       console.error('Logout failed:', error)
       alert('Failed to log out. Please try again.')
@@ -129,8 +131,7 @@ export function ProfilePage() {
           Log Out
         </Button>
       </div>
-      <div className="profile-page__logout">
-      </div>
+      <div className="profile-page__logout"></div>
     </div>
   )
 }

@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { doc, setDoc } from 'firebase/firestore'
-import { auth, db } from '@/firebase'
+import { useDispatch } from 'react-redux'
+import { loginWithEmail, signUpWithEmail } from '@/redux/auth-slice'
 import { Button } from '@/ui/elements/Button'
 import { Input } from '@/ui/elements/Input'
 import '@/styles/forms/auth-form.scss'
@@ -14,24 +13,20 @@ export function AuthForm({ onClose }) {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const dispatch = useDispatch()
+
   const handleSubmit = async () => {
     setLoading(true)
     setError('')
     try {
       if (isSignup) {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-        await updateProfile(userCredential.user, { displayName: name })
-        await setDoc(doc(db, 'users', userCredential.user.uid), {
-          name: name,
-          email: email,
-          createdAt: new Date()
-        })
+        await dispatch(signUpWithEmail({ email, password, displayName: name })).unwrap()
       } else {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password)
+        await dispatch(loginWithEmail({ email, password })).unwrap()
       }
-      onClose()
+      onClose() // Close modal on success
     } catch (err) {
-      setError(err.message)
+      setError(err.message) // Display error if login/signup fails
     } finally {
       setLoading(false)
     }
