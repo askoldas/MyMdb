@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { login, signup, logout as logoutService, fetchUserData } from '@/services/auth'
+import { login, signup, logout as logoutService } from '@/services/auth'
+import { onAuthStateChanged } from 'firebase/auth'
 import { getDoc, doc } from 'firebase/firestore'
-import { db } from '@/firebase'
+import { db, auth } from '@/firebase'
 
 export const loginWithEmail = createAsyncThunk(
   'auth/loginWithEmail',
@@ -39,18 +40,25 @@ export const logout = createAsyncThunk(
 
 export const initializeUser = createAsyncThunk(
   'auth/initializeUser',
-  async (_, { rejectWithValue }) => {
+  async (_, { dispatch, rejectWithValue }) => {
     try {
-      const user = await fetchUserData()
-      if (user) {
-        const userDoc = await getDoc(doc(db, 'users', user.uid))
-        const additionalData = userDoc.exists() ? userDoc.data() : {}
+      return new Promise((resolve) => {
+        onAuthStateChanged(auth, async (user) => {
+          if (user) {
+            // Fetch additional Firestore user data
+            const userDoc = await getDoc(doc(db, 'users', user.uid))
+            const additionalData = userDoc.exists() ? userDoc.data() : {}
 
-        const { createdAt, ...sanitizedData } = additionalData
+            const { createdAt, ...sanitizedData } = additionalData
+            const userData = { ...user, ...sanitizedData }
 
-        return { ...user, ...sanitizedData }
-      }
-      return null
+            resolve(userData) // Fulfill promise with user data
+          } else {
+            dispatch(clearUser()) // Clear user state on logout
+            resolve(null)
+          }
+        })
+      })
     } catch (error) {
       return rejectWithValue(error.message)
     }
@@ -67,6 +75,9 @@ const authSlice = createSlice({
   reducers: {
     clearError: (state) => {
       state.error = null
+    },
+    clearUser: (state) => {
+      state.user = null
     },
   },
   extraReducers: (builder) => {
@@ -121,5 +132,5 @@ const authSlice = createSlice({
   },
 })
 
-export const { clearError } = authSlice.actions
+export const { clearError, clearUser } = authSlice.actions
 export const authReducer = authSlice.reducer
