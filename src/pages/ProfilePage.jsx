@@ -11,6 +11,7 @@ export function ProfilePage() {
   const [userData, setUserData] = useState({ name: '', email: '' })
   const [editing, setEditing] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '' })
+  const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -71,12 +72,17 @@ export function ProfilePage() {
   }
 
   const handleLogout = async () => {
+    setLoading(true) // Set loading state to true
     try {
       await dispatch(logout()).unwrap() // Use Redux action to handle logout
+      setUserData({ name: '', email: '' }) // Clear local user data
+      setFormData({ name: '', email: '' }) // Clear form data
       navigate('/') // Navigate to the homepage
     } catch (error) {
       console.error('Logout failed:', error)
       alert('Failed to log out. Please try again.')
+    } finally {
+      setLoading(false) // Reset loading state
     }
   }
 
@@ -127,11 +133,15 @@ export function ProfilePage() {
             </Button>
           )}
         </div>
-        <Button onClick={handleLogout} type="secondary" size="medium">
-          Log Out
+        <Button
+          onClick={handleLogout}
+          type="secondary"
+          size="medium"
+          disabled={loading} // Disable button while logging out
+        >
+          {loading ? 'Logging Out...' : 'Log Out'}
         </Button>
       </div>
-      <div className="profile-page__logout"></div>
     </div>
   )
 }
