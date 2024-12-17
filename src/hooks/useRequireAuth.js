@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '@/firebase'; 
 import { useState } from 'react';
 
+//TODO
+
 export function useRequireAuth() {
   const [isAuthModalOpen, setAuthModalOpen] = useState(false);
   const navigate = useNavigate();
