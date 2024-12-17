@@ -8,6 +8,7 @@ import {
   addToWatchlist,
   removeFromFavorites,
   removeFromWatchlist,
+  clearUserCollections,
 } from '@/redux/user-collections-slice'
 import { MoviesList } from '@/ui/sections/MoviesList'
 import { Pagination } from '@/ui/components/Pagination'
@@ -17,7 +18,7 @@ import '@/styles/pages/movies-page.scss'
 
 export function MoviesPage() {
   const dispatch = useDispatch()
-  
+
   const {
     list: movies,
     loading,
@@ -29,14 +30,18 @@ export function MoviesPage() {
   const { favorites, watchlist } = useSelector((state) => state.userCollections)
 
   const { sortBy, genres, yearRange, ratingRange } = useSelector((state) => state.filter.appliedFilters)
-  const userId = useSelector((state) => state.auth.user?.uid) 
+  const userId = useSelector((state) => state.auth.user?.uid)
 
   useEffect(() => {
     dispatch(fetchMovies({ page, sortBy, filters: { genres, yearRange, ratingRange } }))
 
     if (userId) {
+      // Fetch favorites and watchlist if user is logged in
       dispatch(fetchFavorites(userId))
       dispatch(fetchWatchlist(userId))
+    } else {
+      // Clear collections if no user is logged in
+      dispatch(clearUserCollections())
     }
   }, [dispatch, page, sortBy, genres, yearRange, ratingRange, userId])
 

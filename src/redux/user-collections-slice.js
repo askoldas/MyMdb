@@ -88,6 +88,10 @@ const userCollectionsSlice = createSlice({
     clearWatchlist: (state) => {
       state.watchlist = []
     },
+    clearUserCollections: (state) => {
+      state.favorites = []
+      state.watchlist = []
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -133,5 +137,5 @@ const userCollectionsSlice = createSlice({
   },
 })
 
-export const { clearFavorites, clearWatchlist } = userCollectionsSlice.actions
+export const { clearFavorites, clearWatchlist, clearUserCollections } = userCollectionsSlice.actions
 export const userCollectionsReducer = userCollectionsSlice.reducer
