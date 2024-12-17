@@ -3,6 +3,7 @@ import { UserBadge } from '@/ui/components/UserBadge'
 import { Search } from '@/ui/components/Search'
 import { FilterButton } from '@/ui/components/ButtonIconFilter'
 import { FilterBar } from '@/ui/sections/FilterBar'
+import { CartButton } from '@/ui/components/ButtonIconCart'
 import { toggleFilterBar } from '@/redux/filter-slice'
 import '@/styles/sections/user-controls.scss'
 
@@ -21,7 +22,10 @@ export function UserControls() {
   return (
     <>
       <div className="user-controls">
-        <UserBadge />
+        <div className="user-controls__left">
+          <UserBadge />
+          <CartButton />
+        </div>
         <div className="user-controls__actions">
           <div className="user-controls__search">
             <Search onSearch={handleSearch} />
