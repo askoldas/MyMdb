@@ -48,3 +48,52 @@ $gap-large: 24px;
 // Dimensions
 $sidebar-width: 250px;
 $border-radius: 4px;
+
+//REFACTORED
+
+// Primary Colors
+$primary-color: #735BF2;
+$primary-faded-color: #917CFF;
+$secondary-color: #6D6D6D;
+
+// Background Colors
+$background-black: #121212;
+$background-dark-gray: #1C1C1E;
+$background-graphite: #2C2C2E;
+
+// Text Colors
+$text-color-white: #FFFFFF;
+$text-muted-color: #888888;
+
+// Contextual Colors
+$color-error: #F44336;
+$color-success: #4CAF50;
+$color-warning: #FFCA28;
+$color-alert: #FF5722;
+$color-light-gray: #C7C7C7;
+
+// Border and Shadow Colors
+$color-border: rgba(255, 255, 255, 0.2);
+$color-shadow: rgba(0, 0, 0, 0.5);
+
+// Font Variables
+$font-family-primary: 'Exo 2', sans-serif;
+$font-size-base: 1rem;
+$font-size-small: 0.875rem;
+$font-size-large: 1.125rem;
+$font-size-h1: 2.5rem;
+$font-size-h2: 2rem;
+$font-size-h3: 1.75rem;
+$font-size-subline: 1rem;
+$font-size-body: 1rem;
+
+// Unified Spacing Variables
+$space-small: 8px;
+$space-medium: 16px;
+$space-large: 24px;
+$space-xlarge: 32px;
+$space-xxlarge: 40px;
+
+// Dimensions
+$sidebar-width: 250px;
+$border-radius: 4px;
