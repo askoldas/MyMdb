@@ -1,7 +1,7 @@
 @import './_variables.scss';
 @import '@fontsource/exo-2/index.css';
 
-/* Reset and Global Styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -12,28 +12,18 @@ html, body, #root {
   font-family: $font-family-primary;
   font-size: $font-size-base;
   background-color: $background-black;
-  color: $white-color;
-  min-height: 100%; 
+  color: $text-color-white;
+  min-height: 100%;
+  line-height: 1.5;
 }
 
 a {
   text-decoration: none;
-  color: inherit; 
+  color: inherit;
   &:hover, &:focus {
-    text-decoration: none; 
+    text-decoration: none;
+  }
+  &:focus {
+    outline: 2px solid $primary-color;
   }
 }
-
-/* Component Imports */
-// @import './elements/button.scss';
-// @import './components/card.scss';
-// @import './components/pagination.scss';
-// @import './components/user-badge.scss';
-
-// @import './sections/layout.scss';
-// @import './sections/movies-list.scss';
-// @import './sections/sidebar.scss';
-
-
-// @import './pages/home-page.scss';
-// @import './pages/movies-page.scss';
