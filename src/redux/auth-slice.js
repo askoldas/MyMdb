@@ -50,9 +50,9 @@ export const initializeUser = createAsyncThunk(
             const additionalData = userDoc.exists() ? userDoc.data() : {}
 
             const { createdAt, ...sanitizedData } = additionalData
-            const userData = { ...user, ...sanitizedData }
+            const userData = { ...sanitizeUser(user), ...sanitizedData }
 
-            resolve(userData) // Fulfill promise with user data
+            resolve(userData) // Fulfill promise with sanitized user data
           } else {
             dispatch(clearUser()) // Clear user state on logout
             resolve(null)
@@ -64,6 +64,12 @@ export const initializeUser = createAsyncThunk(
     }
   }
 )
+
+const sanitizeUser = (user) => {
+  if (!user) return null
+  const { uid, email, displayName, photoURL } = user
+  return { uid, email, displayName, photoURL }
+}
 
 const authSlice = createSlice({
   name: 'auth',
