@@ -17,7 +17,6 @@ export function Navbar() {
 
   return (
     <div className="navbar">
-      {/* Mobile Stripe with Logo and Menu Toggle */}
       <div className="navbar-stripe">
         <Link to="/" className="navbar-logo">
           <img src={logo} alt="Pixema Logo" />
@@ -26,10 +25,8 @@ export function Navbar() {
           ☰
         </button>
       </div>
-
-      {/* Navigation Links and Footer */}
       <div className={`navbar-content ${menuOpen ? 'visible' : ''}`}>
-        <Navigation onNavItemClick={closeMenu} />
+        <Navigation closeMenu={closeMenu} />
         <div className="navbar-footer">© All Rights Reserved</div>
       </div>
     </div>

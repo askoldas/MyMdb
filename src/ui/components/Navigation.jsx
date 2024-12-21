@@ -9,7 +9,7 @@ import WatchlistIcon from '@/assets/icons/Watchlist.svg?react';
 import StarIcon from '@/assets/icons/Star.svg?react';
 import '@/styles/components/navigation.scss';
 
-export function Navigation({ onNavItemClick }) {
+export function Navigation({ closeMenu }) {
   const user = useSelector((state) => state.auth.user);
   const [isAuthModalOpen, setAuthModalOpen] = useState(false);
 
@@ -17,33 +17,33 @@ export function Navigation({ onNavItemClick }) {
     if (!user) {
       e.preventDefault();
       setAuthModalOpen(true);
-    } else if (onNavItemClick) {
-      onNavItemClick(); // Collapse menu on click
+    } else if (closeMenu) {
+      closeMenu(); // Collapse menu if authenticated
     }
   };
 
   return (
     <>
       <div className="nav-list">
-        <NavItem to="/" label="Home" Icon={HomeIcon} onClick={onNavItemClick} />
-        <NavItem to="/movies" label="Movies" Icon={MoviesIcon} onClick={onNavItemClick} />
+        <NavItem to="/" label="Home" Icon={HomeIcon} onClick={closeMenu} />
+        <NavItem to="/movies" label="Movies" Icon={MoviesIcon} onClick={closeMenu} />
         <NavItem
           to="/favorites"
           label="Favorites"
           Icon={FavoritesIcon}
-          onClick={user ? onNavItemClick : handleProtectedNavigation}
+          onClick={user ? closeMenu : handleProtectedNavigation}
         />
         <NavItem
           to="/watchlist"
           label="Watchlist"
           Icon={WatchlistIcon}
-          onClick={user ? onNavItemClick : handleProtectedNavigation}
+          onClick={user ? closeMenu : handleProtectedNavigation}
         />
         <NavItem
           to="/rated"
           label="Rated"
           Icon={StarIcon}
-          onClick={user ? onNavItemClick : handleProtectedNavigation}
+          onClick={user ? closeMenu : handleProtectedNavigation}
         />
       </div>
       <AuthModal isOpen={isAuthModalOpen} onClose={() => setAuthModalOpen(false)} />
