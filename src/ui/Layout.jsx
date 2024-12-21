@@ -9,7 +9,7 @@ export function Layout() {
       <Sidebar />
       
       <div className="main">
-      <UserControls />
+      {/* <UserControls /> */}
           <Outlet />
       </div>
     </div>
