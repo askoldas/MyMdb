@@ -3,18 +3,21 @@
 .layout {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh; /* Full viewport height */
   width: 100%;
 
-  .main {
-    margin-left: $sidebar-width; /* Sidebar margin for desktop */
-    flex-grow: 1;
+  /* Content Section */
+  .content-section {
+    flex-grow: 1; /* Allow content to expand */
     background-color: $background-black;
-    overflow-y: auto;
+    overflow-y: auto; /* Enable scrolling for content */
+    margin-top: 0; /* Default for desktop */
+    margin-left: $sidebar-width;
 
-    /* Remove margin on mobile */
+    /* Add margin on mobile */
     @media (max-width: 768px) {
-      margin-left: 0; /* No sidebar on mobile */
+      margin-top: 60px; /* Match the height of the navbar */
+      margin-left: auto
     }
   }
 }
