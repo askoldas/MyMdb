@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Navigation } from '@/ui/components/Navigation'
 import logo from '@/assets/pixema.svg'
-import '@/styles/sections/sidebar.scss'
+import '@/styles/sections/navbar.scss'
 
-export function Sidebar() {
+export function Navbar() {
   return (
     <div className="sidebar">
       <div className="sidebar-logo">
