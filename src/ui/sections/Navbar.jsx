@@ -11,9 +11,13 @@ export function Navbar() {
     setMenuOpen(!menuOpen);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false); // Collapse the menu
+  };
+
   return (
     <div className="navbar">
-      {/* Mobile and Desktop: Logo + Menu Icon */}
+      {/* Mobile Stripe with Logo and Menu Toggle */}
       <div className="navbar-stripe">
         <Link to="/" className="navbar-logo">
           <img src={logo} alt="Pixema Logo" />
@@ -25,7 +29,7 @@ export function Navbar() {
 
       {/* Navigation Links and Footer */}
       <div className={`navbar-content ${menuOpen ? 'visible' : ''}`}>
-        <Navigation />
+        <Navigation onNavItemClick={closeMenu} />
         <div className="navbar-footer">© All Rights Reserved</div>
       </div>
     </div>
