@@ -22,7 +22,7 @@ export function Navigation() {
 
   return (
     <>
-      <div className="navbar">
+      <div className="nav-list">
         <NavItem to="/" label="Home" Icon={HomeIcon} />
         <NavItem to="/movies" label="Movies" Icon={MoviesIcon} />
         <NavItem
