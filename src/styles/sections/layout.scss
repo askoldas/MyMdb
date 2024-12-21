@@ -7,9 +7,14 @@
   width: 100%;
 
   .main {
-    margin-left: $sidebar-width;
+    margin-left: $sidebar-width; /* Sidebar margin for desktop */
     flex-grow: 1;
     background-color: $background-black;
     overflow-y: auto;
+
+    /* Remove margin on mobile */
+    @media (max-width: 768px) {
+      margin-left: 0; /* No sidebar on mobile */
+    }
   }
 }

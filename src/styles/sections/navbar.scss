@@ -1,33 +1,118 @@
-@import '../_variables';
+@import '../_variables'; // Import your variables file
 
-.sidebar {
-  width: $sidebar-width;
-  background-color: $background-dark;
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
-  color: $white-color;
+  background-color: $background-dark-gray; // Correct variable
+  color: $text-color-white; // Correct variable
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: $padding-standard;
-}
+  height: 100%;
+  width: $sidebar-width;
+  z-index: 100;
 
-.sidebar-logo {
-  text-align: center;
-  margin-bottom: $margin-large;
+  .navbar-stripe {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $space-medium; // Correct variable
+    background-color: $background-dark-gray;
+    z-index: 102;
 
-  img {
-    max-width: 150px;
-    height: auto;
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+
+      img {
+        max-width: 120px;
+        height: auto;
+      }
+    }
+
+    .menu-icon {
+      font-size: $font-size-large; // Correct variable
+      background: none;
+      border: none;
+      color: $text-color-white;
+      cursor: pointer;
+
+      @media (min-width: 769px) {
+        display: none; // Hide on desktop
+      }
+    }
   }
-}
 
-.sidebar-footer {
-  text-align: center;
-  font-size: $font-size-small;
-  color: $text-muted;
-  border-top: 1px solid $border-color;
-  padding-top: $margin-small;
+  .navbar-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Center nav items vertically
+    align-items: center;
+    z-index: 101;
+
+    .navigation {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: $space-small; // Correct variable
+
+        a {
+          color: $text-color-white;
+          text-decoration: none;
+          font-size: $font-size-body;
+
+          &:hover {
+            color: $primary-color; // Correct variable
+          }
+        }
+      }
+    }
+
+    .navbar-footer {
+      text-align: center;
+      font-size: $font-size-small; // Correct variable
+      color: $text-muted-color;
+      padding: $space-medium;
+      border-top: 1px solid $color-border;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+
+    .navbar-stripe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .navbar-content {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $background-dark-gray;
+      display: none; // Hidden by default
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 101;
+      padding: $space-large; // Correct variable
+
+      &.visible {
+        display: flex; // Show on menu toggle
+      }
+    }
+  }
 }
