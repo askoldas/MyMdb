@@ -1,7 +1,6 @@
 @import './_variables.scss';
 @import '@fontsource/exo-2/index.css';
 
-
 * {
   margin: 0;
   padding: 0;
@@ -17,13 +16,36 @@ html, body, #root {
   line-height: 1.5;
 }
 
-a {
+a, button {
   text-decoration: none;
   color: inherit;
+  border: none; /* Remove border globally */
+  outline: none; /* Remove default focus outline */
+  
   &:hover, &:focus {
     text-decoration: none;
+    border: none; /* Ensure no border appears on hover/focus */
+    outline: none; /* Ensure no outline appears on hover/focus */
+    box-shadow: none; /* Remove any accidental box-shadow */
   }
+
   &:focus {
-    outline: 2px solid $primary-color;
+    border: none; /* Remove any accidental border */
+    outline: none; /* Remove unwanted focus outline */
+    /* Optional accessible focus style */
+    box-shadow: 0 0 3px $primary-color;
+  }
+}
+
+/* Additional Reset for aria-current */
+[aria-current] {
+  border: none; /* Remove any border applied to aria-current elements */
+  outline: none; /* Remove default outline */
+  box-shadow: none; /* Ensure no shadow appears */
+  
+  &:hover, &:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
   }
 }

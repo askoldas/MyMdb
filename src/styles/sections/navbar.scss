@@ -1,11 +1,11 @@
-@import '../_variables'; // Import your variables file
+@import '../_variables';
 
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: $background-dark-gray; // Correct variable
-  color: $text-color-white; // Correct variable
+  background-color: $background-dark-gray;
+  color: $text-color-white;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -16,29 +16,31 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: $space-medium; // Correct variable
+    padding: $space-medium;
     background-color: $background-dark-gray;
     z-index: 102;
 
     .navbar-logo {
       display: flex;
       align-items: center;
+      margin-left: $space-large;
+      padding: $space-small;
 
       img {
-        max-width: 120px;
+        max-width: 140px;
         height: auto;
       }
     }
 
-    .menu-icon {
-      font-size: $font-size-large; // Correct variable
+    .menu-button {
+      font-size: $font-size-large;
       background: none;
       border: none;
       color: $text-color-white;
       cursor: pointer;
 
       @media (min-width: 769px) {
-        display: none; // Hide on desktop
+        display: none !important;
       }
     }
   }
@@ -47,22 +49,23 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; // Center nav items vertically
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
+    padding: $space-medium $space-large;
     z-index: 101;
 
     .navigation {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      flex-grow: 1;
       list-style: none;
       padding: 0;
       margin: 0;
+      width: 100%;
 
       li {
-        margin-bottom: $space-small; // Correct variable
+        margin-bottom: $space-small;
 
         a {
           color: $text-color-white;
@@ -70,7 +73,7 @@
           font-size: $font-size-body;
 
           &:hover {
-            color: $primary-color; // Correct variable
+            color: $primary-color;
           }
         }
       }
@@ -78,10 +81,12 @@
 
     .navbar-footer {
       text-align: center;
-      font-size: $font-size-small; // Correct variable
+      font-size: $font-size-small;
       color: $text-muted-color;
       padding: $space-medium;
+      margin-top: auto;
       border-top: 1px solid $color-border;
+      width: 100%;
     }
   }
 
@@ -104,14 +109,14 @@
       width: 100%;
       height: 100%;
       background-color: $background-dark-gray;
-      display: none; // Hidden by default
+      display: none;
       flex-direction: column;
       justify-content: space-between;
       z-index: 101;
-      padding: $space-large; // Correct variable
+      padding: $space-large;
 
       &.visible {
-        display: flex; // Show on menu toggle
+        display: flex;
       }
     }
   }

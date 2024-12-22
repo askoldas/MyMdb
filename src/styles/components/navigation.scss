@@ -1,31 +1,33 @@
 @import '../_variables';
 
 .nav-list {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: $gap-large;
-    padding-left: $padding-large;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: $gap-large;
+  padding-left: $padding-large;
+  height: 100%;
 }
 
 .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    color: $white-color;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: $white-color;
 
-    &.active {
-        color: $primary-color;
-    }
+  &.active {
+    color: $primary-color;
+  }
 
-    &:hover {
-        color: $primary2-color;
-    }
+  &:hover {
+    color: $primary2-color;
+  }
 
-    .nav-item-icon {
-        width: 24px;
-        height: 24px;
-        fill: currentColor;
-    }
+  .nav-item-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
 }
