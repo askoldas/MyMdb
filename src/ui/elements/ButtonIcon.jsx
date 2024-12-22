@@ -1,9 +1,9 @@
 import '@/styles/elements/button-icon.scss'
 
-export function IconButton({ icon, ariaLabel = '', onClick, size = 'medium', disabled = false }) {
+export function IconButton({ icon, ariaLabel = '', onClick, size = 'medium', disabled = false, className = '' }) {
   return (
     <button
-      className={`icon-button icon-button--${size}`}
+      className={`icon-button icon-button--${size} ${className}`}
       onClick={onClick}
       aria-label={ariaLabel}
       disabled={disabled}
