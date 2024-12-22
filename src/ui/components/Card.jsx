@@ -15,15 +15,20 @@ export function Card({
 }) {
   return (
     <div className="card">
+      {/* Poster */}
       <Link to={`/movies/${id}`} className="card-link">
         <img src={poster} alt={title} className="card-image" />
-        <div className="card-content">
-          <h3 className="card-title">{title}</h3>
-          <p className="card-genres">
-            {genres && genres.length > 0 ? genres.join(' • ') : 'No genres available'}
-          </p>
-        </div>
       </Link>
+
+      {/* Content */}
+      <div className="card-content">
+        <h3 className="card-title">{title}</h3>
+        <p className="card-genres">
+          {genres && genres.length > 0 ? genres.join(' • ') : 'No genres available'}
+        </p>
+      </div>
+
+      {/* Actions */}
       <div className="card-actions">
         <ToggleButtonFavorites
           isFavorite={isFavorite}

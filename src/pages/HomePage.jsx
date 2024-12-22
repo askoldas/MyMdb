@@ -13,8 +13,8 @@ import {
 } from '@/redux/user-collections-slice'
 import { fetchMoviesService } from '@/services/movies'
 import { Page } from '@/pages/Page'
-import { tmdbEndpoints } from '@/config/TmdbApi' 
-import '@/styles/pages/home-page.scss'
+import { tmdbEndpoints } from '@/config/TmdbApi'
+import '@/styles/pages/home-page.scss' // Correct SCSS import for HomePage styles
 
 export function HomePage() {
   const navigate = useNavigate()
@@ -73,7 +73,7 @@ export function HomePage() {
   }
 
   return (
-    <>
+    <Page className="home-page">
       <div className="home-hero">
         <h1 className="home-title">Welcome to MyMdb</h1>
         <p className="home-subtitle">Discover your favorite movies</p>
@@ -82,48 +82,50 @@ export function HomePage() {
         </Button>
       </div>
 
-      <Page>
-        {loading ? (
-          <p>Loading...</p>
-        ) : error ? (
-          <p>Error: {error}</p>
-        ) : (
-          <div className="movies-sections">
-            <div className="movies-section">
-              <h2>Popular Movies</h2>
-              <MoviesList
-                movies={popularMovies}
-                favorites={favorites}
-                watchlist={watchlist}
-                onToggleFavorite={handleToggleFavorite}
-                onToggleWatchlist={handleToggleWatchlist}
-              />
-            </div>
+      <div className="user-controls-spacer"></div> {/* Spacer added here */}
 
-            <div className="movies-section">
-              <h2>Top Rated Movies</h2>
-              <MoviesList
-                movies={topRatedMovies}
-                favorites={favorites}
-                watchlist={watchlist}
-                onToggleFavorite={handleToggleFavorite}
-                onToggleWatchlist={handleToggleWatchlist}
-              />
-            </div>
+      <div className="content-offset"></div>
 
-            <div className="movies-section">
-              <h2>Upcoming Movies</h2>
-              <MoviesList
-                movies={upcomingMovies}
-                favorites={favorites}
-                watchlist={watchlist}
-                onToggleFavorite={handleToggleFavorite}
-                onToggleWatchlist={handleToggleWatchlist}
-              />
-            </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error: {error}</p>
+      ) : (
+        <div className="movies-sections">
+          <div className="movies-section">
+            <h2>Popular Movies</h2>
+            <MoviesList
+              movies={popularMovies}
+              favorites={favorites}
+              watchlist={watchlist}
+              onToggleFavorite={handleToggleFavorite}
+              onToggleWatchlist={handleToggleWatchlist}
+            />
           </div>
-        )}
-      </Page>
-    </>
+
+          <div className="movies-section">
+            <h2>Top Rated Movies</h2>
+            <MoviesList
+              movies={topRatedMovies}
+              favorites={favorites}
+              watchlist={watchlist}
+              onToggleFavorite={handleToggleFavorite}
+              onToggleWatchlist={handleToggleWatchlist}
+            />
+          </div>
+
+          <div className="movies-section">
+            <h2>Upcoming Movies</h2>
+            <MoviesList
+              movies={upcomingMovies}
+              favorites={favorites}
+              watchlist={watchlist}
+              onToggleFavorite={handleToggleFavorite}
+              onToggleWatchlist={handleToggleWatchlist}
+            />
+          </div>
+        </div>
+      )}
+    </Page>
   )
 }

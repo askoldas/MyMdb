@@ -1,16 +1,23 @@
 @import '../_variables.scss';
 
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .home-hero {
   width: 100%;
-  height: calc(100vh - 76px);
-  padding: $padding-large;
-  background: url('@/assets/background.jpg') center/cover no-repeat;
+  height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: $white-color;
+  background: url('@/assets/background.jpg') center/cover no-repeat;
+  margin-top: 0;
 
   .home-title {
     font-size: 4rem;
@@ -29,6 +36,7 @@
 
   .movies-section {
     margin-bottom: $margin-large * 2;
+
     h2 {
       font-size: $font-size-h2;
       color: $white-color;
