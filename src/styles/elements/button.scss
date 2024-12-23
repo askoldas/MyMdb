@@ -7,47 +7,53 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 
+  display: inline-flex; // Flexbox for alignment
+  align-items: center; // Center-align text vertically
+  justify-content: center; // Center-align text horizontally
+  white-space: nowrap; // Prevent text wrapping
+  box-sizing: border-box; // Include padding in the button size
+
   &--small {
-    padding: $padding-small;
+    padding: $space-small $space-medium; // Top/Bottom: $space-small, Left/Right: $space-medium
     font-size: $font-size-small;
-    height: 30px;
+    height: 36px; // Standard height for small buttons
   }
 
   &--medium {
-    padding: 0 1rem;
+    padding: $space-small $space-large; // Top/Bottom: $space-small, Left/Right: $space-large
     font-size: $font-size-base;
-    height: 40px;
+    height: 48px; // Standard height for medium buttons
   }
 
   &--large {
-    padding: 0 1.5rem;
+    padding: $space-medium $space-xlarge; // Top/Bottom: $space-medium, Left/Right: $space-xlarge
     font-size: $font-size-large;
-    height: 60px;
+    height: 60px; // Standard height for large buttons
   }
 
   &--primary {
     background-color: $primary-color;
-    color: $white-color;
-  }
+    color: $text-color-white;
 
-  &--primary:hover:not(:disabled) {
-    background-color: $primary2-color;
+    &:hover:not(:disabled) {
+      background-color: $primary-faded-color;
+    }
   }
 
   &--secondary {
     background-color: transparent;
     color: $primary-color;
     border: 1px solid $primary-color;
-  }
 
-  &--secondary:hover:not(:disabled) {
-    background-color: $background-dark;
-    color: $primary2-color;
-    border: 1px solid $primary2-color;
+    &:hover:not(:disabled) {
+      background-color: $background-dark-gray;
+      color: $primary-faded-color;
+      border: 1px solid $primary-faded-color;
+    }
   }
 
   &:disabled {
-    background-color: $light-color;
+    background-color: $color-light-gray;
     color: $background-graphite;
     cursor: not-allowed;
     border: none;
