@@ -12,14 +12,11 @@ export function Card({
   genres,
   isFavorite,
   isInWatchlist,
-  onToggleFavorite,
-  onToggleWatchlist,
 }) {
   const userId = useSelector((state) => state.auth.user?.uid)
 
   return (
     <div className="card">
-      {/* Poster */}
       <div className="card-poster">
         <Link to={`/movies/${id}`} className="card-link">
           <img src={poster} alt={title} className="card-image" />
@@ -27,30 +24,31 @@ export function Card({
         <div className="card-hover-actions">
           <ButtonAddToCart
             userId={userId}
-            movieDetails={{ id, title }}
-            type="primary" // Set the button to primary style
-            size="large" // Ensure the button is large
+            movieId={id}
+            title={title}
+            type="primary"
+            size="large"
           />
         </div>
       </div>
-
-      {/* Content */}
       <div className="card-content">
-        <h3 className="card-title">{title}</h3>
+        <h3 className="card-title">
+          <Link to={`/movies/${id}`}>{title}</Link>
+        </h3>
         <p className="card-genres">
           {genres && genres.length > 0 ? genres.join(' • ') : 'No genres available'}
         </p>
       </div>
-
-      {/* Actions */}
       <div className="card-actions">
         <ToggleButtonFavorites
           isFavorite={isFavorite}
-          onToggleFavorite={onToggleFavorite}
+          movieId={id}
+          userId={userId}
         />
         <ToggleButtonWatchlist
           isInWatchlist={isInWatchlist}
-          onToggleWatchlist={onToggleWatchlist}
+          movieId={id}
+          userId={userId}
         />
       </div>
     </div>

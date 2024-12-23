@@ -4,9 +4,10 @@ import { addToCart } from '@/redux/cart-slice'
 
 export function ButtonAddToCart({
   userId,
-  movieDetails,
-  type = 'primary', // Default to primary
-  size = 'large', // Default to large
+  movieId,
+  title,
+  type = 'primary',
+  size = 'large',
 }) {
   const dispatch = useDispatch()
 
@@ -17,8 +18,8 @@ export function ButtonAddToCart({
     }
 
     const item = {
-      id: movieDetails.id?.toString(),
-      title: movieDetails.title,
+      id: movieId?.toString(),
+      title,
       price: 10.99, // Replace with actual price if available
       quantity: 1,
     }

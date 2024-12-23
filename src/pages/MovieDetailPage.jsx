@@ -5,12 +5,6 @@ import {
   fetchMovieDetails,
   clearMovieDetails,
 } from '@/redux/movies-slice'
-import {
-  addToFavorites,
-  addToWatchlist,
-  removeFromFavorites,
-  removeFromWatchlist,
-} from '@/redux/user-collections-slice'
 import { ToggleButtonFavorites } from '@/ui/components/ToggleButtonFavorites'
 import { ToggleButtonWatchlist } from '@/ui/components/ToggleButtonWatchlist'
 import { ButtonAddToCart } from '@/ui/components/ButtonAddToCart'
@@ -77,26 +71,11 @@ export function MovieDetailPage() {
   const isFavorite = favorites.some((movie) => movie.id === details.id)
   const isInWatchlist = watchlist.some((movie) => movie.id === details.id)
 
-  const handleToggleFavorite = () => {
-    if (isFavorite) {
-      dispatch(removeFromFavorites({ uid: userId, movieId: details.id }))
-    } else {
-      dispatch(addToFavorites({ uid: userId, movie: details }))
-    }
-  }
-
-  const handleToggleWatchlist = () => {
-    if (isInWatchlist) {
-      dispatch(removeFromWatchlist({ uid: userId, movieId: details.id }))
-    } else {
-      dispatch(addToWatchlist({ uid: userId, movie: details }))
-    }
-  }
-
   const director = credits.crew?.find((person) => person.job === 'Director')?.name || 'N/A'
-  const writers = credits.crew
-    ?.filter((person) => person.job === 'Writer' || person.job === 'Screenplay')
-    .map((person) => person.name) || []
+  const writers =
+    credits.crew
+      ?.filter((person) => person.job === 'Writer' || person.job === 'Screenplay')
+      .map((person) => person.name) || []
   const cast = credits.cast?.slice(0, 5).map((actor) => actor.name) || []
 
   return (
@@ -108,11 +87,13 @@ export function MovieDetailPage() {
             <div className="poster-actions">
               <ToggleButtonFavorites
                 isFavorite={isFavorite}
-                onToggleFavorite={handleToggleFavorite}
+                movieId={details.id}
+                userId={userId}
               />
               <ToggleButtonWatchlist
                 isInWatchlist={isInWatchlist}
-                onToggleWatchlist={handleToggleWatchlist}
+                movieId={details.id}
+                userId={userId}
               />
             </div>
           </div>
