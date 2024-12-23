@@ -4,10 +4,6 @@ import { fetchMovies } from '@/redux/movies-slice'
 import {
   fetchFavorites,
   fetchWatchlist,
-  addToFavorites,
-  addToWatchlist,
-  removeFromFavorites,
-  removeFromWatchlist,
   clearUserCollections,
 } from '@/redux/user-collections-slice'
 import { MoviesList } from '@/ui/sections/MoviesList'
@@ -36,33 +32,15 @@ export function MoviesPage() {
     dispatch(fetchMovies({ page, sortBy, filters: { genres, yearRange, ratingRange } }))
 
     if (userId) {
-      // Fetch favorites and watchlist if user is logged in
       dispatch(fetchFavorites(userId))
       dispatch(fetchWatchlist(userId))
     } else {
-      // Clear collections if no user is logged in
       dispatch(clearUserCollections())
     }
   }, [dispatch, page, sortBy, genres, yearRange, ratingRange, userId])
 
   const handlePageChange = (newPage) => {
     dispatch(fetchMovies({ page: newPage, sortBy, filters: { genres, yearRange, ratingRange } }))
-  }
-
-  const handleToggleFavorite = (movie) => {
-    if (favorites.some((fav) => fav.id === movie.id)) {
-      dispatch(removeFromFavorites({ uid: userId, movieId: movie.id }))
-    } else {
-      dispatch(addToFavorites({ uid: userId, movie }))
-    }
-  }
-
-  const handleToggleWatchlist = (movie) => {
-    if (watchlist.some((item) => item.id === movie.id)) {
-      dispatch(removeFromWatchlist({ uid: userId, movieId: movie.id }))
-    } else {
-      dispatch(addToWatchlist({ uid: userId, movie }))
-    }
   }
 
   if (loading) return <Page><Preloader /></Page>
@@ -75,8 +53,6 @@ export function MoviesPage() {
           movies={movies}
           favorites={favorites}
           watchlist={watchlist}
-          onToggleFavorite={handleToggleFavorite}
-          onToggleWatchlist={handleToggleWatchlist}
         />
         <Pagination
           currentPage={page}

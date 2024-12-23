@@ -5,6 +5,7 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { logout } from '@/redux/auth-slice'
 import { db, auth } from '@/firebase'
 import { Button } from '@/ui/elements/Button'
+import { Page } from '@/pages/Page'
 import '@/styles/pages/profile-page.scss'
 
 export function ProfilePage() {
@@ -72,76 +73,78 @@ export function ProfilePage() {
   }
 
   const handleLogout = async () => {
-    setLoading(true) // Set loading state to true
+    setLoading(true)
     try {
-      await dispatch(logout()).unwrap() // Use Redux action to handle logout
-      setUserData({ name: '', email: '' }) // Clear local user data
-      setFormData({ name: '', email: '' }) // Clear form data
-      navigate('/') // Navigate to the homepage
+      await dispatch(logout()).unwrap()
+      setUserData({ name: '', email: '' })
+      setFormData({ name: '', email: '' })
+      navigate('/')
     } catch (error) {
       console.error('Logout failed:', error)
       alert('Failed to log out. Please try again.')
     } finally {
-      setLoading(false) // Reset loading state
+      setLoading(false)
     }
   }
 
   return (
-    <div className="profile-page">
-      <h1>Profile</h1>
-      <div className="profile-page__container">
-        <div className="profile-page__field">
-          <label>Name:</label>
-          {editing ? (
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-            />
-          ) : (
-            <span>{userData.name || 'N/A'}</span>
-          )}
-        </div>
-        <div className="profile-page__field">
-          <label>Email:</label>
-          {editing ? (
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              disabled
-            />
-          ) : (
-            <span>{userData.email || 'N/A'}</span>
-          )}
-        </div>
-        <div className="profile-page__actions">
-          {editing ? (
-            <>
-              <Button onClick={handleSave} type="primary" size="medium">
-                Save
+    <Page>
+      <div className="profile-page">
+        <h1>Profile</h1>
+        <div className="profile-page__container">
+          <div className="profile-page__field">
+            <label>Name:</label>
+            {editing ? (
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+            ) : (
+              <span>{userData.name || 'N/A'}</span>
+            )}
+          </div>
+          <div className="profile-page__field">
+            <label>Email:</label>
+            {editing ? (
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                disabled
+              />
+            ) : (
+              <span>{userData.email || 'N/A'}</span>
+            )}
+          </div>
+          <div className="profile-page__actions">
+            {editing ? (
+              <>
+                <Button onClick={handleSave} type="primary" size="medium">
+                  Save
+                </Button>
+                <Button onClick={() => setEditing(false)} type="secondary" size="medium">
+                  Cancel
+                </Button>
+              </>
+            ) : (
+              <Button onClick={() => setEditing(true)} type="primary" size="medium">
+                Edit Profile
               </Button>
-              <Button onClick={() => setEditing(false)} type="secondary" size="medium">
-                Cancel
-              </Button>
-            </>
-          ) : (
-            <Button onClick={() => setEditing(true)} type="primary" size="medium">
-              Edit Profile
-            </Button>
-          )}
+            )}
+          </div>
+          <Button
+            onClick={handleLogout}
+            type="secondary"
+            size="medium"
+            disabled={loading}
+          >
+            {loading ? 'Logging Out...' : 'Log Out'}
+          </Button>
         </div>
-        <Button
-          onClick={handleLogout}
-          type="secondary"
-          size="medium"
-          disabled={loading} // Disable button while logging out
-        >
-          {loading ? 'Logging Out...' : 'Log Out'}
-        </Button>
       </div>
-    </div>
+    </Page>
   )
 }

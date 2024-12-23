@@ -2,24 +2,21 @@ import { useDispatch } from 'react-redux'
 import { Button } from '@/ui/elements/Button'
 import { addToCart } from '@/redux/cart-slice'
 
-export function ButtonAddToCart({
-  userId,
-  movieDetails,
-  type = 'primary', // Default to primary
-  size = 'large', // Default to large
-}) {
+export function ButtonAddToCart({ userId, movieDetails, type = 'primary', size = 'large' }) {
   const dispatch = useDispatch()
 
   const handleAddToCart = () => {
-    if (!userId) {
-      console.error('User is not logged in')
+    console.log('Attempting to add to cart:', { userId, movieDetails })
+
+    if (!userId || !movieDetails?.id) {
+      console.error('User ID and item ID are required')
       return
     }
 
     const item = {
-      id: movieDetails.id?.toString(),
-      title: movieDetails.title,
-      price: 10.99, // Replace with actual price if available
+      id: movieDetails.id.toString(),
+      title: movieDetails.title || 'Untitled',
+      price: 10.99,
       quantity: 1,
     }
 

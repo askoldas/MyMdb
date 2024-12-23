@@ -3,18 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button } from '@/ui/elements/Button'
 import { MoviesList } from '@/ui/sections/MoviesList'
-import {
-  fetchFavorites,
-  fetchWatchlist,
-  addToFavorites,
-  addToWatchlist,
-  removeFromFavorites,
-  removeFromWatchlist
-} from '@/redux/user-collections-slice'
+import { fetchFavorites, fetchWatchlist } from '@/redux/user-collections-slice'
 import { fetchMoviesService } from '@/services/movies'
 import { Page } from '@/pages/Page'
 import { tmdbEndpoints } from '@/config/TmdbApi'
-import '@/styles/pages/home-page.scss' // Correct SCSS import for HomePage styles
+import '@/styles/pages/home-page.scss'
 
 export function HomePage() {
   const navigate = useNavigate()
@@ -56,22 +49,6 @@ export function HomePage() {
     fetchData()
   }, [dispatch, userId])
 
-  const handleToggleFavorite = (movie) => {
-    if (favorites.some((fav) => fav.id === movie.id)) {
-      dispatch(removeFromFavorites({ uid: userId, movieId: movie.id }))
-    } else {
-      dispatch(addToFavorites({ uid: userId, movie }))
-    }
-  }
-
-  const handleToggleWatchlist = (movie) => {
-    if (watchlist.some((item) => item.id === movie.id)) {
-      dispatch(removeFromWatchlist({ uid: userId, movieId: movie.id }))
-    } else {
-      dispatch(addToWatchlist({ uid: userId, movie }))
-    }
-  }
-
   return (
     <Page className="home-page">
       <div className="home-hero">
@@ -82,8 +59,7 @@ export function HomePage() {
         </Button>
       </div>
 
-      <div className="user-controls-spacer"></div> {/* Spacer added here */}
-
+      <div className="user-controls-spacer"></div>
       <div className="content-offset"></div>
 
       {loading ? (
@@ -98,8 +74,6 @@ export function HomePage() {
               movies={popularMovies}
               favorites={favorites}
               watchlist={watchlist}
-              onToggleFavorite={handleToggleFavorite}
-              onToggleWatchlist={handleToggleWatchlist}
             />
           </div>
 
@@ -109,8 +83,6 @@ export function HomePage() {
               movies={topRatedMovies}
               favorites={favorites}
               watchlist={watchlist}
-              onToggleFavorite={handleToggleFavorite}
-              onToggleWatchlist={handleToggleWatchlist}
             />
           </div>
 
@@ -120,8 +92,6 @@ export function HomePage() {
               movies={upcomingMovies}
               favorites={favorites}
               watchlist={watchlist}
-              onToggleFavorite={handleToggleFavorite}
-              onToggleWatchlist={handleToggleWatchlist}
             />
           </div>
         </div>

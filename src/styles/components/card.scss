@@ -1,68 +1,79 @@
 @import '../_variables';
 
 .card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%; // Ensure all cards are the same height
-  background-color: $background-dark;
-  border-radius: $border-radius;
-  overflow: hidden;
-  box-shadow: 0 4px 8px $shadow-color;
-  position: relative;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease;
 
-  .card-poster {
-    position: relative;
+  &:hover {
+    transform: translateY(-5px);
+  }
 
-    .card-image {
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      object-fit: cover;
-      display: block;
-    }
+  .card-clickable-area {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 
-    .card-hover-actions {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0; // Initially hidden
-      transition: opacity 0.3s ease;
-      z-index: 2;
+    .card-poster {
+      position: relative;
 
-      .button {
-        width: auto; // Ensure the button adapts to its content
-        height: auto; // Avoid overriding the button's height
+      .card-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
       }
     }
 
-    &:hover .card-hover-actions {
-      opacity: 1; // Show button on hover
-    }
-  }
+    .card-content {
+      padding: $space-small;
+      flex-grow: 1;
 
-  .card-content {
-    flex-grow: 1; // Ensure the content takes up available space
-    padding: $padding-small;
-    display: flex;
-    flex-direction: column;
-    gap: $gap-small;
+      .card-title {
+        font-size: $font-size-large;
+        color: $text-color-white;
+        margin: 0;
+      }
 
-    .card-title {
-      font-size: $font-size-large;
-      color: $white-color;
-      margin: 0;
-    }
-
-    .card-genres {
-      font-size: $font-size-small;
-      color: $text-muted;
+      .card-genres {
+        font-size: $font-size-small;
+        color: $text-muted-color;
+        margin-top: $space-small;
+      }
     }
   }
 
   .card-actions {
     display: flex;
-    gap: $gap-small;
-    justify-content: flex-end;
-    padding: $padding-small;
+    justify-content: space-between;
+    align-items: center;
+    padding: $space-small;
+    background-color: transparent; // Match the card background
+    border-top: 1px solid rgba(255, 255, 255, 0.1); // Optional subtle separator for clarity
+
+    .button {
+      margin-right: $space-small;
+    }
+  }
+
+  .card-hover-actions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
