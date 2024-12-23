@@ -1,8 +1,13 @@
 import { useDispatch } from 'react-redux'
-import { addToCart } from '@/redux/cart-slice'
 import { Button } from '@/ui/elements/Button'
+import { addToCart } from '@/redux/cart-slice'
 
-export function ButtonAddToCart({ userId, movieDetails }) {
+export function ButtonAddToCart({
+  userId,
+  movieDetails,
+  type = 'primary', // Default to primary
+  size = 'large', // Default to large
+}) {
   const dispatch = useDispatch()
 
   const handleAddToCart = () => {
@@ -29,7 +34,7 @@ export function ButtonAddToCart({ userId, movieDetails }) {
   }
 
   return (
-    <Button onClick={handleAddToCart} type="primary" size="large">
+    <Button onClick={handleAddToCart} type={type} size={size}>
       Add to Cart
     </Button>
   )
