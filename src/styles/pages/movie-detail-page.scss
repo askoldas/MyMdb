@@ -30,6 +30,8 @@
 
     .info {
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
 
       .title {
         font-size: $font-size-h1;
@@ -52,7 +54,6 @@
           display: flex;
           align-items: center;
           gap: $gap-small;
-          font-size: $font-size-body;
 
           .star-icon {
             width: 16px;
@@ -60,16 +61,9 @@
             fill: $primary-color;
           }
         }
-
-        .runtime,
-        .release {
-          font-size: $font-size-body;
-        }
       }
 
       .overview {
-        font-size: $font-size-body;
-        line-height: 1.5;
         margin-bottom: $margin-large;
       }
 
@@ -77,16 +71,64 @@
         display: grid;
         grid-template-columns: repeat(2, minmax(200px, 1fr));
         gap: $gap-medium;
+        margin-bottom: $space-xlarge;
 
         h3 {
-          font-size: $font-size-large;
           color: $secondary-color;
           margin-bottom: $margin-small;
         }
 
         p {
-          font-size: $font-size-body;
           color: $white-color;
+        }
+      }
+
+      .add-to-cart {
+        align-self: flex-start;
+        margin-top: $space-xlarge;
+        max-width: 200px; // Restrict button width
+        width: 100%; // Allow responsiveness
+        margin-left: 0; // Align to the left
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .movie-header {
+      flex-direction: column;
+      align-items: center;
+
+      .poster {
+        margin-bottom: $margin-large;
+        img {
+          max-width: 80%; // Scale the poster down for smaller screens
+          margin: 0 auto; // Center the poster horizontally
+        }
+      }
+
+      .info {
+        text-align: left; // Aligns content to the left
+        width: 100%;
+
+        .title {
+          font-size: $font-size-h2;
+        }
+
+        .genres {
+          margin-bottom: $margin-small;
+        }
+
+        .details {
+          justify-content: flex-start;
+        }
+
+        .meta-info {
+          grid-template-columns: 1fr;
+        }
+
+        .add-to-cart {
+          margin-top: $space-large;
+          align-self: center; // Center the button on mobile
         }
       }
     }
