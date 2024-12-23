@@ -4,16 +4,16 @@ import { useRequireAuth } from '@/hooks/useRequireAuth'
 import WatchlistIcon from '@/assets/icons/Watchlist.svg?react'
 import { addToWatchlist, removeFromWatchlist } from '@/redux/user-collections-slice'
 
-export function ToggleButtonWatchlist({ isInWatchlist, movieId, userId }) {
+export function ToggleButtonWatchlist({ isInWatchlist, movieDetails, userId }) {
   const dispatch = useDispatch()
   const { requireAuth } = useRequireAuth()
 
   const handleToggleWatchlist = () => {
     requireAuth(() => {
       if (isInWatchlist) {
-        dispatch(removeFromWatchlist({ uid: userId, movieId }))
+        dispatch(removeFromWatchlist({ uid: userId, movieId: movieDetails.id }))
       } else {
-        dispatch(addToWatchlist({ uid: userId, movie: { id: movieId } }))
+        dispatch(addToWatchlist({ uid: userId, movie: movieDetails }))
       }
     })
   }

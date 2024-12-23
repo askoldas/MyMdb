@@ -9,45 +9,48 @@ export function Card({
   id,
   title,
   poster,
-  genres,
+  genres = [], // Default to an empty array
   isFavorite,
   isInWatchlist,
 }) {
   const userId = useSelector((state) => state.auth.user?.uid)
 
+  // Prepare full movie details
+  const movieDetails = {
+    id,
+    title: title || 'Untitled',
+    poster_path: poster,
+    genres,
+  }
+
   return (
     <div className="card">
-      <div className="card-poster">
-        <Link to={`/movies/${id}`} className="card-link">
-          <img src={poster} alt={title} className="card-image" />
-        </Link>
-        <div className="card-hover-actions">
-          <ButtonAddToCart
-            userId={userId}
-            movieId={id}
-            title={title}
-            type="primary"
-            size="large"
-          />
+      <Link to={`/movies/${id}`} className="card-clickable-area">
+        <div className="card-poster">
+          <img src={poster || 'placeholder.jpg'} alt={title || 'Untitled'} className="card-image" />
         </div>
-      </div>
-      <div className="card-content">
-        <h3 className="card-title">
-          <Link to={`/movies/${id}`}>{title}</Link>
-        </h3>
-        <p className="card-genres">
-          {genres && genres.length > 0 ? genres.join(' • ') : 'No genres available'}
-        </p>
-      </div>
+        <div className="card-content">
+          <h3 className="card-title">{title || 'Untitled'}</h3>
+          <p className="card-genres">
+            {genres.length > 0 ? genres.join(' • ') : 'No genres available'}
+          </p>
+        </div>
+      </Link>
       <div className="card-actions">
+        <ButtonAddToCart
+          userId={userId}
+          movieDetails={movieDetails} // Pass full movie details
+          type="secondary"
+          size="medium"
+        />
         <ToggleButtonFavorites
           isFavorite={isFavorite}
-          movieId={id}
+          movieDetails={movieDetails} // Pass full movie details
           userId={userId}
         />
         <ToggleButtonWatchlist
           isInWatchlist={isInWatchlist}
-          movieId={id}
+          movieDetails={movieDetails} // Pass full movie details
           userId={userId}
         />
       </div>

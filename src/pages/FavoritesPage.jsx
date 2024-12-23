@@ -20,6 +20,7 @@ export function FavoritesPage() {
   if (!favorites || favorites.length === 0) return <Page><p>No favorites found</p></Page>
 
   return (
+    
     <Page>
       <MoviesList
         movies={favorites}

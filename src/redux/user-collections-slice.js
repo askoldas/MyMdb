@@ -5,6 +5,7 @@ import {
   removeMovieFromUserCollection,
 } from '@/services/user-collections'
 
+// Fetch favorites from the user's collection
 export const fetchFavorites = createAsyncThunk(
   'userCollections/fetchFavorites',
   async (uid, { rejectWithValue }) => {
@@ -16,21 +17,12 @@ export const fetchFavorites = createAsyncThunk(
   }
 )
 
-export const fetchWatchlist = createAsyncThunk(
-  'userCollections/fetchWatchlist',
-  async (uid, { rejectWithValue }) => {
-    try {
-      return await fetchUserCollectionMovies(uid, 'watchlist')
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  }
-)
-
+// Add a movie to favorites
 export const addToFavorites = createAsyncThunk(
   'userCollections/addToFavorites',
   async ({ uid, movie }, { rejectWithValue }) => {
     try {
+      console.log('Movie being added to favorites:', movie) // Debug log to check movie data
       return await addMovieToUserCollection(uid, 'favorites', movie)
     } catch (error) {
       return rejectWithValue(error.message)
@@ -38,17 +30,7 @@ export const addToFavorites = createAsyncThunk(
   }
 )
 
-export const addToWatchlist = createAsyncThunk(
-  'userCollections/addToWatchlist',
-  async ({ uid, movie }, { rejectWithValue }) => {
-    try {
-      return await addMovieToUserCollection(uid, 'watchlist', movie)
-    } catch (error) {
-      return rejectWithValue(error.message)
-    }
-  }
-)
-
+// Remove a movie from favorites
 export const removeFromFavorites = createAsyncThunk(
   'userCollections/removeFromFavorites',
   async ({ uid, movieId }, { rejectWithValue }) => {
@@ -60,6 +42,32 @@ export const removeFromFavorites = createAsyncThunk(
   }
 )
 
+// Fetch watchlist from the user's collection
+export const fetchWatchlist = createAsyncThunk(
+  'userCollections/fetchWatchlist',
+  async (uid, { rejectWithValue }) => {
+    try {
+      return await fetchUserCollectionMovies(uid, 'watchlist')
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
+// Add a movie to the watchlist
+export const addToWatchlist = createAsyncThunk(
+  'userCollections/addToWatchlist',
+  async ({ uid, movie }, { rejectWithValue }) => {
+    try {
+      console.log('Movie being added to watchlist:', movie) // Debug log to check movie data
+      return await addMovieToUserCollection(uid, 'watchlist', movie)
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
+// Remove a movie from the watchlist
 export const removeFromWatchlist = createAsyncThunk(
   'userCollections/removeFromWatchlist',
   async ({ uid, movieId }, { rejectWithValue }) => {
@@ -100,6 +108,7 @@ const userCollectionsSlice = createSlice({
         state.error = null
       })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
+        console.log('Fetched Favorites:', action.payload)
         state.loading = false
         state.favorites = action.payload
       })
