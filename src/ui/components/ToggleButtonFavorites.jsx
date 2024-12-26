@@ -6,26 +6,22 @@ import { openAuthModal } from '@/redux/auth-slice'
 
 export function ToggleButtonFavorites({ isFavorite, movieDetails, userId }) {
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.auth.user) // Access current user from Redux
+  const user = useSelector((state) => state.auth.user) 
 
   const handleToggleFavorite = () => {
     if (!user) {
-      console.log('[ToggleButtonFavorites] User is not authenticated. Opening modal...')
-      dispatch(openAuthModal()) // Trigger modal if user is not authenticated
+      dispatch(openAuthModal())
       return
     }
 
-    const effectiveUserId = userId || user?.uid // Fallback to current user ID from Redux
+    const effectiveUserId = userId || user?.uid
     if (!effectiveUserId || !movieDetails?.id) {
-      console.error('[ToggleButtonFavorites] User ID and movie ID are required')
       return
     }
 
     if (isFavorite) {
-      console.log('[ToggleButtonFavorites] Removing from favorites:', movieDetails)
       dispatch(removeFromFavorites({ uid: effectiveUserId, movieId: movieDetails.id }))
     } else {
-      console.log('[ToggleButtonFavorites] Adding to favorites:', movieDetails)
       dispatch(addToFavorites({ uid: effectiveUserId, movie: movieDetails }))
     }
   }

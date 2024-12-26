@@ -23,11 +23,11 @@
   }
 
   &:hover:not(:disabled) {
-    background-color: $primary2-color;
+    background-color: $primary-faded-color;
   }
 
   &:disabled {
-    background-color: $light-color;
+    background-color: $color-light-gray;
     cursor: not-allowed;
   }
 

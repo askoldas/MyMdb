@@ -2,12 +2,12 @@
 
 .movies-page {
   .movies-list {
-    margin-bottom: $gap-large;
+    margin-bottom: $space-large;
   }
 
   .pagination {
     display: flex;
     justify-content: center;
-    margin-top: $gap-large;
+    margin-top: $space-large;
   }
 }

@@ -3,20 +3,20 @@
 .genre-selection {
   display: flex;
   flex-direction: column;
-  gap: $gap-small;
+  gap: $space-small;
 
   &__label {
     font-size: $font-size-base;
     font-weight: bold;
-    margin-bottom: $gap-small;
+    margin-bottom: $space-small;
   }
 
   &__dropdown {
-    padding: $padding-small;
-    border: 1px solid $border-color;
+    padding: $space-small;
+    border: 1px solid $color-border;
     border-radius: $border-radius;
-    background-color: $background-dark;
-    color: $white-color;
+    background-color: $background-dark-gray;
+    color: $text-color-white;
     font-size: $font-size-body;
 
     &:focus {
@@ -28,23 +28,23 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
-    gap: $gap-small;
-    margin-top: $gap-small;
+    gap: $space-small;
+    margin-top: $space-small;
   }
 
   &__item {
     display: flex;
     align-items: center;
-    gap: $gap-small;
+    gap: $space-small;
     background-color: $background-graphite;
     border-radius: $border-radius;
-    padding: $padding-small $padding-standard;
-    color: $white-color;
+    padding: $space-small $space-medium;
+    color: $text-color-white;
 
     &__remove {
       background: none;
       border: none;
-      color: $error-color;
+      color: $color-error;
       font-size: $font-size-large;
       cursor: pointer;
 

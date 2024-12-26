@@ -2,7 +2,7 @@
 
 .nav-item {
   text-decoration: none;
-  color: $white-color;
+  color: $text-color-white;
   transition: color 0.3s ease, fill 0.3s ease;
 
   &.active {
@@ -11,7 +11,7 @@
   }
 
   &:hover {
-    color: $primary2-color;
+    color: $primary-faded-color;
   }
 
   .nav-item-icon {

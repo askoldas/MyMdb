@@ -1,12 +1,12 @@
 @import '../_variables';
 
 .movie-page {
-  padding: $padding-standard;
+  padding: $space-medium;
 
   .movie-header {
     display: flex;
-    gap: $gap-medium;
-    margin-bottom: $margin-large;
+    gap: $space-medium;
+    margin-bottom: $space-large;
 
     .poster {
       flex: 0 0 300px;
@@ -20,7 +20,7 @@
       .poster-actions {
         display: flex;
         justify-content: center;
-        gap: $gap-medium;
+        gap: $space-medium;
         position: absolute;
         bottom: -50px;
         left: 50%;
@@ -35,25 +35,25 @@
 
       .title {
         font-size: $font-size-h1;
-        margin-bottom: $margin-small;
+        margin-bottom: $space-small;
         color: $primary-color;
       }
 
       .genres {
         font-size: $font-size-subline;
-        color: $text-muted;
-        margin-bottom: $margin-standard;
+        color: $text-muted-color;
+        margin-bottom: $space-medium;
       }
 
       .details {
         display: flex;
-        gap: $gap-small;
-        margin-bottom: $margin-standard;
+        gap: $space-small;
+        margin-bottom: $space-medium;
 
         .rating {
           display: flex;
           align-items: center;
-          gap: $gap-small;
+          gap: $space-small;
 
           .star-icon {
             width: 16px;
@@ -64,31 +64,31 @@
       }
 
       .overview {
-        margin-bottom: $margin-large;
+        margin-bottom: $space-large;
       }
 
       .meta-info {
         display: grid;
         grid-template-columns: repeat(2, minmax(200px, 1fr));
-        gap: $gap-medium;
+        gap: $space-medium;
         margin-bottom: $space-xlarge;
 
         h3 {
           color: $secondary-color;
-          margin-bottom: $margin-small;
+          margin-bottom: $space-small;
         }
 
         p {
-          color: $white-color;
+          color: $text-color-white;
         }
       }
 
       .add-to-cart {
         align-self: flex-start;
         margin-top: $space-xlarge;
-        max-width: 200px; // Restrict button width
-        width: 100%; // Allow responsiveness
-        margin-left: 0; // Align to the left
+        max-width: 200px;
+        width: 100%;
+        margin-left: 0;
       }
     }
   }
@@ -99,15 +99,15 @@
       align-items: center;
 
       .poster {
-        margin-bottom: $margin-large;
+        margin-bottom: $space-large;
         img {
-          max-width: 80%; // Scale the poster down for smaller screens
-          margin: 0 auto; // Center the poster horizontally
+          max-width: 80%;
+          margin: 0 auto;
         }
       }
 
       .info {
-        text-align: left; // Aligns content to the left
+        text-align: left;
         width: 100%;
 
         .title {
@@ -115,7 +115,7 @@
         }
 
         .genres {
-          margin-bottom: $margin-small;
+          margin-bottom: $space-small;
         }
 
         .details {
@@ -128,7 +128,7 @@
 
         .add-to-cart {
           margin-top: $space-large;
-          align-self: center; // Center the button on mobile
+          align-self: center;
         }
       }
     }

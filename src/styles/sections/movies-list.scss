@@ -2,7 +2,7 @@
 
 .movies-list {
   display: grid;
-  gap: $padding-standard;
+  gap: $space-medium;
   grid-template-columns: repeat(5, minmax(200px, 1fr));
   grid-auto-rows: minmax(auto, max-content);
 

@@ -2,12 +2,12 @@
 
 .error-page {
   text-align: center;
-  padding: $padding-large;
-  color: $error-color;
+  padding: $space-large;
+  color: $color-error;
 
   h1 {
     font-size: $font-size-h1;
-    margin-bottom: $gap-large;
+    margin-bottom: $space-large;
   }
 
   p {

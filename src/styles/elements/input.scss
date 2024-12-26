@@ -3,19 +3,19 @@
 .input {
   display: flex;
   flex-direction: column;
-  gap: $margin-small;
-  color: $white-color;
+  gap: $space-small;
+  color: $text-color-white;
 
   &__label {
     font-size: $font-size-body;
-    color: $white-color;
+    color: $text-color-white;
   }
 
   &__field {
-    background-color: $background-dark;
+    background-color: $background-dark-gray;
     border: 1px solid $background-graphite;
-    color: $white-color;
-    padding: $padding-small;
+    color: $text-color-white;
+    padding: $space-small;
     border-radius: $border-radius;
     font-size: $font-size-body;
     outline: none;
@@ -27,17 +27,17 @@
 
     &:disabled {
       background-color: $background-graphite;
-      color: $text-muted;
+      color: $text-muted-color;
       cursor: not-allowed;
     }
   }
 
   &--error .input__field {
-    border-color: $error-color;
+    border-color: $color-error;
   }
 
   &__error-text {
     font-size: $font-size-small;
-    color: $error-color;
+    color: $color-error;
   }
 }

@@ -3,32 +3,32 @@
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: $gap-medium; // Use the defined gap variable
+  gap: $space-medium;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  padding: $padding-large; // Large padding for inner spacing
-  background-color: $background-dark; // Use background color from your palette
-  border-radius: $border-radius; // Consistent border radius
-  box-shadow: 0 4px 8px $shadow-color; // Add shadow for elevation
-  color: $white-color;
+  padding: $space-large;
+  background-color: $background-dark-gray;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px $color-shadow;
+  color: $text-color-white;
   font-family: $font-family-primary;
 
   &__tabs {
     display: flex;
     justify-content: space-between;
-    margin-bottom: $gap-medium;
+    margin-bottom: $space-medium;
 
     &__tab {
       flex: 1;
       text-align: center;
-      padding: $padding-small;
+      padding: $space-small;
       font-size: $font-size-body;
       font-weight: bold;
       cursor: pointer;
       background: none;
       border: none;
-      color: $text-muted;
+      color: $text-muted-color;
       border-bottom: 2px solid transparent;
 
       &--active {
@@ -37,7 +37,7 @@
       }
 
       &:hover {
-        color: $primary2-color;
+        color: $primary-faded-color;
       }
     }
   }
@@ -45,64 +45,64 @@
   &__content {
     display: flex;
     flex-direction: column;
-    gap: $gap-small; // Smaller gap for form fields
+    gap: $space-small;
   }
 
   &__field {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: $gap-small; // Space between label and input
+    gap: $space-small;
 
     input {
       width: 100%;
-      padding: $padding-small;
+      padding: $space-small;
       font-size: $font-size-base;
-      color: $white-color;
+      color: $text-color-white;
       background-color: $background-graphite;
-      border: 1px solid $border-color;
+      border: 1px solid $color-border;
       border-radius: $border-radius;
       box-sizing: border-box;
 
       &:focus {
         outline: none;
         border-color: $primary-color;
-        box-shadow: 0 0 4px $primary2-color;
+        box-shadow: 0 0 4px $primary-faded-color;
       }
     }
   }
 
   &__error {
-    color: $error-color;
+    color: $color-error;
     font-size: $font-size-small;
-    margin-top: $gap-small;
+    margin-top: $space-small;
     text-align: center;
   }
 
   &__submit {
     width: 100%;
-    padding: $padding-standard;
+    padding: $space-medium;
     font-size: $font-size-body;
     font-weight: bold;
     background-color: $primary-color;
-    color: $white-color;
+    color: $text-color-white;
     border: none;
     border-radius: $border-radius;
     cursor: pointer;
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: $primary2-color;
+      background-color: $primary-faded-color;
     }
 
     &:disabled {
-      background-color: $light-color;
+      background-color: $color-light-gray;
       cursor: not-allowed;
     }
   }
 
   &__toggle {
-    margin-top: $gap-small;
+    margin-top: $space-small;
     text-align: center;
     font-size: $font-size-base;
     color: $primary-color;
@@ -110,7 +110,7 @@
 
     &:hover {
       text-decoration: underline;
-      color: $primary2-color;
+      color: $primary-faded-color;
     }
   }
 }

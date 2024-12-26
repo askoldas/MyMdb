@@ -1,26 +1,26 @@
 @import '@/styles/_variables';
 
 .cart-page {
-  padding: $padding-standard;
-  color: $white-color;
+  padding: $space-medium;
+  color: $text-color-white;
   background-color: $background-black;
 
   h1 {
     font-size: $font-size-h1;
-    margin-bottom: $margin-standard;
+    margin-bottom: $space-medium;
   }
 
   .cart-items {
     display: flex;
     flex-direction: column;
-    gap: $gap-medium;
+    gap: $space-medium;
 
     .cart-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: $padding-small;
-      background-color: $background-dark;
+      padding: $space-small;
+      background-color: $background-dark-gray;
       border-radius: $border-radius;
 
       .item-details {
@@ -28,28 +28,28 @@
 
         h2 {
           font-size: $font-size-large;
-          margin-bottom: $margin-small;
+          margin-bottom: $space-small;
         }
 
         p {
           font-size: $font-size-small;
-          color: $text-muted;
+          color: $text-muted-color;
         }
       }
 
       .item-actions {
         display: flex;
         align-items: center;
-        gap: $gap-small;
+        gap: $space-small;
 
         input {
           width: 50px;
           text-align: center;
           background-color: $background-graphite;
-          color: $white-color;
-          border: 1px solid $border-color;
+          color: $text-color-white;
+          border: 1px solid $color-border;
           border-radius: $border-radius;
-          padding: $padding-small;
+          padding: $space-small;
           font-size: $font-size-small;
         }
       }
@@ -57,33 +57,33 @@
   }
 
   .cart-summary {
-    margin-top: $margin-large;
-    padding: $padding-standard;
-    background-color: $background-dark;
+    margin-top: $space-large;
+    padding: $space-medium;
+    background-color: $background-dark-gray;
     border-radius: $border-radius;
 
     h2 {
       font-size: $font-size-h2;
-      margin-bottom: $margin-standard;
+      margin-bottom: $space-medium;
     }
 
     p {
       font-size: $font-size-body;
-      margin-bottom: $margin-small;
+      margin-bottom: $space-small;
     }
 
     .error {
-      color: $error-color;
-      margin-bottom: $margin-standard;
+      color: $color-error;
+      margin-bottom: $space-medium;
     }
 
     .success {
-      color: $green-color;
-      margin-bottom: $margin-standard;
+      color: $color-success;
+      margin-bottom: $space-medium;
     }
 
     button {
-      margin-top: $margin-standard;
+      margin-top: $space-medium;
     }
   }
 }

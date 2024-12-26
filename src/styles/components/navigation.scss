@@ -5,24 +5,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: $gap-large;
-  padding-left: $padding-large;
+  gap: $space-large;
+  padding-left: $space-large;
   height: 100%;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: $space-small;
   text-decoration: none;
-  color: $white-color;
+  color: $text-color-white;
 
   &.active {
     color: $primary-color;
   }
 
   &:hover {
-    color: $primary2-color;
+    color: $primary-faded-color;
   }
 
   .nav-item-icon {

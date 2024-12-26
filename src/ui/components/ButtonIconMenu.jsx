@@ -8,7 +8,7 @@ export function MenuButton({ onClick }) {
       icon={MenuIcon}
       ariaLabel="Toggle menu"
       onClick={onClick}
-      className="menu-button" // Add a custom class for styling
+      className="menu-button"
     />
   )
 }

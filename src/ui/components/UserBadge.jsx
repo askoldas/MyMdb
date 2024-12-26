@@ -6,13 +6,13 @@ import UserIcon from '@/assets/icons/User.svg'
 import '@/styles/components/user-badge.scss'
 
 export function UserBadge() {
-  const { requireAuth } = useRequireAuth() // Use the hook for authentication logic
+  const { requireAuth } = useRequireAuth()
   const [userName, setUserName] = useState('')
   const navigate = useNavigate()
 
   const handleBadgeClick = () => {
     requireAuth(() => {
-      navigate('/profile') // Navigate to profile if authenticated
+      navigate('/profile')
     })
   }
 
