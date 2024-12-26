@@ -1,5 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { addItemToCart, fetchCartItems, updateCartItemQuantity, removeItemFromCart, clearCart, checkoutOrder } from '@/services/cart'
+import {
+  addItemToCart,
+  fetchCartItems,
+  updateCartItemQuantity,
+  removeItemFromCart,
+  clearCart,
+  checkoutOrder
+} from '@/services/cart'
 
 export const fetchCart = createAsyncThunk(
   'cart/fetchCart',
@@ -82,12 +89,19 @@ const cartSlice = createSlice({
     error: null,
     checkoutLoading: false,
     checkoutError: null,
-    lastOrderId: null
+    lastOrderId: null,
+    isOrderConfirmationModalOpen: false
   },
   reducers: {
     clearError: (state) => {
       state.error = null
       state.checkoutError = null
+    },
+    openOrderConfirmationModal: (state) => {
+      state.isOrderConfirmationModalOpen = true
+    },
+    closeOrderConfirmationModal: (state) => {
+      state.isOrderConfirmationModalOpen = false
     }
   },
   extraReducers: (builder) => {
@@ -115,6 +129,7 @@ const cartSlice = createSlice({
         state.totalQuantity += action.payload.quantity
         state.totalPrice += action.payload.price * action.payload.quantity
         state.loading = false
+        state.isOrderConfirmationModalOpen = true
       })
       .addCase(addToCart.rejected, (state, action) => {
         state.loading = false
@@ -176,5 +191,5 @@ const cartSlice = createSlice({
   }
 })
 
-export const { clearError } = cartSlice.actions
+export const { clearError, openOrderConfirmationModal, closeOrderConfirmationModal } = cartSlice.actions
 export const cartReducer = cartSlice.reducer
