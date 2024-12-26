@@ -9,13 +9,13 @@ export function useRequireAuth() {
     if (user) {
       callback()
     } else {
-      dispatch(openAuthModal()) // Open the modal via Redux
+      dispatch(openAuthModal())
     }
   }
 
-  const closeAuthModal = () => {
-    dispatch(closeAuthModal()) // Close the modal via Redux
+  const handleCloseAuthModal = () => {
+    dispatch(closeAuthModal())
   }
 
-  return { requireAuth, isAuthModalOpen, closeAuthModal }
+  return { requireAuth, isAuthModalOpen, handleCloseAuthModal }
 }

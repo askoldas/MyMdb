@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AuthModal } from '@/ui/modals/AuthModal'
+import { useRequireAuth } from '@/hooks/useRequireAuth'
 import { auth } from '@/firebase'
 import UserIcon from '@/assets/icons/User.svg'
 import '@/styles/components/user-badge.scss'
 
 export function UserBadge() {
-  const [isAuthModalOpen, setAuthModalOpen] = useState(false)
+  const { requireAuth } = useRequireAuth() // Use the hook for authentication logic
   const [userName, setUserName] = useState('')
   const navigate = useNavigate()
 
   const handleBadgeClick = () => {
-    if (userName) navigate('/profile')
-    else setAuthModalOpen(true)
+    requireAuth(() => {
+      navigate('/profile') // Navigate to profile if authenticated
+    })
   }
 
   const getInitial = () => userName.charAt(0).toUpperCase()
@@ -36,7 +37,6 @@ export function UserBadge() {
         )}
       </div>
       <span className="user-badge__text">{userName || 'Sign In'}</span>
-      <AuthModal isOpen={isAuthModalOpen} onClose={() => setAuthModalOpen(false)} />
     </div>
   )
 }
