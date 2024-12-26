@@ -5,29 +5,26 @@ import { openAuthModal } from '@/redux/auth-slice'
 
 export function ButtonAddToCart({ userId, movieDetails, type = 'primary', size = 'large' }) {
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.auth.user) // Access current user from Redux
+  const user = useSelector((state) => state.auth.user) 
 
   const handleAddToCart = () => {
-    console.log('Attempting to add to cart:', { userId, movieDetails })
 
     // Check authentication
     if (!user) {
-      console.log('[ButtonAddToCart] User is not authenticated. Opening modal...')
-      dispatch(openAuthModal()) // Trigger modal if user is not authenticated
+      dispatch(openAuthModal())
       return
     }
 
     // Validate input
-    const effectiveUserId = userId || user?.uid // Fallback to current user ID from Redux
+    const effectiveUserId = userId || user?.uid 
     if (!effectiveUserId || !movieDetails?.id) {
-      console.error('[ButtonAddToCart] User ID and item ID are required')
       return
     }
 
     const item = {
       id: movieDetails.id.toString(),
       title: movieDetails.title || 'Untitled',
-      price: movieDetails.price || 10.99, // Use a default price if not provided
+      price: movieDetails.price || 10.99, 
       quantity: 1,
     }
 

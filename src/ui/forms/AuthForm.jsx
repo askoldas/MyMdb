@@ -24,9 +24,9 @@ export function AuthForm({ onClose }) {
       } else {
         await dispatch(loginWithEmail({ email, password })).unwrap()
       }
-      onClose() // Close modal on success
+      onClose()
     } catch (err) {
-      setError(err.message) // Display error if login/signup fails
+      setError(err.message)
     } finally {
       setLoading(false)
     }

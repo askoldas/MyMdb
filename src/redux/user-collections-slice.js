@@ -22,7 +22,6 @@ export const addToFavorites = createAsyncThunk(
   'userCollections/addToFavorites',
   async ({ uid, movie }, { rejectWithValue }) => {
     try {
-      console.log('Movie being added to favorites:', movie) // Debug log to check movie data
       return await addMovieToUserCollection(uid, 'favorites', movie)
     } catch (error) {
       return rejectWithValue(error.message)
@@ -59,7 +58,6 @@ export const addToWatchlist = createAsyncThunk(
   'userCollections/addToWatchlist',
   async ({ uid, movie }, { rejectWithValue }) => {
     try {
-      console.log('Movie being added to watchlist:', movie) // Debug log to check movie data
       return await addMovieToUserCollection(uid, 'watchlist', movie)
     } catch (error) {
       return rejectWithValue(error.message)
@@ -108,7 +106,6 @@ const userCollectionsSlice = createSlice({
         state.error = null
       })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
-        console.log('Fetched Favorites:', action.payload)
         state.loading = false
         state.favorites = action.payload
       })

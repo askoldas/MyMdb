@@ -9,13 +9,12 @@ export function Card({
   id,
   title,
   poster,
-  genres = [], // Default to an empty array
+  genres = [], 
   isFavorite,
   isInWatchlist,
 }) {
   const userId = useSelector((state) => state.auth.user?.uid)
 
-  // Prepare full movie details
   const movieDetails = {
     id,
     title: title || 'Untitled',
@@ -39,18 +38,18 @@ export function Card({
       <div className="card-actions">
         <ButtonAddToCart
           userId={userId}
-          movieDetails={movieDetails} // Pass full movie details
+          movieDetails={movieDetails} 
           type="secondary"
           size="medium"
         />
         <ToggleButtonFavorites
           isFavorite={isFavorite}
-          movieDetails={movieDetails} // Pass full movie details
+          movieDetails={movieDetails} 
           userId={userId}
         />
         <ToggleButtonWatchlist
           isInWatchlist={isInWatchlist}
-          movieDetails={movieDetails} // Pass full movie details
+          movieDetails={movieDetails} 
           userId={userId}
         />
       </div>

@@ -12,7 +12,6 @@ export const login = async ({ email, password }) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
     return sanitizeUser(userCredential.user)
   } catch (error) {
-    console.error(`Error logging in: ${error.message}`)
     throw new Error('Invalid email or password')
   }
 }
@@ -23,7 +22,6 @@ export const signup = async ({ email, password, displayName }) => {
     await updateProfile(userCredential.user, { displayName })
     return sanitizeUser(userCredential.user)
   } catch (error) {
-    console.error(`Error signing up: ${error.message}`)
     throw new Error('Failed to create an account. Please try again.')
   }
 }
@@ -33,7 +31,6 @@ export const logout = async () => {
     await signOut(auth)
     return true
   } catch (error) {
-    console.error(`Error logging out: ${error.message}`)
     throw new Error('Failed to log out. Please try again.')
   }
 }

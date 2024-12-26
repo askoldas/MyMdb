@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom'
 export function NavItem({ to, label, Icon, onClick }) {
   const handleClick = (e) => {
     if (onClick) {
-      console.log(`[NavItem] Triggering onClick for: ${label}`) // Debug log
-      onClick(e) // Call the provided onClick handler
+      onClick(e)
     }
   }
 

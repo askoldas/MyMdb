@@ -5,17 +5,14 @@ import { openAuthModal } from '@/redux/auth-slice'
 
 export function CartButton() {
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.auth.user) // Access current user from Redux
+  const user = useSelector((state) => state.auth.user)
 
   const handleClick = () => {
     if (!user) {
-      console.log('[CartButton] User is not authenticated. Opening modal...')
-      dispatch(openAuthModal()) // Open modal if user is not authenticated
+      dispatch(openAuthModal())
       return
     }
-
-    console.log('[CartButton] User authenticated. Navigating to /cart...')
-    window.location.href = '/cart' // Navigate to cart if authenticated
+    window.location.href = '/cart'
   }
 
   return (
