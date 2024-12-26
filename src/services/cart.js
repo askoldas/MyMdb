@@ -1,11 +1,19 @@
-import { collection, doc, setDoc, getDocs, updateDoc, deleteDoc, writeBatch } from 'firebase/firestore'
+import { collection, doc, setDoc, getDocs, updateDoc, deleteDoc, writeBatch, getDoc } from 'firebase/firestore'
 import { db } from '@/firebase'
 
 export async function addItemToCart(userId, item) {
   const { id, title, price, quantity } = item
   if (!userId || !id) throw new Error('User ID and item ID are required')
+
   const cartRef = doc(db, 'users', userId, 'cart', id)
-  await setDoc(cartRef, { id, title, price, quantity }, { merge: true })
+  const existingDoc = await getDoc(cartRef)
+
+  if (existingDoc.exists()) {
+    const existingData = existingDoc.data()
+    await updateDoc(cartRef, { quantity: existingData.quantity + quantity })
+  } else {
+    await setDoc(cartRef, { id, title, price, quantity }, { merge: true })
+  }
 }
 
 export async function fetchCartItems(userId) {
@@ -40,6 +48,7 @@ export async function checkoutOrder(userId) {
   if (!userId) throw new Error('User ID is required')
   const cartItems = await fetchCartItems(userId)
   if (cartItems.length === 0) throw new Error('Cart is empty')
+
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const order = {
     userId,
@@ -48,9 +57,11 @@ export async function checkoutOrder(userId) {
     orderDate: new Date().toISOString(),
     status: 'pending'
   }
+
   const ordersRef = collection(db, 'orders')
   const newOrderRef = doc(ordersRef)
   await setDoc(newOrderRef, { ...order, id: newOrderRef.id })
   await clearCart(userId)
+
   return newOrderRef.id
 }
