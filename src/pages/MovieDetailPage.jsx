@@ -1,10 +1,7 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  fetchMovieDetails,
-  clearMovieDetails,
-} from '@/redux/movies-slice'
+import { fetchMovieDetails, clearMovieDetails } from '@/redux/movies-slice'
 import { ToggleButtonFavorites } from '@/ui/components/ToggleButtonFavorites'
 import { ToggleButtonWatchlist } from '@/ui/components/ToggleButtonWatchlist'
 import { ButtonAddToCart } from '@/ui/components/ButtonAddToCart'
@@ -87,12 +84,12 @@ export function MovieDetailPage() {
             <div className="poster-actions">
               <ToggleButtonFavorites
                 isFavorite={isFavorite}
-                movieId={details.id}
+                movieDetails={details} // Pass full movieDetails
                 userId={userId}
               />
               <ToggleButtonWatchlist
                 isInWatchlist={isInWatchlist}
-                movieId={details.id}
+                movieDetails={details} // Pass full movieDetails
                 userId={userId}
               />
             </div>
