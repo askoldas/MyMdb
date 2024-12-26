@@ -12,7 +12,7 @@ client.interceptors.request.use(
     if (bearerToken) {
       config.headers.Authorization = `Bearer ${bearerToken}`
     } else {
-      console.warn('Bearer Token is missing. Ensure VITE_TMDB_BEARER_TOKEN is set in the environment variables.')
+      console.warn('Bearer Token is missing.')
     }
     return config
   },

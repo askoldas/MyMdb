@@ -7,9 +7,9 @@ export function MoviesList({ movies = [], favorites = [], watchlist = [], onTogg
   const isFavorite = (movieId) => favorites.some((movie) => Number(movie.id) === Number(movieId))
 
   const getGenres = (movie) => {
-    if (movie.genres) return movie.genres // Use names directly if provided
-    if (movie.genre_ids) return movie.genre_ids.map((id) => GENRE_MAP[id] || 'Unknown') // Map IDs to names
-    return ['Unknown'] // Fallback if neither genres nor genre_ids exist
+    if (movie.genres) return movie.genres
+    if (movie.genre_ids) return movie.genre_ids.map((id) => GENRE_MAP[id] || 'Unknown') 
+    return ['Unknown'] 
   }
 
   if (!movies || movies.length === 0) {
@@ -24,7 +24,7 @@ export function MoviesList({ movies = [], favorites = [], watchlist = [], onTogg
           id={movie.id}
           title={movie.title}
           poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          genres={getGenres(movie)} // Handle genres dynamically
+          genres={getGenres(movie)} 
           isFavorite={isFavorite(movie.id)}
           isInWatchlist={isInWatchlist(movie.id)}
           onToggleFavorite={() => onToggleFavorite(movie)}

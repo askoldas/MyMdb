@@ -1,12 +1,21 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '@/ui/elements/Button'
 import { addToCart } from '@/redux/cart-slice'
+import { openAuthModal } from '@/redux/auth-slice'
 
 export function ButtonAddToCart({ userId, movieDetails, type = 'primary', size = 'large' }) {
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.auth.user) // Access current user from Redux
 
   const handleAddToCart = () => {
     console.log('Attempting to add to cart:', { userId, movieDetails })
+
+    // Check authentication
+    if (!user) {
+      console.log('[ButtonAddToCart] User is not authenticated. Opening modal...')
+      dispatch(openAuthModal()) // Trigger modal if user is not authenticated
+      return
+    }
 
     if (!userId || !movieDetails?.id) {
       console.error('User ID and item ID are required')

@@ -19,29 +19,28 @@ html, body, #root {
 a, button {
   text-decoration: none;
   color: inherit;
-  border: none; /* Remove border globally */
-  outline: none; /* Remove default focus outline */
+  border: none; 
+  outline: none; 
   
   &:hover, &:focus {
     text-decoration: none;
-    border: none; /* Ensure no border appears on hover/focus */
-    outline: none; /* Ensure no outline appears on hover/focus */
-    box-shadow: none; /* Remove any accidental box-shadow */
+    border: none; 
+    outline: none; 
+    box-shadow: none;
   }
 
   &:focus {
-    border: none; /* Remove any accidental border */
-    outline: none; /* Remove unwanted focus outline */
-    /* Optional accessible focus style */
-    box-shadow: 0 0 3px $primary-color;
+    border: none; 
+    outline: none; 
+    box-shadow: none;
   }
 }
 
-/* Additional Reset for aria-current */
+
 [aria-current] {
-  border: none; /* Remove any border applied to aria-current elements */
-  outline: none; /* Remove default outline */
-  box-shadow: none; /* Ensure no shadow appears */
+  border: none; 
+  outline: none; 
+  box-shadow: none; 
   
   &:hover, &:focus {
     border: none;

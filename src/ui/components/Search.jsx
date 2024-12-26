@@ -28,11 +28,11 @@ export function Search({ placeholder = 'Search...' }) {
         value={query}
         onChange={handleInputChange}
       />
-      <IconButton
+      {/* <IconButton
         icon={SearchIcon}
         ariaLabel="Search"
         onClick={handleSearchSubmit}
-      />
+      /> */}
     </form>
   )
 }

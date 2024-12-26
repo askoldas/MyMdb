@@ -1,17 +1,16 @@
-import React from 'react'
 import '@/styles/components/pagination.scss'
 
 
 export function Pagination({ currentPage, totalPages, onPageChange }) {
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
-      onPageChange(page) // Notify parent of the new page
+      onPageChange(page) 
     }
   }
 
   const renderPageNumbers = () => {
     const visiblePages = []
-    const maxVisible = 5 // Show up to 5 pages at a time
+    const maxVisible = 5 
     let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2))
     let endPage = Math.min(totalPages, startPage + maxVisible - 1)
 
