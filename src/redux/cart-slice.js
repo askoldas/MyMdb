@@ -120,10 +120,6 @@ const cartSlice = createSlice({
         state.loading = false
         state.error = action.payload
       })
-      .addCase(updateQuantity.pending, (state) => {
-        state.loading = true
-        state.error = null
-      })
       .addCase(updateQuantity.fulfilled, (state, action) => {
         const { itemId, quantity } = action.payload
         const item = state.items.find((item) => item.id === itemId)
@@ -138,10 +134,6 @@ const cartSlice = createSlice({
         state.loading = false
         state.error = action.payload
       })
-      .addCase(removeFromCart.pending, (state) => {
-        state.loading = true
-        state.error = null
-      })
       .addCase(removeFromCart.fulfilled, (state, action) => {
         const itemId = action.payload
         const item = state.items.find((item) => item.id === itemId)
@@ -155,10 +147,6 @@ const cartSlice = createSlice({
       .addCase(removeFromCart.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload
-      })
-      .addCase(clearUserCart.pending, (state) => {
-        state.loading = true
-        state.error = null
       })
       .addCase(clearUserCart.fulfilled, (state) => {
         state.items = []

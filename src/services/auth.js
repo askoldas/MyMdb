@@ -1,14 +1,7 @@
 import { auth } from '@/firebase'
-import { firebaseEndpoints } from '@/config/FirebaseApi'
-import {
-  signOut,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  onAuthStateChanged,
-} from 'firebase/auth'
+import { signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged } from 'firebase/auth'
 
-const sanitizeUser = (user) => {
+export const sanitizeUser = (user) => {
   if (!user) return null
   const { uid, email, displayName, photoURL } = user
   return { uid, email, displayName, photoURL }
@@ -19,7 +12,7 @@ export const login = async ({ email, password }) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
     return sanitizeUser(userCredential.user)
   } catch (error) {
-    console.error(`Error logging in (${firebaseEndpoints.auth.login}):`, error.message)
+    console.error(`Error logging in: ${error.message}`)
     throw new Error('Invalid email or password')
   }
 }
@@ -30,7 +23,7 @@ export const signup = async ({ email, password, displayName }) => {
     await updateProfile(userCredential.user, { displayName })
     return sanitizeUser(userCredential.user)
   } catch (error) {
-    console.error(`Error signing up (${firebaseEndpoints.auth.signUp}):`, error.message)
+    console.error(`Error signing up: ${error.message}`)
     throw new Error('Failed to create an account. Please try again.')
   }
 }
@@ -40,26 +33,19 @@ export const logout = async () => {
     await signOut(auth)
     return true
   } catch (error) {
-    console.error(`Error logging out (${firebaseEndpoints.auth.logout}):`, error.message)
+    console.error(`Error logging out: ${error.message}`)
     throw new Error('Failed to log out. Please try again.')
   }
 }
 
-export const fetchUserData = async () => {
-  return new Promise((resolve, reject) => {
+export const fetchUserData = () => 
+  new Promise((resolve, reject) => {
     onAuthStateChanged(
       auth,
-      (user) => {
-        if (user) {
-          resolve(sanitizeUser(user))
-        } else {
-          resolve(null)
-        }
-      },
+      (user) => resolve(sanitizeUser(user)),
       (error) => {
-        console.error(`Error fetching user data (${firebaseEndpoints.users.collection}):`, error.message)
+        console.error(`Error fetching user data: ${error.message}`)
         reject(new Error('Failed to fetch user data. Please try again.'))
       }
     )
   })
-}

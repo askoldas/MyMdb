@@ -3,6 +3,7 @@ import { login, signup, logout as logoutService } from '@/services/auth'
 import { onAuthStateChanged } from 'firebase/auth'
 import { getDoc, doc } from 'firebase/firestore'
 import { db, auth } from '@/firebase'
+import { sanitizeUser } from '@/services/auth'
 
 export const loginWithEmail = createAsyncThunk(
   'auth/loginWithEmail',
@@ -42,33 +43,23 @@ export const initializeUser = createAsyncThunk(
   'auth/initializeUser',
   async (_, { dispatch, rejectWithValue }) => {
     try {
-      return new Promise((resolve) => {
-        onAuthStateChanged(auth, async (user) => {
-          if (user) {
-            const userDoc = await getDoc(doc(db, 'users', user.uid))
-            const additionalData = userDoc.exists() ? userDoc.data() : {}
-
-            const { createdAt, ...sanitizedData } = additionalData
-            const userData = { ...sanitizeUser(user), ...sanitizedData }
-
-            resolve(userData) 
-          } else {
-            dispatch(clearUser()) 
-            resolve(null)
-          }
-        })
+      const user = await new Promise((resolve) => {
+        onAuthStateChanged(auth, resolve)
       })
+      if (user) {
+        const userDoc = await getDoc(doc(db, 'users', user.uid))
+        const additionalData = userDoc.exists() ? userDoc.data() : {}
+        const { createdAt, ...sanitizedData } = additionalData
+        return { ...sanitizeUser(user), ...sanitizedData }
+      } else {
+        dispatch(clearUser())
+        return null
+      }
     } catch (error) {
       return rejectWithValue(error.message)
     }
   }
 )
-
-const sanitizeUser = (user) => {
-  if (!user) return null
-  const { uid, email, displayName, photoURL } = user
-  return { uid, email, displayName, photoURL }
-}
 
 const authSlice = createSlice({
   name: 'auth',
@@ -76,7 +67,7 @@ const authSlice = createSlice({
     user: null,
     loading: false,
     error: null,
-    isAuthModalOpen: false, 
+    isAuthModalOpen: false,
   },
   reducers: {
     clearError: (state) => {
@@ -86,10 +77,10 @@ const authSlice = createSlice({
       state.user = null
     },
     openAuthModal: (state) => {
-      state.isAuthModalOpen = true 
+      state.isAuthModalOpen = true
     },
     closeAuthModal: (state) => {
-      state.isAuthModalOpen = false 
+      state.isAuthModalOpen = false
     },
   },
   extraReducers: (builder) => {
@@ -143,7 +134,6 @@ const authSlice = createSlice({
       })
   },
 })
-
 
 export const { clearError, clearUser, openAuthModal, closeAuthModal } = authSlice.actions
 export const authReducer = authSlice.reducer

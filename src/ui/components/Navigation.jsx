@@ -12,11 +12,12 @@ export function Navigation({ closeMenu }) {
 
   const handleProtectedNavigation = (e, path) => {
     e.preventDefault()
-    console.log(`[Navigation] Protected navigation triggered for: ${path}`) // Debug log
+    console.log(`[Navigation] Protected navigation triggered for: ${path}`)
+
     requireAuth(() => {
-      console.log(`[Navigation] Navigating to ${path}`) // Log successful navigation
-      if (closeMenu) closeMenu()
-      window.location.href = path
+      console.log(`[Navigation] Navigating to ${path}`)
+      if (closeMenu) closeMenu() // Close menu if applicable
+      window.location.href = path // Navigate to the desired path
     })
   }
 

@@ -1,22 +1,21 @@
-import { useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { openAuthModal, closeAuthModal } from '@/redux/auth-slice'
 
 export function useRequireAuth() {
-  const { user } = useSelector((state) => state.auth)
-  const [isAuthModalOpen, setAuthModalOpen] = useState(false)
- 
+  const dispatch = useDispatch()
+  const { user, isAuthModalOpen } = useSelector((state) => state.auth)
 
   const requireAuth = (callback) => {
     if (user) {
       callback()
     } else {
-      setAuthModalOpen(true)
+      dispatch(openAuthModal())
     }
   }
 
-  const closeAuthModal = () => {
-    setAuthModalOpen(false)
+  const handleCloseAuthModal = () => {
+    dispatch(closeAuthModal())
   }
 
-  return { requireAuth, isAuthModalOpen, closeAuthModal }
+  return { requireAuth, isAuthModalOpen, handleCloseAuthModal }
 }

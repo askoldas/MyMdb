@@ -17,25 +17,27 @@ export function ButtonAddToCart({ userId, movieDetails, type = 'primary', size =
       return
     }
 
-    if (!userId || !movieDetails?.id) {
-      console.error('User ID and item ID are required')
+    // Validate input
+    const effectiveUserId = userId || user?.uid // Fallback to current user ID from Redux
+    if (!effectiveUserId || !movieDetails?.id) {
+      console.error('[ButtonAddToCart] User ID and item ID are required')
       return
     }
 
     const item = {
       id: movieDetails.id.toString(),
       title: movieDetails.title || 'Untitled',
-      price: 10.99,
+      price: movieDetails.price || 10.99, // Use a default price if not provided
       quantity: 1,
     }
 
-    dispatch(addToCart({ userId, item }))
+    dispatch(addToCart({ userId: effectiveUserId, item }))
       .unwrap()
       .then(() => {
-        console.log('Item added to cart successfully:', item)
+        console.log('[ButtonAddToCart] Item added to cart successfully:', item)
       })
       .catch((error) => {
-        console.error('Failed to add item to cart:', error)
+        console.error('[ButtonAddToCart] Failed to add item to cart:', error)
       })
   }
 

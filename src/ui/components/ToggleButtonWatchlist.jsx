@@ -15,12 +15,18 @@ export function ToggleButtonWatchlist({ isInWatchlist, movieDetails, userId }) {
       return
     }
 
+    const effectiveUserId = userId || user?.uid // Fallback to current user ID from Redux
+    if (!effectiveUserId || !movieDetails?.id) {
+      console.error('[ToggleButtonWatchlist] User ID and movie ID are required')
+      return
+    }
+
     if (isInWatchlist) {
       console.log('[ToggleButtonWatchlist] Removing from watchlist:', movieDetails)
-      dispatch(removeFromWatchlist({ uid: userId, movieId: movieDetails.id }))
+      dispatch(removeFromWatchlist({ uid: effectiveUserId, movieId: movieDetails.id }))
     } else {
       console.log('[ToggleButtonWatchlist] Adding to watchlist:', movieDetails)
-      dispatch(addToWatchlist({ uid: userId, movie: movieDetails }))
+      dispatch(addToWatchlist({ uid: effectiveUserId, movie: movieDetails }))
     }
   }
 
