@@ -11,16 +11,22 @@ export function ToggleButtonFavorites({ isFavorite, movieDetails, userId }) {
   const handleToggleFavorite = () => {
     if (!user) {
       console.log('[ToggleButtonFavorites] User is not authenticated. Opening modal...')
-      dispatch(openAuthModal()) // Open modal if not authenticated
+      dispatch(openAuthModal()) // Trigger modal if user is not authenticated
+      return
+    }
+
+    const effectiveUserId = userId || user?.uid // Fallback to current user ID from Redux
+    if (!effectiveUserId || !movieDetails?.id) {
+      console.error('[ToggleButtonFavorites] User ID and movie ID are required')
       return
     }
 
     if (isFavorite) {
       console.log('[ToggleButtonFavorites] Removing from favorites:', movieDetails)
-      dispatch(removeFromFavorites({ uid: userId, movieId: movieDetails.id }))
+      dispatch(removeFromFavorites({ uid: effectiveUserId, movieId: movieDetails.id }))
     } else {
       console.log('[ToggleButtonFavorites] Adding to favorites:', movieDetails)
-      dispatch(addToFavorites({ uid: userId, movie: movieDetails }))
+      dispatch(addToFavorites({ uid: effectiveUserId, movie: movieDetails }))
     }
   }
 
