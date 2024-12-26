@@ -15,32 +15,32 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: $white-color;
+  color: $text-color-white;
   background: url('@/assets/background.jpg') center/cover no-repeat;
   margin-top: 0;
 
   .home-title {
     font-size: 4rem;
-    margin-bottom: $gap-large;
+    margin-bottom: $space-large;
   }
 
   .home-subtitle {
     font-size: $font-size-subline;
-    color: $text-muted;
-    margin-bottom: $gap-large;
+    color: $text-muted-color;
+    margin-bottom: $space-large;
   }
 }
 
 .movies-sections {
-  padding: $padding-standard;
+  padding: $space-medium;
 
   .movies-section {
-    margin-bottom: $margin-large * 2;
+    margin-bottom: $space-large * 2;
 
     h2 {
       font-size: $font-size-h2;
-      color: $white-color;
-      margin-bottom: $gap-medium;
+      color: $text-color-white;
+      margin-bottom: $space-medium;
     }
   }
 }

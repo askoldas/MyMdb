@@ -7,28 +7,28 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 
-  display: inline-flex; // Flexbox for alignment
-  align-items: center; // Center-align text vertically
-  justify-content: center; // Center-align text horizontally
-  white-space: nowrap; // Prevent text wrapping
-  box-sizing: border-box; // Include padding in the button size
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  box-sizing: border-box;
 
   &--small {
-    padding: $space-small $space-medium; // Top/Bottom: $space-small, Left/Right: $space-medium
+    padding: $space-small $space-medium;
     font-size: $font-size-small;
-    height: 36px; // Standard height for small buttons
+    height: 36px;
   }
 
   &--medium {
-    padding: $space-small $space-large; // Top/Bottom: $space-small, Left/Right: $space-large
+    padding: $space-small $space-large;
     font-size: $font-size-base;
-    height: 48px; // Standard height for medium buttons
+    height: 48px;
   }
 
   &--large {
-    padding: $space-medium $space-xlarge; // Top/Bottom: $space-medium, Left/Right: $space-xlarge
+    padding: $space-medium $space-xlarge;
     font-size: $font-size-large;
-    height: 60px; // Standard height for large buttons
+    height: 60px;
   }
 
   &--primary {

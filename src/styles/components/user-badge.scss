@@ -3,22 +3,22 @@
 .user-badge {
   display: flex;
   align-items: center;
-  gap: $margin-small;
+  gap: $space-small;
   cursor: pointer;
   font-size: $font-size-body;
-  color: $white-color;
+  color: $text-color-white;
   position: relative;
 
   &__badge {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: $margin-small;
+    gap: $space-small;
     width: 40px;
     height: 40px;
     background-color: $primary-color;
     border-radius: $border-radius;
-    color: $white-color;
+    color: $text-color-white;
     font-weight: bold;
     font-size: $font-size-body;
     position: relative;
@@ -39,34 +39,34 @@
       fill: currentColor;
 
       &.open {
-        transform: rotate(90deg); // Rotate arrow when dropdown is open
+        transform: rotate(90deg);
       }
     }
   }
 
   &__text {
     font-size: $font-size-small;
-    color: $white-color;
+    color: $text-color-white;
     text-decoration: none;
 
     &:hover {
-      color: $primary2-color;
+      color: $primary-faded-color;
       text-decoration: underline;
     }
   }
 
   &__dropdown {
     position: absolute;
-    top: calc(100% + $margin-small);
+    top: calc(100% + $space-small);
     right: 0;
-    background-color: $background-dark;
+    background-color: $background-dark-gray;
     border-radius: $border-radius;
-    box-shadow: 0 4px 8px $shadow-color;
+    box-shadow: 0 4px 8px $color-shadow;
     z-index: 10;
 
     &-item {
-      padding: $padding-small;
-      color: $white-color;
+      padding: $space-small;
+      color: $text-color-white;
       font-size: $font-size-body;
       cursor: pointer;
 

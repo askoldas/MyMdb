@@ -4,22 +4,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: $padding-standard $padding-large;
+  padding: $space-medium $space-large;
   background-color: $background-black;
-  // position: sticky;
   top: 0;
   z-index: 100;
 
   &__left {
     display: flex;
     align-items: center;
-    gap: $gap-medium; 
+    gap: $space-medium;
   }
 
   &__actions {
     display: flex;
     align-items: center;
-    gap: $gap-medium;
+    gap: $space-medium;
   }
 
   &__search {
@@ -28,7 +27,7 @@
     flex-grow: 1;
 
     input {
-      margin-right: $gap-small;
+      margin-right: $space-small;
       width: 100%;
     }
   }

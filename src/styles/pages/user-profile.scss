@@ -1,35 +1,37 @@
+@import '../_variables';
+
 .user-profile {
-  padding: var(--spacing-large);
-  background-color: var(--color-background);
-  border-radius: var(--border-radius-default);
-  box-shadow: var(--box-shadow-light);
+  padding: $space-large;
+  background-color: $background-dark-gray;
+  border-radius: $border-radius;
+  box-shadow: $color-shadow;
   max-width: 600px;
-  margin: var(--spacing-large) auto;
+  margin: $space-large auto;
 
   h1 {
-    font-size: var(--font-size-large);
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-medium);
+    font-size: $font-size-large;
+    color: $primary-color;
+    margin-bottom: $space-medium;
     text-align: center;
   }
 
   &__info {
-    background-color: var(--color-surface);
-    padding: var(--spacing-medium);
-    border-radius: var(--border-radius-default);
-    box-shadow: var(--box-shadow-light);
+    background-color: $background-graphite;
+    padding: $space-medium;
+    border-radius: $border-radius;
+    box-shadow: $color-shadow;
     text-align: center;
 
     p {
-      font-size: var(--font-size-medium);
-      color: var(--color-text-secondary);
-      margin-bottom: var(--spacing-small);
+      font-size: $font-size-base;
+      color: $text-muted-color;
+      margin-bottom: $space-small;
     }
 
     .button-group {
       display: flex;
       justify-content: center;
-      gap: var(--spacing-small);
+      gap: $space-small;
 
       button {
         min-width: 120px;

@@ -6,9 +6,9 @@
   right: 0;
   width: 400px;
   height: 100%;
-  background-color: $background-dark;
-  color: $white-color;
-  box-shadow: -2px 0 8px $shadow-color;
+  background-color: $background-dark-gray;
+  color: $text-color-white;
+  box-shadow: -2px 0 8px $color-shadow;
   z-index: 200;
   display: flex;
   flex-direction: column;
@@ -17,8 +17,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: $padding-standard;
-    border-bottom: 1px solid $border-color;
+    padding: $space-medium;
+    border-bottom: 1px solid $color-border;
 
     h2 {
       font-size: $font-size-h2;
@@ -28,7 +28,7 @@
       background: none;
       border: none;
       font-size: $font-size-large;
-      color: $white-color;
+      color: $text-color-white;
       cursor: pointer;
     }
   }
@@ -36,20 +36,20 @@
   &__body {
     flex: 1;
     overflow-y: auto;
-    padding: $padding-standard;
+    padding: $space-medium;
 
     .genre-selection,
     .filter-rating-range,
     .filter-year-range {
-      margin-bottom: $gap-medium;
+      margin-bottom: $space-medium;
     }
   }
 
   &__section {
-    margin-bottom: $margin-large;
+    margin-bottom: $space-large;
 
     h3 {
-      margin-bottom: $margin-small;
+      margin-bottom: $space-small;
       font-size: $font-size-h3;
     }
   }
@@ -58,15 +58,15 @@
   &__genres,
   &__range {
     display: flex;
-    gap: $gap-small;
+    gap: $space-small;
     flex-wrap: wrap;
 
     input,
     button {
-      padding: $padding-small;
-      border: 1px solid $border-color;
+      padding: $space-small;
+      border: 1px solid $color-border;
       background: $background-black;
-      color: $white-color;
+      color: $text-color-white;
       border-radius: $border-radius;
     }
 
@@ -77,19 +77,19 @@
   }
 
   &__footer {
-    padding: $padding-standard;
+    padding: $space-medium;
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid $border-color;
+    border-top: 1px solid $color-border;
 
     .filter-bar__clear,
     .filter-bar__apply {
       flex: 1;
-      padding: $padding-small;
-      margin: 0 $gap-small;
+      padding: $space-small;
+      margin: 0 $space-small;
       border: none;
       background-color: $primary-color;
-      color: $white-color;
+      color: $text-color-white;
       border-radius: $border-radius;
       cursor: pointer;
     }
@@ -99,7 +99,7 @@
     }
 
     .filter-bar__apply:hover {
-      background-color: $primary2-color;
+      background-color: $primary-faded-color;
     }
   }
 }

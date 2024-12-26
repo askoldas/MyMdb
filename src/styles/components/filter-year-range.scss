@@ -1,22 +1,23 @@
+@import '../_variables';
+
 .filter-year-range {
+  display: flex;
+  flex-direction: column;
+  gap: $space-small;
+
+  .filter-label {
+    font-weight: bold;
+    margin-bottom: $space-small;
+  }
+
+  .filter-year-range__inputs {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-  
-    .filter-label {
+    align-items: center;
+    gap: $space-small;
+
+    .filter-range-separator {
+      font-size: $font-size-small;
       font-weight: bold;
-      margin-bottom: 4px;
-    }
-  
-    .filter-year-range__inputs {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-  
-      .filter-range-separator {
-        font-size: 14px;
-        font-weight: bold;
-      }
     }
   }
-  
+}

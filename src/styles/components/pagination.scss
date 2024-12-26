@@ -4,14 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: $margin-large;
+  margin-top: $space-large;
 
   &__button {
-    background-color: $background-dark;
-    color: $white-color;
+    background-color: $background-dark-gray;
+    color: $text-color-white;
     border: none;
-    padding: $padding-small $padding-standard;
-    margin: 0 $margin-small;
+    padding: $space-small $space-medium;
+    margin: 0 $space-small;
     border-radius: $border-radius;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -26,8 +26,8 @@
     }
 
     &:disabled {
-      background-color: $background-dark;
-      color: $text-muted;
+      background-color: $background-dark-gray;
+      color: $text-muted-color;
       cursor: not-allowed;
     }
   }
