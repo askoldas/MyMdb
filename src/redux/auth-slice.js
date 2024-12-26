@@ -45,16 +45,15 @@ export const initializeUser = createAsyncThunk(
       return new Promise((resolve) => {
         onAuthStateChanged(auth, async (user) => {
           if (user) {
-            // Fetch additional Firestore user data
             const userDoc = await getDoc(doc(db, 'users', user.uid))
             const additionalData = userDoc.exists() ? userDoc.data() : {}
 
             const { createdAt, ...sanitizedData } = additionalData
             const userData = { ...sanitizeUser(user), ...sanitizedData }
 
-            resolve(userData) // Fulfill promise with sanitized user data
+            resolve(userData) 
           } else {
-            dispatch(clearUser()) // Clear user state on logout
+            dispatch(clearUser()) 
             resolve(null)
           }
         })
@@ -77,6 +76,7 @@ const authSlice = createSlice({
     user: null,
     loading: false,
     error: null,
+    isAuthModalOpen: false, 
   },
   reducers: {
     clearError: (state) => {
@@ -84,6 +84,12 @@ const authSlice = createSlice({
     },
     clearUser: (state) => {
       state.user = null
+    },
+    openAuthModal: (state) => {
+      state.isAuthModalOpen = true 
+    },
+    closeAuthModal: (state) => {
+      state.isAuthModalOpen = false 
     },
   },
   extraReducers: (builder) => {
@@ -138,5 +144,6 @@ const authSlice = createSlice({
   },
 })
 
-export const { clearError, clearUser } = authSlice.actions
+
+export const { clearError, clearUser, openAuthModal, closeAuthModal } = authSlice.actions
 export const authReducer = authSlice.reducer

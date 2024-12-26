@@ -1,10 +1,18 @@
+import React from 'react'
 import { Modal } from '@/ui/modals/Modal'
 import { AuthForm } from '@/ui/forms/AuthForm'
+import { useSelector, useDispatch } from 'react-redux'
+import { closeAuthModal } from '@/redux/auth-slice'
 
-export function AuthModal({ isOpen, onClose }) {
+export function AuthModal() {
+  const isOpen = useSelector((state) => state.auth.isAuthModalOpen)
+  const dispatch = useDispatch()
+
+  console.log('[AuthModal] isOpen:', isOpen)
+  
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <AuthForm onClose={onClose} />
+    <Modal isOpen={isOpen} onClose={() => dispatch(closeAuthModal())}>
+      <AuthForm onClose={() => dispatch(closeAuthModal())} />
     </Modal>
   )
 }
