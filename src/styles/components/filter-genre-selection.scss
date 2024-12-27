@@ -1,5 +1,4 @@
 @import '../_variables';
-
 .genre-selection {
   display: flex;
   flex-direction: column;
@@ -40,17 +39,14 @@
     border-radius: $border-radius;
     padding: $space-small $space-medium;
     color: $text-color-white;
+  }
 
-    &__remove {
-      background: none;
-      border: none;
-      color: $color-error;
-      font-size: $font-size-large;
-      cursor: pointer;
+  &__remove {
+    background: none;
+    border: none;
+    color: $primary-faded-color; 
+    font-size: $font-size-body;
+    cursor: pointer; 
 
-      &:hover {
-        color: $primary-color;
-      }
-    }
   }
 }

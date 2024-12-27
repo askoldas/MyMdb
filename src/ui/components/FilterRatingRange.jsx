@@ -34,7 +34,6 @@ export function FilterRatingRange({ value, onChange }) {
           value={value.from || ''}
           onChange={handleFromRatingChange}
         />
-        <span className="filter-range-separator">to</span>
         <Dropdown
           label="To"
           options={ratingOptions}
