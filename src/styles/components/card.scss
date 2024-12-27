@@ -24,11 +24,14 @@
 
     .card-poster {
       position: relative;
+      border-radius: $border-radius; 
+      overflow: hidden; 
 
       .card-image {
         width: 100%;
         height: auto;
         object-fit: cover;
+        border-radius: inherit;
       }
     }
 

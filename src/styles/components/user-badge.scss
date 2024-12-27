@@ -53,6 +53,10 @@
       color: $primary-faded-color;
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      display: none; // Hides the user name on smaller screens
+    }
   }
 
   &__dropdown {
