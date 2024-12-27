@@ -1,20 +1,10 @@
-import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchWatchlist } from '@/redux/user-collections-slice'
+import { useUserCollections } from '@/hooks/useUserCollections'
 import { MoviesList } from '@/ui/sections/MoviesList'
 import { Page } from '@/pages/Page'
 import { Preloader } from '@/ui/components/Preloader'
 
 export function WatchlistPage() {
-  const dispatch = useDispatch()
-  const { watchlist, favorites, loading, error } = useSelector((state) => state.userCollections)
-  const userId = useSelector((state) => state.auth.user?.uid)
-
-  useEffect(() => {
-    if (userId) {
-      dispatch(fetchWatchlist(userId))
-    }
-  }, [dispatch, userId])
+  const { watchlist, favorites, loading, error } = useUserCollections()
 
   if (loading) return <Page><Preloader /></Page>
   if (error) return <Page><p>Error loading watchlist: {error}</p></Page>
