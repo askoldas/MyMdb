@@ -1,9 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 import { Button } from '@/ui/elements/Button'
 import { MoviesList } from '@/ui/sections/MoviesList'
-import { fetchFavorites, fetchWatchlist } from '@/redux/user-collections-slice'
+import { useUserCollections } from '@/hooks/useUserCollections'
 import { fetchMoviesService } from '@/services/movies'
 import { Page } from '@/pages/Page'
 import { tmdbEndpoints } from '@/config/TmdbApi'
@@ -11,7 +10,6 @@ import '@/styles/pages/home-page.scss'
 
 export function HomePage() {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
 
   const [popularMovies, setPopularMovies] = React.useState([])
   const [topRatedMovies, setTopRatedMovies] = React.useState([])
@@ -19,26 +17,29 @@ export function HomePage() {
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = React.useState(null)
 
-  const { favorites, watchlist } = useSelector((state) => state.userCollections)
-  const userId = useSelector((state) => state.auth.user?.uid)
+  const { favorites, watchlist } = useUserCollections()
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true)
 
-        const popular = await fetchMoviesService({ endpoint: tmdbEndpoints.movies.popular, page: 1 })
-        const topRated = await fetchMoviesService({ endpoint: tmdbEndpoints.movies.topRated, page: 1 })
-        const upcoming = await fetchMoviesService({ endpoint: tmdbEndpoints.movies.upcoming, page: 1 })
+        const popular = await fetchMoviesService({
+          endpoint: tmdbEndpoints.movies.popular,
+          page: 1
+        })
+        const topRated = await fetchMoviesService({
+          endpoint: tmdbEndpoints.movies.topRated,
+          page: 1
+        })
+        const upcoming = await fetchMoviesService({
+          endpoint: tmdbEndpoints.movies.upcoming,
+          page: 1
+        })
 
         setPopularMovies(popular.results.slice(0, 10))
         setTopRatedMovies(topRated.results.slice(0, 10))
         setUpcomingMovies(upcoming.results.slice(0, 10))
-
-        if (userId) {
-          dispatch(fetchFavorites(userId))
-          dispatch(fetchWatchlist(userId))
-        }
       } catch (err) {
         setError(err.message)
       } finally {
@@ -47,7 +48,7 @@ export function HomePage() {
     }
 
     fetchData()
-  }, [dispatch, userId])
+  }, [])
 
   return (
     <Page className="home-page">

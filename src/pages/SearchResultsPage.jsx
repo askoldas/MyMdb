@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { fetchSearchMovies, clearSearchResults } from '@/redux/movies-slice'
+import { useUserCollections } from '@/hooks/useUserCollections'
 import { MoviesList } from '@/ui/sections/MoviesList'
 import { Pagination } from '@/ui/components/Pagination'
 import { Page } from '@/pages/Page'
@@ -14,6 +15,7 @@ export function SearchResultsPage() {
 
   const dispatch = useDispatch()
   const { searchResults, loading, error, totalPages } = useSelector((state) => state.movies)
+  const { favorites, watchlist } = useUserCollections()
 
   useEffect(() => {
     if (query) {
@@ -40,7 +42,11 @@ export function SearchResultsPage() {
     <Page>
       <div className="search-results-page">
         <h2>Search Results for "{query}"</h2>
-        <MoviesList movies={searchResults} />
+        <MoviesList
+          movies={searchResults}
+          favorites={favorites}
+          watchlist={watchlist}
+        />
         <Pagination
           currentPage={page}
           totalPages={totalPages}
