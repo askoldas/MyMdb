@@ -1,9 +1,14 @@
 @import '../_variables.scss';
 
 .page {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: $space-large;
   box-sizing: border-box;
   color: $text-color-white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }

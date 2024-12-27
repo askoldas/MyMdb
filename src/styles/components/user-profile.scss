@@ -7,6 +7,7 @@
   padding: $space-large;
   background-color: $background-black;
   border-radius: $border-radius;
+  min-width: 500px;
 
   &__field {
     display: flex;

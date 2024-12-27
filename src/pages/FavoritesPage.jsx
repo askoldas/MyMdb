@@ -11,6 +11,7 @@ export function FavoritesPage() {
 
   return (
     <Page>
+      <h1>Favorites</h1>
       <MoviesList
         movies={favorites}
         favorites={favorites}

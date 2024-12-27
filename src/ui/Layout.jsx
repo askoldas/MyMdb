@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { Navbar } from '@/ui/sections/Navbar'
 import { AuthModal } from '@/ui/modals/AuthModal'
 import { OrderConfirmationModal } from '@/ui/modals/OrderConfirmationModal'
-import '@/styles/sections/layout.scss'
+import '@/styles/layout.scss'
 
 export function Layout() {
   return (

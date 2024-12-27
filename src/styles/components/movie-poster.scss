@@ -1,0 +1,40 @@
+@import '../_variables';
+
+.movie-poster {
+  flex: 1 0 300px;
+  max-width: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: $border-radius;
+  }
+
+  .poster-actions {
+    display: flex;
+    justify-content: center;
+    gap: $space-small;
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (max-width: 767px) {
+    max-width: 80%;
+    margin-bottom: $space-medium;
+
+    img {
+      max-width: 100%;
+    }
+
+    .poster-actions {
+      bottom: -40px;
+    }
+  }
+}
