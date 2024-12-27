@@ -1,0 +1,21 @@
+@import '../_variables';
+
+.movie-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
+  gap: $space-medium;
+  margin-bottom: $space-xlarge;
+
+  h3 {
+    color: $secondary-color;
+    margin-bottom: $space-small;
+  }
+
+  p {
+    color: $text-color-white;
+  }
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+  }
+}

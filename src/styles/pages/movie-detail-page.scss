@@ -1,136 +1,36 @@
 @import '../_variables';
 
 .movie-page {
+  display: flex;
+  gap: $space-large;
   padding: $space-medium;
 
-  .movie-header {
-    display: flex;
-    gap: $space-medium;
-    margin-bottom: $space-large;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 
-    .poster {
-      flex: 0 0 300px;
-      position: relative;
+  &__poster {
+    flex: 0 0 300px;
+    max-width: 300px;
 
-      img {
-        width: 100%;
-        border-radius: $border-radius;
-      }
-
-      .poster-actions {
-        display: flex;
-        justify-content: center;
-        gap: $space-medium;
-        position: absolute;
-        bottom: -50px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
+    @media (max-width: 768px) {
+      margin: 0 auto $space-medium;
     }
 
-    .info {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-
-      .title {
-        font-size: $font-size-h1;
-        margin-bottom: $space-small;
-        color: $primary-color;
-      }
-
-      .genres {
-        font-size: $font-size-subline;
-        color: $text-muted-color;
-        margin-bottom: $space-medium;
-      }
-
-      .details {
-        display: flex;
-        gap: $space-small;
-        margin-bottom: $space-medium;
-
-        .rating {
-          display: flex;
-          align-items: center;
-          gap: $space-small;
-
-          .star-icon {
-            width: 16px;
-            height: 16px;
-            fill: $primary-color;
-          }
-        }
-      }
-
-      .overview {
-        margin-bottom: $space-large;
-      }
-
-      .meta-info {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(200px, 1fr));
-        gap: $space-medium;
-        margin-bottom: $space-xlarge;
-
-        h3 {
-          color: $secondary-color;
-          margin-bottom: $space-small;
-        }
-
-        p {
-          color: $text-color-white;
-        }
-      }
-
-      .add-to-cart {
-        align-self: flex-start;
-        margin-top: $space-xlarge;
-        max-width: 200px;
-        width: 100%;
-        margin-left: 0;
-      }
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 
-  @media (max-width: 1200px) {
-    .movie-header {
-      flex-direction: column;
+  &__details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $space-medium;
+
+    @media (max-width: 768px) {
       align-items: center;
-
-      .poster {
-        margin-bottom: $space-large;
-        img {
-          max-width: 80%;
-          margin: 0 auto;
-        }
-      }
-
-      .info {
-        text-align: left;
-        width: 100%;
-
-        .title {
-          font-size: $font-size-h2;
-        }
-
-        .genres {
-          margin-bottom: $space-small;
-        }
-
-        .details {
-          justify-content: flex-start;
-        }
-
-        .meta-info {
-          grid-template-columns: 1fr;
-        }
-
-        .add-to-cart {
-          margin-top: $space-large;
-          align-self: center;
-        }
-      }
     }
   }
 }
