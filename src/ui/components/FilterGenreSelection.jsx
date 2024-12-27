@@ -50,7 +50,6 @@ export function GenreSelection({ onChange, value = [] }) {
     <div className="genre-selection">
       <label className="genre-selection__label">Genre</label>
       <Dropdown
-        label="Genre"
         options={genreOptions}
         value=""
         onChange={handleGenreSelect}
