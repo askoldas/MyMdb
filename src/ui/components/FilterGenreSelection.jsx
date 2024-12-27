@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { GENRE_MAP } from '@/config/genres'
 import { Dropdown } from '@/ui/elements/Dropdown'
-import '@/styles/components/genre-selection.scss'
+import '@/styles/components/filter-genre-selection.scss'
 
 export function GenreSelection({ onChange, value = [] }) {
   const [availableGenres, setAvailableGenres] = useState(Object.entries(GENRE_MAP))
@@ -41,13 +41,16 @@ export function GenreSelection({ onChange, value = [] }) {
     setAvailableGenres(newAvailableGenres)
   }
 
-  const genreOptions = availableGenres.map(([id, name]) => ({ value: id, label: name }))
+  const genreOptions = [
+    { value: '', label: 'Select a genre', isPlaceholder: true }, 
+    ...availableGenres.map(([id, name]) => ({ value: id, label: name }))
+  ]
 
   return (
     <div className="genre-selection">
-      <label className="genre-selection__label">Select a Genre</label>
+      <label className="genre-selection__label">Genre</label>
       <Dropdown
-        label="Select a Genre"
+        label="Genre"
         options={genreOptions}
         value=""
         onChange={handleGenreSelect}

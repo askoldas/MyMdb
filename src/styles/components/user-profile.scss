@@ -1,0 +1,88 @@
+@import '../_variables';
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  gap: $space-large;
+  padding: $space-large;
+  background-color: $background-black;
+  border-radius: $border-radius;
+
+  &__field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $space-small;
+
+    label {
+      font-weight: bold;
+      font-size: $font-size-body;
+      flex-basis: 30%;
+    }
+
+    span,
+    input {
+      flex-basis: 70%;
+      padding: $space-small;
+      border: 1px solid $color-border;
+      border-radius: $border-radius;
+      background-color: $background-graphite;
+      color: $text-color-white;
+      font-size: $font-size-body;
+    }
+
+    input {
+      outline: none;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: $space-medium;
+    padding-top: $space-small;
+
+    .btn {
+      padding: $space-small $space-medium;
+      border-radius: $border-radius;
+      font-size: $font-size-body;
+      border: none;
+      text-align: center;
+
+      &.btn-primary {
+        background-color: $primary-color;
+        color: $text-color-white;
+      }
+
+      &.btn-secondary {
+        background-color: $background-graphite;
+        color: $text-color-white;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+
+  &__logout {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $space-large;
+    padding-right: $space-large;
+
+    .btn {
+      padding: $space-small $space-medium;
+      background-color: $background-graphite;
+      color: $text-color-white;
+      border-radius: $border-radius;
+      cursor: pointer;
+      font-size: $font-size-body;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}

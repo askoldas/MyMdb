@@ -35,7 +35,6 @@ export function FilterYearRange({ value, onChange }) {
           value={value.from || ''}
           onChange={handleFromYearChange}
         />
-        <span className="filter-range-separator">to</span>
         <Dropdown
           label="To"
           options={allYearOptions}
