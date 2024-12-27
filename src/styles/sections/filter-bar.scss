@@ -37,12 +37,9 @@
     flex: 1;
     overflow-y: auto;
     padding: $space-medium;
-
-    .genre-selection,
-    .filter-rating-range,
-    .filter-year-range {
-      margin-bottom: $space-medium;
-    }
+    gap: $space-large;
+    display: flex;
+    flex-direction: column;
   }
 
   &__section {
@@ -51,28 +48,6 @@
     h3 {
       margin-bottom: $space-small;
       font-size: $font-size-h3;
-    }
-  }
-
-  &__sort-options,
-  &__genres,
-  &__range {
-    display: flex;
-    gap: $space-small;
-    flex-wrap: wrap;
-
-    input,
-    button {
-      padding: $space-small;
-      border: 1px solid $color-border;
-      background: $background-black;
-      color: $text-color-white;
-      border-radius: $border-radius;
-    }
-
-    button:hover,
-    input:hover {
-      border-color: $primary-color;
     }
   }
 
