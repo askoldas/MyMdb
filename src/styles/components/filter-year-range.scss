@@ -1,0 +1,19 @@
+@import '../_variables';
+
+.filter-year-range {
+  display: flex;
+  flex-direction: column;
+  gap: $space-small;
+
+  .filter-label {
+    font-weight: bold;
+    margin-bottom: $space-small;
+  }
+
+  .filter-year-range__inputs {
+    display: flex;
+    align-items: center;
+    gap: $space-small;
+
+  }
+}

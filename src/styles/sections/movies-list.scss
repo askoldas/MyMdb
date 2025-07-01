@@ -1,0 +1,22 @@
+@import '../_variables';
+
+.movies-list {
+  display: grid;
+  gap: $space-medium;
+  grid-template-columns: repeat(5, minmax(200px, 1fr));
+  grid-auto-rows: minmax(auto, max-content);
+
+  @media (max-width: 1399px) {
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+  }
+
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+
+  align-items: start;
+}

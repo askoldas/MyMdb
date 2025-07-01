@@ -1,0 +1,52 @@
+@import '../_variables';
+.genre-selection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-small;
+
+  &__label {
+    font-size: $font-size-base;
+    font-weight: bold;
+    margin-bottom: $space-small;
+  }
+
+  &__dropdown {
+    padding: $space-small;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    background-color: $background-dark-gray;
+    color: $text-color-white;
+    font-size: $font-size-body;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-small;
+    margin-top: $space-small;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $space-small;
+    background-color: $background-graphite;
+    border-radius: $border-radius;
+    padding: $space-small $space-medium;
+    color: $text-color-white;
+  }
+
+  &__remove {
+    background: none;
+    border: none;
+    color: $primary-faded-color; 
+    font-size: $font-size-body;
+    cursor: pointer; 
+
+  }
+}

@@ -1,0 +1,13 @@
+@import '../_variables.scss';
+
+.movies-page {
+  .movies-list {
+    margin-bottom: $space-large;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: $space-large;
+  }
+}

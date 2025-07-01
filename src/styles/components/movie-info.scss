@@ -1,0 +1,59 @@
+@import '../_variables';
+
+.movie-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    font-size: $font-size-h1;
+    margin-bottom: $space-small;
+    color: $primary-color;
+  }
+
+  .genres {
+    font-size: $font-size-subline;
+    color: $text-muted-color;
+    margin-bottom: $space-medium;
+  }
+
+  .details {
+    display: flex;
+    gap: $space-small;
+    margin-bottom: $space-medium;
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: $space-small;
+
+      .star-icon {
+        width: 16px;
+        height: 16px;
+        fill: $primary-color;
+      }
+    }
+  }
+
+  .overview {
+    margin-bottom: $space-large;
+  }
+
+  @media (max-width: 1200px) {
+    text-align: left;
+    width: 100%;
+
+    .title {
+      font-size: $font-size-h2;
+    }
+
+    .genres {
+      margin-bottom: $space-small;
+    }
+
+    .details {
+      justify-content: flex-start;
+    }
+  }
+}
+

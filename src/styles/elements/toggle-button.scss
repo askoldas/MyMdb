@@ -1,0 +1,30 @@
+@import '../_variables';
+
+.toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  .toggle-button-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    transition: fill 0.2s ease, opacity 0.2s ease;
+  }
+
+  &:not(.active) {
+    color: $text-color-white;
+    opacity: 0.7;
+  }
+
+  &.active {
+    color: $primary-color;
+    .toggle-button-icon {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}

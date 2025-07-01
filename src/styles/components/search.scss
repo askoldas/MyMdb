@@ -1,0 +1,15 @@
+@import '../_variables';
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: $space-small;
+
+  .input {
+    flex-grow: 1;
+  }
+
+  .icon-button {
+    flex-shrink: 0;
+  }
+}

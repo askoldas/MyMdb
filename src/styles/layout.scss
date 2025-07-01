@@ -1,0 +1,21 @@
+@import './_variables';
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+
+  .content-section {
+    flex-grow: 1;
+    background-color: $background-black;
+    overflow-y: auto;
+    margin-top: 0;
+    margin-left: $sidebar-width;
+
+    @media (max-width: 768px) {
+      margin-top: 82px;
+      margin-left: 0;
+    }
+  }
+}

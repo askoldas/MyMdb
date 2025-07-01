@@ -1,0 +1,36 @@
+@import '../_variables';
+
+.movie-page {
+  display: flex;
+  gap: $space-large;
+  padding: $space-medium;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  &__poster {
+    flex: 0 0 300px;
+    max-width: 300px;
+
+    @media (max-width: 768px) {
+      margin: 0 auto $space-medium;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $space-medium;
+
+    @media (max-width: 768px) {
+      align-items: center;
+    }
+  }
+}

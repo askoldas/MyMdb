@@ -1,0 +1,33 @@
+@import '../_variables';
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: $space-large;
+  padding-left: $space-large;
+  height: 100%;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: $space-small;
+  text-decoration: none;
+  color: $text-color-white;
+
+  &.active {
+    color: $primary-color;
+  }
+
+  &:hover {
+    color: $primary-faded-color;
+  }
+
+  .nav-item-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+}

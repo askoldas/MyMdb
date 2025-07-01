@@ -1,0 +1,116 @@
+@import '../_variables';
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-medium;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: $space-large;
+  background-color: $background-dark-gray;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px $color-shadow;
+  color: $text-color-white;
+  font-family: $font-family-primary;
+
+  &__tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $space-medium;
+
+    &__tab {
+      flex: 1;
+      text-align: center;
+      padding: $space-small;
+      font-size: $font-size-body;
+      font-weight: bold;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: $text-muted-color;
+      border-bottom: 2px solid transparent;
+
+      &--active {
+        color: $primary-color;
+        border-bottom: 2px solid $primary-color;
+      }
+
+      &:hover {
+        color: $primary-faded-color;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-small;
+  }
+
+  &__field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $space-small;
+
+    input {
+      width: 100%;
+      padding: $space-small;
+      font-size: $font-size-base;
+      color: $text-color-white;
+      background-color: $background-graphite;
+      border: 1px solid $color-border;
+      border-radius: $border-radius;
+      box-sizing: border-box;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 4px $primary-faded-color;
+      }
+    }
+  }
+
+  &__error {
+    color: $color-error;
+    font-size: $font-size-small;
+    margin-top: $space-small;
+    text-align: center;
+  }
+
+  &__submit {
+    width: 100%;
+    padding: $space-medium;
+    font-size: $font-size-body;
+    font-weight: bold;
+    background-color: $primary-color;
+    color: $text-color-white;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $primary-faded-color;
+    }
+
+    &:disabled {
+      background-color: $color-light-gray;
+      cursor: not-allowed;
+    }
+  }
+
+  &__toggle {
+    margin-top: $space-small;
+    text-align: center;
+    font-size: $font-size-base;
+    color: $primary-color;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+      color: $primary-faded-color;
+    }
+  }
+}

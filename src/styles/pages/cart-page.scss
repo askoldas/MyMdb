@@ -1,0 +1,12 @@
+@import '@/styles/_variables';
+
+.cart-page {
+  padding: $space-medium;
+  color: $text-color-white;
+  background-color: $background-black;
+
+  h1 {
+    font-size: $font-size-h1;
+    margin-bottom: $space-medium;
+  }
+}

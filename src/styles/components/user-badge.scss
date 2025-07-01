@@ -1,0 +1,82 @@
+@import '@/styles/_variables';
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: $space-small;
+  cursor: pointer;
+  font-size: $font-size-body;
+  color: $text-color-white;
+  position: relative;
+
+  &__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-small;
+    width: 40px;
+    height: 40px;
+    background-color: $primary-color;
+    border-radius: $border-radius;
+    color: $text-color-white;
+    font-weight: bold;
+    font-size: $font-size-body;
+    position: relative;
+
+    .user-badge__initial {
+      font-size: $font-size-body;
+    }
+
+    .user-badge__icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .user-badge__arrow {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+      fill: currentColor;
+
+      &.open {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  &__text {
+    font-size: $font-size-small;
+    color: $text-color-white;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-faded-color;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      display: none; // Hides the user name on smaller screens
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + $space-small);
+    right: 0;
+    background-color: $background-dark-gray;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 8px $color-shadow;
+    z-index: 10;
+
+    &-item {
+      padding: $space-small;
+      color: $text-color-white;
+      font-size: $font-size-body;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $background-graphite;
+      }
+    }
+  }
+}

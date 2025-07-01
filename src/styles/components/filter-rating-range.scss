@@ -1,0 +1,18 @@
+@import '../_variables';
+
+.filter-rating-range {
+  display: flex;
+  flex-direction: column;
+  gap: $space-small;
+
+  .filter-label {
+    font-weight: bold;
+    margin-bottom: $space-small;
+  }
+
+  .filter-rating-range__inputs {
+    display: flex;
+    align-items: center;
+    gap: $space-small;
+  }
+}

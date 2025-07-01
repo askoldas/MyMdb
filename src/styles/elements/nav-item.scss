@@ -1,0 +1,21 @@
+@import '../_variables';
+
+.nav-item {
+  text-decoration: none;
+  color: $text-color-white;
+  transition: color 0.3s ease, fill 0.3s ease;
+
+  &.active {
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  &:hover {
+    color: $primary-faded-color;
+  }
+
+  .nav-item-icon {
+    fill: currentColor;
+    transition: fill 0.3s ease;
+  }
+}

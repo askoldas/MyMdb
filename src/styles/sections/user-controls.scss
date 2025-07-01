@@ -1,0 +1,42 @@
+@import '../_variables';
+
+.user-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-medium $space-large;
+  background-color: $background-black;
+  top: 0;
+  z-index: 100;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: $space-medium;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $space-medium;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+
+    input {
+      margin-right: $space-small;
+      width: 100%;
+    }
+  }
+
+  &__filter {
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

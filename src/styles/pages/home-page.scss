@@ -1,0 +1,46 @@
+@import '../_variables.scss';
+
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.home-hero {
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: $text-color-white;
+  background: url('@/assets/background.jpg') center/cover no-repeat;
+  margin-top: 0;
+
+  .home-title {
+    font-size: 4rem;
+    margin-bottom: $space-large;
+  }
+
+  .home-subtitle {
+    font-size: $font-size-subline;
+    color: $text-muted-color;
+    margin-bottom: $space-large;
+  }
+}
+
+.movies-sections {
+  padding: $space-medium;
+
+  .movies-section {
+    margin-bottom: $space-large * 2;
+
+    h2 {
+      font-size: $font-size-h2;
+      color: $text-color-white;
+      margin-bottom: $space-medium;
+    }
+  }
+}
